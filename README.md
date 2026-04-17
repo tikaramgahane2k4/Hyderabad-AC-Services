@@ -147,6 +147,4 @@ npm run dev
 
 ---
 
-## 🧠 Maintained By
 
-Project Lead: Noor
