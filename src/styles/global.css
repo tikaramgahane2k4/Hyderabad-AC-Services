@@ -1063,3 +1063,491 @@ body {
     align-items: flex-start;
   }
 }
+
+/* About Page Styles */
+.about-page {
+  display: grid;
+  gap: 0;
+}
+
+.about-hero {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem 0 1.8rem;
+  text-align: center;
+}
+
+.about-hero h1 {
+  margin: 0.6rem auto 0;
+  color: var(--primary);
+  font-family: "Nasalization", "Poppins", sans-serif;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  line-height: 1.2;
+}
+
+.about-hero p {
+  margin: 0.85rem auto 0;
+  max-width: 760px;
+  color: var(--text-soft);
+  line-height: 1.7;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.5rem 0.8rem;
+  background: rgba(0, 174, 221, 0.08);
+  color: var(--secondary);
+  border: 1px solid rgba(0, 174, 221, 0.18);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.about-stats-section {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0;
+}
+
+.about-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.2rem;
+}
+
+.about-stat-card {
+  background: linear-gradient(135deg, var(--secondary), rgba(0, 174, 221, 0.8));
+  border-radius: 16px;
+  padding: 1.3rem 1rem;
+  text-align: center;
+  color: #ffffff;
+  box-shadow: 0 12px 30px rgba(0, 174, 221, 0.15);
+  transition: all 0.3s ease;
+}
+
+.about-stat-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0, 174, 221, 0.25);
+}
+
+.about-stat-emoji {
+  font-size: 1.8rem;
+  display: block;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+.about-stat-number {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 700;
+  font-family: "Nasalization", "Poppins", sans-serif;
+  margin-bottom: 0.4rem;
+  line-height: 1;
+}
+
+.about-stat-label {
+  font-size: 0.9rem;
+  opacity: 0.95;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.about-section {
+  max-width: 1200px;
+  margin: 1.5rem auto 0;
+  padding: 0;
+}
+
+.about-container {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.about-card {
+  background: linear-gradient(180deg, var(--surface) 0%, var(--surface-alt) 100%);
+  border: 1px solid rgba(21, 71, 105, 0.12);
+  border-radius: 24px;
+  box-shadow: 0 18px 40px rgba(21, 71, 105, 0.08);
+  padding: clamp(1.6rem, 3vw, 2.2rem);
+  transition: all 0.3s ease;
+}
+
+.about-card:hover {
+  box-shadow: 0 24px 50px rgba(21, 71, 105, 0.12);
+  border-color: rgba(0, 174, 221, 0.2);
+}
+
+.about-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.about-card-header h2 {
+  margin: 0;
+  color: var(--primary);
+  font-family: "Nasalization", "Poppins", sans-serif;
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+.about-emoji {
+  font-size: 2rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  line-height: 1;
+}
+
+.about-card-content p {
+  margin: 1rem 0 0;
+  color: var(--text-soft);
+  line-height: 1.9;
+  font-size: 1rem;
+  letter-spacing: 0.3px;
+}
+
+.about-card-content p:first-child {
+  margin-top: 0;
+}
+
+.about-highlight {
+  background: linear-gradient(135deg, rgba(0, 174, 221, 0.1), rgba(21, 71, 105, 0.05));
+  border-left: 3px solid var(--secondary);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1rem !important;
+  font-weight: 500;
+  color: var(--primary);
+}
+
+.about-card--full {
+  grid-column: 1 / -1;
+}
+
+.about-card--full .about-card-header {
+  flex-direction: column;
+  gap: 0;
+}
+
+.about-card--full .about-card-header h2 {
+  font-size: clamp(1.6rem, 2.5vw, 2.1rem);
+}
+
+/* Features Grid */
+.about-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.about-feature {
+  padding: 1.5rem;
+  background: #ffffff;
+  border: 1px solid rgba(21, 71, 105, 0.1);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.about-feature:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(21, 71, 105, 0.12);
+  border-color: rgba(0, 174, 221, 0.2);
+}
+
+.about-feature-emoji {
+  font-size: 2.4rem;
+  display: block;
+  margin-bottom: 0.8rem;
+  line-height: 1;
+}
+
+.about-feature h3 {
+  margin: 0 0 0.6rem;
+  color: var(--primary);
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-family: "Poppins", sans-serif;
+  line-height: 1.3;
+}
+
+.about-feature p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  letter-spacing: 0.2px;
+}
+
+/* Services Grid */
+.about-services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+
+.about-service-item {
+  padding: 1.4rem;
+  background: #ffffff;
+  border: 1px solid rgba(21, 71, 105, 0.1);
+  border-radius: 16px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.about-service-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 174, 221, 0.15);
+  border-color: var(--secondary);
+  background: rgba(0, 174, 221, 0.02);
+}
+
+.about-service-emoji {
+  font-size: 2.6rem;
+  display: block;
+  margin-bottom: 0.8rem;
+  line-height: 1;
+}
+
+.about-service-item h3 {
+  margin: 0 0 0.5rem;
+  color: var(--primary);
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.about-service-item p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  letter-spacing: 0.2px;
+}
+
+/* Process Grid */
+.about-process-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  position: relative;
+}
+
+.about-process-item {
+  padding: 1.6rem;
+  background: linear-gradient(135deg, #ffffff, rgba(0, 174, 221, 0.02));
+  border: 2px solid rgba(0, 174, 221, 0.15);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.about-process-item:hover {
+  border-color: var(--secondary);
+  box-shadow: 0 12px 32px rgba(0, 174, 221, 0.15);
+}
+
+.about-process-step {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--secondary), rgba(0, 174, 221, 0.8));
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  font-weight: 700;
+  font-family: "Nasalization", "Poppins", sans-serif;
+  margin: 0 auto 1rem;
+  box-shadow: 0 6px 18px rgba(0, 174, 221, 0.2);
+}
+
+.about-process-item h3 {
+  margin: 0 0 0.6rem;
+  color: var(--primary);
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.about-process-item p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  letter-spacing: 0.2px;
+}
+
+/* Testimonials */
+.about-testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.about-testimonial-card {
+  padding: 1.6rem;
+  background: #ffffff;
+  border: 1px solid rgba(21, 71, 105, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(21, 71, 105, 0.06);
+  transition: all 0.3s ease;
+}
+
+.about-testimonial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(21, 71, 105, 0.12);
+  border-color: rgba(0, 174, 221, 0.2);
+}
+
+.about-testimonial-rating {
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 0.2rem;
+}
+
+.about-star {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.about-testimonial-content {
+  margin: 0 0 1rem;
+  color: var(--primary);
+  font-style: italic;
+  line-height: 1.9;
+  font-size: 1rem;
+  letter-spacing: 0.3px;
+}
+
+.about-testimonial-author {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.about-testimonial-author strong {
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.about-testimonial-author small {
+  color: var(--text-soft);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.about-cta-section {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, var(--secondary), rgba(0, 174, 221, 0.8));
+  border-radius: 24px;
+  padding: clamp(2rem, 4vw, 3rem);
+  text-align: center;
+  color: #ffffff;
+  margin-top: 1rem;
+  box-shadow: 0 20px 50px rgba(0, 174, 221, 0.2);
+}
+
+.about-cta-section h2 {
+  margin: 0 0 0.8rem;
+  font-family: "Nasalization", "Poppins", sans-serif;
+  font-size: clamp(1.6rem, 2.5vw, 2.1rem);
+  line-height: 1.2;
+}
+
+.about-cta-section p {
+  margin: 0 auto 1.5rem;
+  max-width: 600px;
+  line-height: 1.8;
+  font-size: 0.95rem;
+  opacity: 0.95;
+}
+
+.about-cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem 2rem;
+  background: #ffffff;
+  color: var(--secondary);
+  border: none;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.about-cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive - About Page */
+@media (max-width: 768px) {
+  .about-hero {
+    padding: 0.8rem 0 1.2rem;
+  }
+
+  .about-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+  }
+
+  .about-stat-card {
+    padding: 1.2rem 0.8rem;
+  }
+
+  .about-stat-number {
+    font-size: 1.6rem;
+  }
+
+  .about-stat-label {
+    font-size: 0.75rem;
+  }
+
+  .about-features-grid,
+  .about-services-grid,
+  .about-process-grid,
+  .about-testimonials-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .about-card {
+    padding: 1rem;
+  }
+
+  .about-card-header {
+    gap: 0.8rem;
+  }
+
+  .about-emoji {
+    font-size: 1.8rem;
+  }
+
+  .about-feature-emoji,
+  .about-service-emoji {
+    font-size: 2rem;
+  }
+
+  .about-cta-section {
+    padding: 1.5rem;
+  }
+}
+
+
