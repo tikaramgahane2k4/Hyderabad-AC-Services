@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 
 function About() {
@@ -196,9 +197,9 @@ function About() {
               Whether you're installing a new system, upgrading to centralized cooling, or just
               need seasonal maintenance—we're here to keep you cool, comfortable, and worry-free.
             </p>
-            <a href="/contact" className="about-cta-button">
+            <Link to="/contact" className="about-cta-button">
               Get in Touch Today
-            </a>
+            </Link>
           </div>
         </div>
       </section>
