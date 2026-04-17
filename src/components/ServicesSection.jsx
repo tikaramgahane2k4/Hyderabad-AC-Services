@@ -14,6 +14,7 @@ const services = [
     bestFor: "New commercial fit-outs, office upgrades, and replacement installs.",
     businessValue: "A properly installed system reduces maintenance costs, improves comfort, and protects operational continuity.",
     turnaround: "1-3 days",
+    image: "https://images.unsplash.com/photo-1621905167918-48416bd8575a?w=500&h=500&fit=crop&q=80",
     icon: (
       <svg viewBox="0 0 24 24" role="img" aria-label="AC installation icon">
         <path d="M3 6.5A2.5 2.5 0 0 1 5.5 4h13A2.5 2.5 0 0 1 21 6.5v4A2.5 2.5 0 0 1 18.5 13h-13A2.5 2.5 0 0 1 3 10.5v-4Zm2 0v4a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 0-.5-.5h-13a.5.5 0 0 0-.5.5ZM8 9h2M12 9h4M8 16c0 1.4-1 2.4-2.5 2.8m10.5-2.8c0 1.4 1 2.4 2.5 2.8M12 16v3" stroke="currentColor" strokeWidth="1.8" fill="none" strokeLinecap="round" strokeLinejoin="round" />
@@ -30,6 +31,7 @@ const services = [
     bestFor: "Businesses that need predictable cooling performance and fewer breakdowns.",
     businessValue: "Regular maintenance extends asset life, lowers energy spend, and reduces emergency repair interruptions.",
     turnaround: "Same day",
+    image: "https://images.unsplash.com/photo-1581486830050-6282049cabbe?w=500&h=500&fit=crop&q=80",
     icon: (
       <svg viewBox="0 0 24 24" role="img" aria-label="AC maintenance icon">
         <path d="M12 3v4M12 17v4M3 12h4M17 12h4m-2.2-6.8-2.8 2.8M8 16l-2.8 2.8m0-13.6L8 8m8 8 2.8 2.8" stroke="currentColor" strokeWidth="1.8" fill="none" strokeLinecap="round" strokeLinejoin="round" />
@@ -47,6 +49,7 @@ const services = [
     bestFor: "Urgent breakdowns, inconsistent cooling, and recurring fault conditions.",
     businessValue: "Fast repair response keeps staff comfortable and prevents productivity losses during peak heat.",
     turnaround: "2-6 hours",
+    image: "https://images.unsplash.com/photo-1581093918556-45b2e056003d?w=500&h=500&fit=crop&q=80",
     icon: (
       <svg viewBox="0 0 24 24" role="img" aria-label="AC repair icon">
         <path d="M9 4h6l1 3h3v4l-2 1v6a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2v-6l-2-1V7h3l1-3Zm0 8h6M10 16h1m3 0h1" stroke="currentColor" strokeWidth="1.8" fill="none" strokeLinecap="round" strokeLinejoin="round" />
@@ -63,6 +66,7 @@ const services = [
     bestFor: "Warehouses, offices, retail spaces, and industrial facilities.",
     businessValue: "A well-planned HVAC system improves occupancy comfort, compliance, and operating efficiency.",
     turnaround: "Project-based",
+    image: "https://images.unsplash.com/photo-1581096917612-eec81c4c3ca3?w=500&h=500&fit=crop&q=80",
     icon: (
       <svg viewBox="0 0 24 24" role="img" aria-label="HVAC systems icon">
         <path d="M5 5h6v6H5zM13 5h6v6h-6zM5 13h6v6H5zM13 13h6v6h-6z" stroke="currentColor" strokeWidth="1.8" fill="none" strokeLinejoin="round" />
@@ -111,6 +115,7 @@ function ServicesSection() {
             title={service.title}
             description={service.description}
             icon={service.icon}
+            image={service.image}
             onLearnMore={() => setSelectedService(service)}
           />
         ))}
