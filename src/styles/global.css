@@ -36,12 +36,20 @@ body {
 
 .app-shell {
   min-height: 100vh;
-  padding: clamp(2.5rem, 5vw, 4.5rem) clamp(1.2rem, 4vw, 4rem);
+  /* keep existing page padding but add space for the fixed header */
+  padding: calc(clamp(2.5rem, 5vw, 4.5rem) + 88px) clamp(1.2rem, 4vw, 4rem) clamp(2.5rem, 5vw, 4.5rem);
 }
 
 .site-navbar {
+  /* fixed, centered header that sits above page content */
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1200;
   max-width: 1200px;
-  margin: 0 auto 1.5rem;
+  width: calc(100% - 48px);
+  margin: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -49,7 +57,8 @@ body {
   padding: 0.9rem 1rem;
   border: 1px solid rgba(21, 71, 105, 0.12);
   border-radius: 18px;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.9);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   box-shadow: 0 14px 30px rgba(21, 71, 105, 0.08);
 }
@@ -118,6 +127,18 @@ body {
   background: var(--secondary);
   color: #ffffff !important;
   box-shadow: 0 14px 28px rgba(0, 174, 221, 0.22);
+}
+
+/* Ensure CTA is visible above any backdrop/overlays */
+.site-nav .site-nav-cta {
+  position: relative;
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1.05rem;
+  border: 0;
+  text-shadow: none;
 }
 
 .site-nav-cta:hover {
@@ -1011,6 +1032,14 @@ body {
   }
 
   .site-navbar {
+    /* on small screens, make navbar part of normal flow again */
+    position: static;
+    transform: none;
+    left: auto;
+    top: auto;
+    width: 100%;
+    max-width: none;
+    margin: 0 auto 1.5rem;
     flex-direction: column;
     align-items: stretch;
   }

@@ -34,7 +34,7 @@ function Navbar() {
       <nav className="site-nav" aria-label="Primary navigation">
         <Link to="/" onClick={handleHomeClick}>Home</Link>
         <Link to="/#services" onClick={handleServicesClick}>Services</Link>
-        <Link to="/contact" className="site-nav-cta">Contact</Link>
+        <Link to="/contact">Contact</Link>
       </nav>
     </header>
   );
