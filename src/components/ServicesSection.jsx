@@ -73,7 +73,6 @@ const services = [
 ];
 
 function ServicesSection() {
-  const [showLogo, setShowLogo] = useState(true);
   const [selectedService, setSelectedService] = useState(null);
   const [quoteService, setQuoteService] = useState(null);
   const [lastQuote, setLastQuote] = useState(null);
@@ -92,14 +91,6 @@ function ServicesSection() {
   return (
     <section className="services-section" id="services">
       <div className="services-header">
-        {showLogo && (
-          <img
-            className="services-logo"
-            src="/logo.png"
-            alt="Hyderabad AC Services"
-            onError={() => setShowLogo(false)}
-          />
-        )}
         <p className="eyebrow">Our Services</p>
         <h2>Reliable AC solutions for homes &amp; businesses</h2>
       </div>

@@ -1,63 +1,4 @@
-<<<<<<< Updated upstream
-import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
-
-function About() {
-  const heroHighlights = ["Certified Team", "Same-Day Support", "Transparent Pricing"];
-
-  const valuePillars = [
-    {
-      title: "Quality First",
-      description: "We use proven processes and quality checks at every stage of every project.",
-    },
-    {
-      title: "Fast Turnaround",
-      description: "From emergency breakdowns to planned upgrades, our response stays quick and reliable.",
-    },
-    {
-      title: "Long-Term Support",
-      description: "We stay with you after installation with maintenance plans and dependable after-service.",
-    },
-  ];
-
-  const testimonials = [
-    {
-      name: "Rajesh Kumar",
-      role: "Residential Client",
-      content: "Outstanding service! The technicians were professional and the AC works perfectly now. Highly recommended!",
-      rating: 5,
-    },
-    {
-      name: "Priya Restaurant Group",
-      role: "Restaurant Owner",
-      content: "Installed kitchen exhaust system perfectly. Reliable support and quick response time. Best choice for commercial needs!",
-      rating: 5,
-    },
-    {
-      name: "Hospital Administration",
-      role: "Commercial Client",
-      content: "Excellent centralized cooling system installation. Professional team, transparent pricing, no hidden charges.",
-      rating: 5,
-    },
-  ];
-
-  const stats = [
-    { number: "500+", label: "Happy Clients" },
-    { number: "1000+", label: "Projects Completed" },
-    { number: "10+", label: "Years Experience" },
-    { number: "24/7", label: "Customer Support" },
-  ];
-
-  const services = [
-    { title: "AC Installation", description: "Split, window & centralized AC systems" },
-    { title: "AC Repair", description: "Quick fixes and emergency support" },
-    { title: "Maintenance", description: "Seasonal & annual maintenance plans" },
-    { title: "Ducting", description: "Professional ducting solutions" },
-    { title: "Kitchen Exhaust", description: "Restaurant kitchen exhaust systems" },
-    { title: "VRF/VRV Systems", description: "Advanced cooling technologies" },
-=======
-import { Link } from "react-router-dom";
-import { siteContent } from "../data/siteContent";
 import Footer from "../components/Footer";
 import "../styles/About.css";
 
@@ -127,7 +68,6 @@ function About() {
       title: "VRF / VRV Systems",
       description: "Smart multi-zone cooling for large offices, hotels, and commercial buildings.",
     },
->>>>>>> Stashed changes
   ];
 
   const process = [
@@ -193,47 +133,6 @@ function About() {
 
       {/* ── HERO ── */}
       <section className="about-hero">
-<<<<<<< Updated upstream
-        <div className="about-hero-content">
-          <p className="eyebrow">Our Story</p>
-          <h1>Keeping Hyderabad Cool, Comfortable & Worry-Free</h1>
-          <p>
-            Your trusted partner for complete Air Conditioning and HVAC Solutions for homes,
-            offices, restaurants, hospitals, and industrial spaces.
-          </p>
-
-          <div className="about-hero-badges">
-            {heroHighlights.map((item, idx) => (
-              <span key={idx}>{item}</span>
-            ))}
-          </div>
-
-          <div className="about-hero-actions">
-            <Link to="/contact" className="about-primary-btn">Book a Free Consultation</Link>
-            <Link to="/#services" className="about-secondary-btn">Explore Services</Link>
-          </div>
-        </div>
-
-        <div className="about-hero-panel">
-          <p className="about-hero-panel-label">Trusted HVAC Partner</p>
-          <h3>Built on Reliability, Backed by Results</h3>
-          <ul>
-            <li>Serving all major locations across Hyderabad</li>
-            <li>Certified engineers and trained technicians</li>
-            <li>Residential and commercial project expertise</li>
-            <li>End-to-end support from installation to AMC</li>
-          </ul>
-        </div>
-      </section>
-
-      {/* Statistics Section */}
-      <section className="about-stats-section">
-        <div className="about-stats-grid">
-          {stats.map((stat, idx) => (
-            <div key={idx} className="about-stat-card">
-              <div className="about-stat-number">{stat.number}</div>
-              <div className="about-stat-label">{stat.label}</div>
-=======
         <div className="about-hero__left">
           <p className="about-eyebrow">About Us</p>
           <h1 className="about-hero__title">
@@ -254,8 +153,8 @@ function About() {
             <Link to="/contact" className="about-btn about-btn--primary">
               Get a Free Consultation
             </Link>
-            <a className="about-btn about-btn--ghost" href={siteContent.phoneLink}>
-              Call {siteContent.phoneDisplay}
+            <a className="about-btn about-btn--ghost" href="tel:+91XXXXXXXXXX">
+              Call +91 XXXXX XXXXX
             </a>
           </div>
         </div>
@@ -325,162 +224,11 @@ function About() {
               <span className="about-value-card__num">{v.number}</span>
               <h3>{v.title}</h3>
               <p>{v.desc}</p>
->>>>>>> Stashed changes
             </div>
           ))}
         </div>
       </section>
 
-<<<<<<< Updated upstream
-      <section className="about-section">
-        <div className="about-container">
-          {/* About Us */}
-          <div className="about-card">
-            <div className="about-card-header">
-              <h2>About Us</h2>
-            </div>
-            <div className="about-card-content">
-              <p>
-                At Hyderabad AC Services, we provide complete Air Conditioning and HVAC Services
-                in Hyderabad. With years of experience, we specialize in AC installation, repair,
-                maintenance, ducting, centralized cooling, restaurant kitchen exhaust installation,
-                and annual maintenance for both residential and commercial clients.
-              </p>
-              <p className="about-highlight">
-                Our mission is simple: to keep all our customers cool and comfortable with reliable,
-                affordable, and professional AC Services.
-              </p>
-            </div>
-          </div>
-
-          {/* Who We Are */}
-          <div className="about-card">
-            <div className="about-card-header">
-              <h2>Who We Are</h2>
-            </div>
-            <div className="about-card-content">
-              <p>
-                Hyderabad AC Services is a team of certified HVAC engineers and professionals
-                dedicated to delivering top-quality cooling solutions. From split and window ACs
-                to centralized ducting and VRF/VRV systems, we provide end-to-end services tailored
-                to your specific needs. Whether it's a home, office, restaurant, hospital, retail
-                showroom, or industrial facility, we ensure every project is executed with precision,
-                safety, and efficiency.
-              </p>
-            </div>
-          </div>
-
-          {/* What We Handle */}
-          <div className="about-card about-card--full">
-            <div className="about-card-header">
-              <h2>What We Handle</h2>
-            </div>
-            <div className="about-services-grid">
-              {services.map((service, idx) => (
-                <div key={idx} className="about-service-item">
-                  <h3>{service.title}</h3>
-                  <p>{service.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Our Process */}
-          <div className="about-card about-card--full">
-            <div className="about-card-header">
-              <h2>How We Work With You</h2>
-            </div>
-            <div className="about-process-grid">
-              {process.map((item, idx) => (
-                <div key={idx} className="about-process-item">
-                  <div className="about-process-step">{item.step}</div>
-                  <h3>{item.title}</h3>
-                  <p>{item.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Why Choose Us */}
-          <div className="about-card about-card--full">
-            <div className="about-card-header">
-              <h2>Why Choose Hyderabad AC Services</h2>
-            </div>
-            <div className="about-features-grid">
-              <div className="about-feature">
-                <h3>Experienced Engineers & Certified Technicians</h3>
-                <p>Skilled professionals with years of industry experience</p>
-              </div>
-
-              <div className="about-feature">
-                <h3>Serving All Areas of Hyderabad</h3>
-                <p>Fast and reliable service across the entire city</p>
-              </div>
-
-              <div className="about-feature">
-                <h3>Transparent Pricing</h3>
-                <p>No hidden charges – clear and honest quotes</p>
-              </div>
-
-              <div className="about-feature">
-                <h3>Fast Response & Same-Day Service</h3>
-                <p>Quick turnaround for urgent cooling needs</p>
-              </div>
-
-              <div className="about-feature">
-                <h3>Eco-Friendly Practices</h3>
-                <p>Responsible recycling and sustainable solutions</p>
-              </div>
-
-              <div className="about-feature">
-                <h3>Customer Satisfaction Guaranteed</h3>
-                <p>Your comfort is our top priority</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Client Testimonials */}
-          <div className="about-card about-card--full">
-            <div className="about-card-header">
-              <h2>What Our Clients Say</h2>
-            </div>
-            <div className="about-testimonials-grid">
-              {testimonials.map((testimonial, idx) => (
-                <div key={idx} className="about-testimonial-card">
-                  <div className="about-testimonial-rating">
-                    <span>{testimonial.rating}/5</span>
-                  </div>
-                  <p className="about-testimonial-content">"{testimonial.content}"</p>
-                  <div className="about-testimonial-author">
-                    <strong>{testimonial.name}</strong>
-                    <small>{testimonial.role}</small>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* CTA Section */}
-          <div className="about-cta-section">
-            <h2>Ready to Experience Our Service?</h2>
-            <p>
-              Whether you're installing a new system, upgrading to centralized cooling, or just
-              need seasonal maintenance—we're here to keep you cool, comfortable, and worry-free.
-            </p>
-            <a href="/contact" className="about-cta-button">
-              Get in Touch Today
-            </a>
-          </div>
-
-          <div className="about-value-strip">
-            {valuePillars.map((pillar, idx) => (
-              <div key={idx} className="about-value-item">
-                <h3>{pillar.title}</h3>
-                <p>{pillar.description}</p>
-              </div>
-            ))}
-          </div>
-=======
       {/* ── SERVICES ── */}
       <section className="about-services-section">
         <div className="about-section-head">
@@ -576,11 +324,10 @@ function About() {
             <Link to="/contact" className="about-btn about-btn--white">
               Book a Free Visit
             </Link>
-            <a className="about-btn about-btn--outline-white" href={siteContent.phoneLink}>
-              Call {siteContent.phoneDisplay}
+            <a className="about-btn about-btn--outline-white" href="tel:+91XXXXXXXXXX">
+              Call +91 XXXXX XXXXX
             </a>
           </div>
->>>>>>> Stashed changes
         </div>
       </section>
 
