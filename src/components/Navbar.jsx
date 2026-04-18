@@ -1,4 +1,16 @@
 import { Link, useLocation } from "react-router-dom";
+<<<<<<< Updated upstream
+=======
+import { siteContent } from "../data/siteContent";
+import "./Navbar.css";
+
+const navItems = [
+  { id: "home", label: "Home", to: "/" },
+  { id: "services", label: "Services", to: "/#services", hashId: "services" },
+  { id: "about", label: "About Us", to: "/about" },
+  { id: "contact", label: "Contact", to: "/contact" },
+];
+>>>>>>> Stashed changes
 
 function Navbar() {
   const location = useLocation();
