@@ -21,13 +21,6 @@ export default function Header() {
           </nav>
         </div>
       </header>
-
-      <section className="hero">
-        <div className="hero-container">
-          <h1>Contact Us</h1>
-          <p>We're here to help. Reach out through any channel below.</p>
-        </div>
-      </section>
     </>
   );
 }
