@@ -13,14 +13,25 @@ function Footer() {
           </div>
         </div>
 
-        <div className="footer-col links">
-          <h4>Quick Links</h4>
-          <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/#services">Services</a></li>
-            <li><a href="/contact">Contact</a></li>
-            <li><a href="/about">About</a></li>
-          </ul>
+        <div className="footer-col middle">
+          <div className="links">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="/">Home</a></li>
+              <li><a href="/#services">Services</a></li>
+              <li><a href="/contact">Contact</a></li>
+              <li><a href="/about">About</a></li>
+            </ul>
+          </div>
+
+          <div className="social">
+            <h4>Follow Us</h4>
+            <div className="social-icons">
+              <a className="social-link" href="#" aria-label="Facebook"><FaFacebookF /></a>
+              <a className="social-link" href="#" aria-label="Instagram"><FaInstagram /></a>
+              <a className="social-link" href="#" aria-label="Twitter"><FaTwitter /></a>
+            </div>
+          </div>
         </div>
 
         <div className="footer-col contact">
@@ -30,15 +41,6 @@ function Footer() {
             <li><a href="tel:+91XXXXXXXXXX">+91 XXXXX XXXXX</a></li>
             <li><a href="mailto:info@hyderabadacservices.com">info@hyderabadacservices.com</a></li>
           </ul>
-        </div>
-
-        <div className="footer-col social">
-          <h4>Follow Us</h4>
-          <div className="social-icons">
-            <a className="social-link" href="#" aria-label="Facebook"><FaFacebookF /></a>
-            <a className="social-link" href="#" aria-label="Instagram"><FaInstagram /></a>
-            <a className="social-link" href="#" aria-label="Twitter"><FaTwitter /></a>
-          </div>
         </div>
       </div>
 
