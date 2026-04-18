@@ -1,36 +1,176 @@
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { siteContent } from "../data/siteContent";
+import "./Navbar.css";
+
+const navItems = [
+  { id: "home", label: "Home", to: "/" },
+  { id: "services", label: "Services", to: "/#services", hashId: "services" },
+  { id: "contact", label: "Contact", to: "/contact" },
+];
 
 function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
-  const isServicesPage = location.pathname === "/services";
-  const isHomePage = location.pathname === "/";
-  const isAboutPage = location.pathname === "/about";
-  const isContactPage = location.pathname === "/contact";
+  const headerRef = useRef(null);
 
-  const handleHomeClick = (event) => {
+  useEffect(() => {
+    const updateScrolledState = () => {
+      setIsScrolled(window.scrollY > 24);
+    };
+
+    updateScrolledState();
+    window.addEventListener("scroll", updateScrolledState, { passive: true });
+
+    return () => window.removeEventListener("scroll", updateScrolledState);
+  }, []);
+
+  useEffect(() => {
+    if (!isMenuOpen) {
+      return undefined;
+    }
+
+    const handlePointerDown = (event) => {
+      if (headerRef.current && !headerRef.current.contains(event.target)) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handlePointerDown);
+    document.addEventListener("touchstart", handlePointerDown);
+    window.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.removeEventListener("mousedown", handlePointerDown);
+      document.removeEventListener("touchstart", handlePointerDown);
+      window.removeEventListener("keydown", handleEscape);
+    };
+  }, [isMenuOpen]);
+
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location.pathname, location.hash]);
+
+  useEffect(() => {
+    if (location.pathname !== "/" || !location.hash) {
+      return;
+    }
+
+    const targetId = location.hash.slice(1);
+    const section = document.getElementById(targetId);
+    if (!section) {
+      return;
+    }
+
+    window.requestAnimationFrame(() => {
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }, [location.pathname, location.hash]);
+
+  const handleBrandClick = (event) => {
+    setIsMenuOpen(false);
+
     if (location.pathname === "/") {
       event.preventDefault();
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
-  return (
-    <header className="site-navbar">
-      <Link className="site-brand" to="/" onClick={handleHomeClick}>
-        <span className="site-brand-mark" aria-hidden="true">H</span>
-        <span>
-          <strong>Hyderabad AC Services</strong>
-          <small>Reliable cooling solutions</small>
-        </span>
-      </Link>
+  const handleNavItemClick = (item) => (event) => {
+    setIsMenuOpen(false);
 
-      <nav className="site-nav" aria-label="Primary navigation">
-        <Link to="/" onClick={handleHomeClick} className={isHomePage ? "site-nav-link-active" : ""}>Home</Link>
-        <Link to="/about" className={isAboutPage ? "site-nav-link-active" : ""}>About Us</Link>
-        <Link to="/services" className={isServicesPage ? "site-nav-link-active" : ""}>Services</Link>
-        <Link to="/contact" className={isContactPage ? "site-nav-link-active" : ""}>Contact</Link>
-        <Link to="/book-service" className="site-nav-cta">Book Now</Link>
-      </nav>
+    if (item.hashId) {
+      if (location.pathname === "/") {
+        event.preventDefault();
+        const section = document.getElementById(item.hashId);
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+      return;
+    }
+
+    if (location.pathname === item.to) {
+      event.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
+  const isActiveItem = (item) => {
+    if (item.hashId) {
+      return location.pathname === "/" && location.hash === `#${item.hashId}`;
+    }
+
+    return location.pathname === item.to;
+  };
+
+  return (
+    <header className={`site-header ${isScrolled ? "site-header--scrolled" : ""}`} ref={headerRef}>
+      <div className={`navbar ${isScrolled ? "navbar--scrolled" : ""}`}>
+        <div className="navbar__container">
+          <Link
+            className="navbar__logo"
+            to="/"
+            onClick={handleBrandClick}
+            aria-label={siteContent.businessName}
+          >
+            <img
+              className="navbar__logo-image"
+              src={siteContent.logoUrl}
+              alt={`${siteContent.businessName} logo`}
+            />
+          </Link>
+
+          <button
+            type="button"
+            className={`navbar__toggle ${isMenuOpen ? "navbar__toggle--open" : ""}`}
+            aria-expanded={isMenuOpen}
+            aria-controls="primary-navigation"
+            aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            onClick={() => setIsMenuOpen((currentState) => !currentState)}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+
+          <nav
+            id="primary-navigation"
+            className={`navbar__nav ${isMenuOpen ? "navbar__nav--open" : ""}`}
+            aria-label="Primary navigation"
+          >
+            <ul className={`navbar__menu ${isMenuOpen ? "navbar__menu--open" : ""}`}>
+              {navItems.map((item) => (
+                <li key={item.id}>
+                  <Link
+                    className={`navbar__menu-link ${isActiveItem(item) ? "navbar__menu-link--active" : ""}`}
+                    to={item.to}
+                    aria-current={isActiveItem(item) ? "page" : undefined}
+                    onClick={handleNavItemClick(item)}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            <a
+              href={siteContent.phoneLink}
+              className="navbar__book-btn"
+              aria-label={`Call ${siteContent.phoneDisplay}`}
+            >
+              Book Now
+            </a>
+          </nav>
+        </div>
+      </div>
     </header>
   );
 }
