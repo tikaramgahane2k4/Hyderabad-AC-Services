@@ -13,9 +13,9 @@ export const siteContent = {
   workingHours: "9 AM - 9 PM",
   serviceChargeNote: "All services are Chargeable",
   socialLinks: [
-    { label: "Facebook", href: "https://www.facebook.com" },
-    { label: "Instagram", href: "https://www.instagram.com" },
-    { label: "WhatsApp", href: "https://wa.me/918712322475" },
+    { label: "Facebook", href: "https://www.facebook.com/hyderabadacservices" },
+    { label: "Instagram", href: "https://www.instagram.com/hyderabadacservices/" },
+    { label: "WhatsApp", href: "https://api.whatsapp.com/send/?phone=918712322475&text&app_absent=0" },
   ],
   companyDescription: [
     "As one of the Best AC Companies in Hyderabad, we provide high-quality air conditioning services for homes, offices, commercial spaces and industries. Our professionally trained and certified HVAC experts ensure every service and installation is completed with precision and reliability. Our team is dedicated to providing reliable, long-lasting solutions for all types of air conditioning systems.",
