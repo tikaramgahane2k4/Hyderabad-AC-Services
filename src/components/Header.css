@@ -1,0 +1,129 @@
+
+.header{
+  width: 100%;
+  background: #ffffff; /* full-width white header */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1200;
+  border-radius: 0;
+}
+
+.nav-container{
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 40px;
+  gap: 1rem;
+  background: transparent; /* inner container centered but transparent */
+  border-radius: 0;
+}
+
+/* ensure no rounding from other rules */
+.nav-container, .nav-container * { border-radius: 0 !important }
+
+.brand{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  text-decoration:none;
+  color:var(--primary);
+}
+
+.brand-mark{
+  width:44px;
+  height:44px;
+  border-radius:10px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,#1d4ed8,#0ea5e9);
+  color:#fff;
+  font-weight:700;
+  font-family: "Nasalization", "Poppins", sans-serif;
+}
+
+.brand-text{
+  font-weight:600;
+  font-size:1rem;
+}
+
+.brand-text strong{
+  color:var(--secondary);
+}
+
+.nav{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.nav a{
+  text-decoration:none;
+  color:var(--primary);
+  font-weight:600;
+  padding:8px 12px;
+  border-radius:8px;
+}
+
+.nav a:hover{
+  background: rgba(0,174,221,0.06);
+}
+
+.nav .cta{
+  background: linear-gradient(135deg,#1d4ed8,#0ea5e9);
+  color:#fff;
+  padding:8px 14px;
+  border-radius:999px;
+  box-shadow:0 8px 20px rgba(13,110,253,0.16);
+}
+
+.nav .cta:hover{
+  transform:translateY(-2px);
+}
+
+/* Hero */
+.hero{
+  width: 100%;
+  background: linear-gradient(135deg, #1d4ed8, #0ea5e9);
+  color: #fff;
+  padding: 80px 20px;
+  box-sizing: border-box;
+}
+
+.hero-container{
+  max-width:1200px;
+  margin:0 auto;
+  text-align:center;
+  padding:0 20px;
+}
+
+.hero h1{
+  margin:0 0 12px;
+  font-size:2.4rem;
+  line-height:1.05;
+  font-weight:700;
+}
+
+.hero p{
+  margin:0;
+  font-size:1.05rem;
+  opacity:0.9;
+}
+
+/* Responsive */
+@media (max-width: 800px){
+  .nav-container{
+    padding:12px 18px;
+  }
+  .nav{
+    gap:8px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+  .brand-text{font-size:0.95rem}
+  .hero{padding:48px 0}
+  .hero h1{font-size:1.6rem}
+}

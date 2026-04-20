@@ -5,7 +5,7 @@ function ContactPage() {
   return (
     <div className="contact-page">
       <section className="contact-hero">
-        <p className="eyebrow">Contact Us</p>
+        <p className="services-kicker">Contact Us</p>
         <h1>Send an inquiry and get a quick response from Hyderabad AC Services</h1>
         <p>
           Share your requirement and our team will connect with you to discuss installation,
@@ -41,7 +41,7 @@ function ContactPage() {
                 </span>
                 <div>
                   <span>Phone</span>
-                  <strong>+91 XXXXX XXXXX</strong>
+                  <strong>+91 87123 22475</strong>
                 </div>
               </div>
 

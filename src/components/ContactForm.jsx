@@ -3,6 +3,7 @@ import { useState } from "react";
 const initialFormState = {
   name: "",
   phone: "",
+  service: "",
   message: "",
 };
 
@@ -23,6 +24,10 @@ function ContactForm() {
       nextErrors.phone = "Phone number is required.";
     } else if (digitsOnlyPhone.length !== 10) {
       nextErrors.phone = "Enter a valid 10-digit phone number.";
+    }
+
+    if (!formState.service) {
+      nextErrors.service = "Please select a service option.";
     }
 
     if (!formState.message.trim()) {
@@ -87,6 +92,25 @@ function ContactForm() {
           aria-invalid={Boolean(errors.phone)}
         />
         {errors.phone && <small className="field-error">{errors.phone}</small>}
+      </label>
+
+      <label>
+        <span>Select one option</span>
+        <select
+          name="service"
+          value={formState.service}
+          onChange={handleChange}
+          aria-invalid={Boolean(errors.service)}
+        >
+          <option value="">Select one option</option>
+          <option value="Ac Repair">Ac Repair</option>
+          <option value="Ac Services">Ac Services</option>
+          <option value="Ac Installation">Ac Installation</option>
+          <option value="Ac Uninstallation">Ac Uninstallation</option>
+          <option value="Amc's">Amc's</option>
+          <option value="Exhaust Ducting">Exhaust Ducting</option>
+        </select>
+        {errors.service && <small className="field-error">{errors.service}</small>}
       </label>
 
       <label className="contact-form-message">

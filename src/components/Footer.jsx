@@ -34,57 +34,82 @@ function Footer() {
 
   return (
     <footer className="site-footer">
-      <div className="footer-grid">
-        <div className="footer-column footer-brand">
-          <p className="footer-label">{siteContent.businessName}</p>
-          <p className="footer-description">
-            {siteContent.companyDescription[0]}
-          </p>
-          <div className="footer-socials" aria-label="Social links">
-            {siteContent.socialLinks.map((link) => (
-              <a key={link.label} href={link.href} target="_blank" rel="noreferrer" aria-label={link.label}>
-                {socialIcons[link.label]}
-              </a>
-            ))}
+      <div className="footer-container">
+        <div className="footer-grid">
+          <div className="footer-column footer-brand">
+            <div className="footer-brand-header">
+              <svg className="footer-support-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+              <div>
+                <p className="footer-label">HVAC Contractors in Hyderabad</p>
+                <div className="footer-phone-highlight">
+                  <a href="tel:+918712322475">+91 87123 22475</a>
+                </div>
+              </div>
+            </div>
+            
+            <div className="footer-description">
+              <p>As one of the Best AC Companies in Hyderabad, we provide high-quality air conditioning services for homes, offices, commercial spaces and industries. Our professionally trained and certified HVAC experts ensure every service and installation is completed with precision and reliability.</p>
+              <p>Whether you need reliable AC contractors for your home or experienced HVAC contractors for your business, Hyderabad AC Services is your trusted partner for professional and efficient air conditioning solutions across the city.</p>
+            </div>
+            <p className="footer-note-text">
+              Note : All services are Chargeable
+            </p>
+          </div>
+
+          <div className="footer-column">
+            <p className="footer-label">Blog</p>
+            <ul className="footer-blog-list">
+              <li><Link to="/blog/copper-pipe">Benefits of Copper Pipe Pre-Installation</Link></li>
+              <li><Link to="/blog/ac-gas-leakage">Preventing AC Gas Leakage</Link></li>
+              <li><Link to="/blog/ac-installation">Importance of Proper AC Installation</Link></li>
+              <li><Link to="/blog/ac-service">Importance of Regular AC Service</Link></li>
+            </ul>
+          </div>
+
+          <div className="footer-column">
+            <p className="footer-label">Quick Links</p>
+            <ul className="footer-quick-links">
+              <li><Link to="/" onClick={handleHomeClick}>Home</Link></li>
+              <li><Link to="/about">About Us</Link></li>
+              <li><Link to="/services">Services</Link></li>
+              <li><Link to="/blog">Blog</Link></li>
+              <li><Link to="/contact">Contact</Link></li>
+            </ul>
+          </div>
+
+          <div className="footer-column">
+            <p className="footer-label">Reach Us At</p>
+            <div className="footer-socials" aria-label="Social links">
+              {siteContent.socialLinks.map((link) => (
+                <a key={link.label} href={link.href} target="_blank" rel="noreferrer" aria-label={link.label} className={`social-icon-${link.label.toLowerCase()}`}>
+                  {socialIcons[link.label]}
+                </a>
+              ))}
+            </div>
+            <div className="footer-map-container">
+              <iframe
+                title="Hyderabad AC Services Location"
+                src="https://maps.google.com/maps?q=709/58,%20Navodaya%20Colony,%20Gudimalkapur,%20Hyderabad,%20Telangana%20500006&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
           </div>
         </div>
 
-        <div className="footer-column">
-          <p className="footer-label">Services</p>
-          <ul>
-            {siteContent.airConditioningServices.slice(0, 4).map((service) => (
-              <li key={service}><Link to="/services">{service}</Link></li>
-            ))}
-          </ul>
+        <div className="footer-bottom">
+          <div className="footer-bottom-left">
+            <Link to="/privacy">Privacy & Policy</Link> <span className="separator">|</span> <Link to="/sitemap">Sitemap</Link>
+          </div>
+          <div className="footer-bottom-center">
+            <p>© Copyright Hyderabad Ac Services 2021, <span className="footer-bottom-center-highlight">Designed By: MSN Technologies</span></p>
+          </div>
+          <button type="button" className="footer-top-link" onClick={handleBackToTop}>
+            Back to top
+          </button>
         </div>
-
-        <div className="footer-column">
-          <p className="footer-label">Quick Links</p>
-          <ul>
-            <li><Link to="/" onClick={handleHomeClick}>Home</Link></li>
-            <li><Link to="/about">About</Link></li>
-            <li><Link to="/services">Services</Link></li>
-            <li><Link to="/blog">Blog</Link></li>
-            <li><Link to="/contact">Contact</Link></li>
-          </ul>
-        </div>
-
-        <div className="footer-column">
-          <p className="footer-label">Contact Info</p>
-          <ul className="footer-contact-list">
-            <li><span>Phone:</span> {siteContent.phoneDisplay}</li>
-            <li><span>Location:</span> {siteContent.location}</li>
-            <li><span>Email:</span> {siteContent.email}</li>
-            <li><span>Note:</span> {siteContent.serviceChargeNote}</li>
-          </ul>
-        </div>
-      </div>
-
-      <div className="footer-bottom">
-        <p>© Copyright Hyderabad Ac Services 2021</p>
-        <button type="button" className="footer-top-link" onClick={handleBackToTop}>
-          Back to top
-        </button>
       </div>
     </footer>
   );
