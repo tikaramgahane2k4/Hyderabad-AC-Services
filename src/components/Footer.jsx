@@ -89,7 +89,6 @@ function Footer() {
 
   return (
     <footer className="site-footer">
-<<<<<<< HEAD
       <div className="footer-container">
         <div className="footer-grid">
           <div className="footer-column footer-brand">
@@ -166,7 +165,7 @@ function Footer() {
             Back to top
           </button>
         </div>
-=======
+
       <div className="footer-grid">
         <div className="footer-column footer-brand">
           <p className="footer-label">{siteContent.businessName}</p>
@@ -218,7 +217,6 @@ function Footer() {
         <button type="button" className="footer-top-link" onClick={handleBackToTop}>
           {labels.backToTop}
         </button>
->>>>>>> b25b333 (Added blog pages with routing and improved homepage UI)
       </div>
     </footer>
   );
