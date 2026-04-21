@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 220" role="img" aria-label="Blue Star logo">
+  <rect x="42" y="54" width="128" height="112" fill="none" stroke="#1f3eb5" stroke-width="8" />
+  <path d="M106 76 116 96 138 98 121 112 126 134 106 123 86 134 91 112 74 98 96 96Z" fill="#1f3eb5" />
+  <rect x="186" y="54" width="372" height="112" fill="#1f3eb5" />
+  <text
+    x="372"
+    y="128"
+    text-anchor="middle"
+    font-family="Arial Black, Poppins, sans-serif"
+    font-size="64"
+    font-weight="800"
+    letter-spacing="2"
+    fill="#ffffff"
+  >
+    BLUE STAR
+  </text>
+</svg>

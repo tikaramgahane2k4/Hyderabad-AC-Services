@@ -1,5 +1,24 @@
 import { useState } from "react";
+import { useAppPreferences } from "../context/AppPreferencesContext";
 import "./FAQ.css";
+
+const faqCopy = {
+  en: {
+    eyebrow: "Got Questions?",
+    title: "Frequently Asked Questions",
+    subtitle: "Find answers to common questions about our AC services and solutions",
+  },
+  hi: {
+    eyebrow: "कोई सवाल है?",
+    title: "अक्सर पूछे जाने वाले सवाल",
+    subtitle: "हमारी एसी सेवाओं से जुड़े सामान्य सवालों के जवाब पाएं।",
+  },
+  te: {
+    eyebrow: "Questions Unnaya?",
+    title: "Frequently Asked Questions",
+    subtitle: "Mana AC services gurinchi common questions ki samadhanalu.",
+  },
+};
 
 function FAQItem({ question, answer }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -40,15 +59,16 @@ function FAQItem({ question, answer }) {
 }
 
 function FAQ({ items }) {
+  const { language } = useAppPreferences();
+  const copy = faqCopy[language] ?? faqCopy.en;
+
   return (
     <section className="faq-section">
       <div className="faq-container">
         <div className="faq-header">
-          <p className="eyebrow">Got Questions?</p>
-          <h2>Frequently Asked Questions</h2>
-          <p className="faq-subtitle">
-            Find answers to common questions about our AC services and solutions
-          </p>
+          <p className="eyebrow">{copy.eyebrow}</p>
+          <h2>{copy.title}</h2>
+          <p className="faq-subtitle">{copy.subtitle}</p>
         </div>
 
         <div className="faq-list">

@@ -1,4 +1,39 @@
+import { useAppPreferences } from "../context/AppPreferencesContext";
+
+const serviceDetailsCopy = {
+  en: {
+    close: "Close service details",
+    kicker: "Service Details",
+    includes: "What it includes",
+    bestFor: "Best for",
+    turnaround: "Typical turnaround",
+    businessValue: "Business value",
+    requestQuote: "Request a quote",
+  },
+  hi: {
+    close: "सेवा विवरण बंद करें",
+    kicker: "सेवा विवरण",
+    includes: "इसमें क्या शामिल है",
+    bestFor: "किसके लिए उपयुक्त",
+    turnaround: "सामान्य समय अवधि",
+    businessValue: "व्यावसायिक लाभ",
+    requestQuote: "कोट प्राप्त करें",
+  },
+  te: {
+    close: "Service details close cheyyandi",
+    kicker: "Service Details",
+    includes: "Indulo em untundi",
+    bestFor: "Best for",
+    turnaround: "Typical turnaround",
+    businessValue: "Business value",
+    requestQuote: "Quote adugandi",
+  },
+};
+
 function ServiceDetailsView({ service, onClose, onRequestQuote }) {
+  const { language } = useAppPreferences();
+  const copy = serviceDetailsCopy[language] ?? serviceDetailsCopy.en;
+
   if (!service) {
     return null;
   }
@@ -13,7 +48,7 @@ function ServiceDetailsView({ service, onClose, onRequestQuote }) {
         aria-describedby="service-details-description"
         onClick={(event) => event.stopPropagation()}
       >
-        <button type="button" className="service-details-close" onClick={onClose} aria-label="Close service details">
+        <button type="button" className="service-details-close" onClick={onClose} aria-label={copy.close}>
           ×
         </button>
 
@@ -22,7 +57,7 @@ function ServiceDetailsView({ service, onClose, onRequestQuote }) {
             {service.icon}
           </div>
           <div>
-            <p className="service-details-kicker">Service Details</p>
+            <p className="service-details-kicker">{copy.kicker}</p>
             <h3 id="service-details-title">{service.title}</h3>
             <p id="service-details-description">{service.longDescription}</p>
           </div>
@@ -30,7 +65,7 @@ function ServiceDetailsView({ service, onClose, onRequestQuote }) {
 
         <div className="service-details-grid">
           <div className="service-details-card">
-            <h4>What it includes</h4>
+            <h4>{copy.includes}</h4>
             <ul>
               {service.includes.map((item) => (
                 <li key={item}>{item}</li>
@@ -39,19 +74,19 @@ function ServiceDetailsView({ service, onClose, onRequestQuote }) {
           </div>
 
           <div className="service-details-card">
-            <h4>Best for</h4>
+            <h4>{copy.bestFor}</h4>
             <p>{service.bestFor}</p>
             <div className="service-details-stat">
               <span>{service.turnaround}</span>
-              <small>Typical turnaround</small>
+              <small>{copy.turnaround}</small>
             </div>
           </div>
 
           <div className="service-details-card service-details-highlight">
-            <h4>Business value</h4>
+            <h4>{copy.businessValue}</h4>
             <p>{service.businessValue}</p>
             <button type="button" className="service-details-cta" onClick={onRequestQuote}>
-              Request a quote
+              {copy.requestQuote}
               <span>→</span>
             </button>
           </div>

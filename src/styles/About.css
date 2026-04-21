@@ -716,6 +716,93 @@
   transform: translateY(-2px);
 }
 
+body[data-theme="dark"] .about-page {
+  --about-bg: #081a2b;
+  --about-surface: #0f2539;
+  --about-surface-soft: #123047;
+  --about-primary: #56b9f0;
+  --about-primary-dark: #2a89c7;
+  --about-accent: #7fd5ff;
+  --about-text: #e6f4ff;
+  --about-muted: #b9d5ea;
+  --about-soft: #16344c;
+  --about-border: #2b4d67;
+  --about-shadow: 0 12px 30px rgba(1, 9, 17, 0.45);
+}
+
+body[data-theme="dark"] .section-eyebrow--light,
+body[data-theme="dark"] .process-section .section-eyebrow--light {
+  color: #d8efff;
+}
+
+body[data-theme="dark"] .mission-box p {
+  color: #d7ebfb;
+}
+
+body[data-theme="dark"] .btn-secondary {
+  background: rgba(17, 45, 67, 0.78);
+  color: #d8ecfb;
+  border-color: rgba(125, 176, 214, 0.34);
+}
+
+body[data-theme="dark"] .info-header::after {
+  background: rgba(121, 171, 208, 0.44);
+}
+
+body[data-theme="dark"] .card-item {
+  background: linear-gradient(180deg, rgba(16, 39, 58, 0.98) 0%, rgba(19, 49, 73, 0.94) 100%);
+  border-color: rgba(110, 164, 203, 0.28);
+  box-shadow: 0 10px 22px rgba(1, 12, 23, 0.45);
+}
+
+body[data-theme="dark"] .card-num {
+  background: rgba(94, 144, 182, 0.24);
+  color: #d9f0ff;
+}
+
+body[data-theme="dark"] .process-section--primary {
+  background: linear-gradient(175deg, #0b4f83 0%, #083b64 60%, #062f50 100%);
+}
+
+body[data-theme="dark"] .process-section--cta {
+  background: linear-gradient(175deg, #0d5c98 0%, #0a4877 58%, #083a63 100%);
+}
+
+body[data-theme="dark"] .process-card {
+  background: rgba(5, 22, 37, 0.34);
+  border-color: rgba(166, 210, 240, 0.22);
+}
+
+body[data-theme="dark"] .grid-section--testimonials .card-item.testimonial-card {
+  background: rgba(14, 34, 52, 0.95);
+  border-color: rgba(112, 165, 204, 0.28);
+}
+
+body[data-theme="dark"] .testimonial-text {
+  color: rgba(210, 230, 246, 0.86);
+}
+
+body[data-theme="dark"] .testimonial-avatar {
+  background: linear-gradient(135deg, #27597b 0%, #1e4866 100%);
+  color: #d9efff;
+}
+
+body[data-theme="dark"] .serving-item {
+  background: linear-gradient(180deg, rgba(16, 39, 58, 0.98) 0%, rgba(20, 48, 71, 0.94) 100%);
+  color: #c6e0f4;
+  border-color: rgba(112, 165, 204, 0.28);
+}
+
+body[data-theme="dark"] .btn-primary--white {
+  background: #2b80ba;
+  color: #ffffff;
+}
+
+body[data-theme="dark"] .btn-secondary--outline-light {
+  color: #e8f4ff;
+  border-color: rgba(193, 223, 247, 0.44);
+}
+
 /* ════════════════════════════════
    RESPONSIVE — TABLET (≤1024px)
 ════════════════════════════════ */

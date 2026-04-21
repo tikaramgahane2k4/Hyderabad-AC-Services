@@ -1,69 +1,216 @@
 import { Link } from "react-router-dom";
+<<<<<<< HEAD
 import ServiceRow from "./ServiceRow";
+=======
+import { useAppPreferences } from "../context/AppPreferencesContext";
+>>>>>>> b25b333 (Added blog pages with routing and improved homepage UI)
 
 const services = [
   {
-    title: "AC Repair",
+    key: "acRepair",
     image: "/images/AC repair.jpg",
+<<<<<<< HEAD
     imageClass: "service-row-image--repair-focus",
     description:
       "Rapid diagnostics and dependable repairs to minimize downtime for critical cooling infrastructure.",
     points: ["All brands supported", "Genuine spare parts", "Same-day service", "90-day warranty"],
+=======
+>>>>>>> b25b333 (Added blog pages with routing and improved homepage UI)
     queryTitle: "AC Repair",
   },
   {
-    title: "AC Installation",
+    key: "acInstallation",
     image: "/images/AC Installation.jpg",
+<<<<<<< HEAD
     imageClass: "service-row-image--installation-focus",
     logoClass: "service-row-logo--installation-top",
     description:
       "Precision installation for split, ducted, and central AC systems with optimal airflow planning.",
     points: ["Site assessment included", "Expert mounting and setup", "Leak-proof copper piping", "Performance testing"],
+=======
+>>>>>>> b25b333 (Added blog pages with routing and improved homepage UI)
     queryTitle: "AC Installation",
   },
   {
-    title: "AC Service & Maintenance",
+    key: "acService",
     image: "/images/AC Service & Maintenance.jpg",
-    description:
-      "Preventive maintenance that improves efficiency and extends unit lifespan for homes and businesses.",
-    points: ["Deep coil and filter cleaning", "Gas pressure checks", "Drainage and airflow tuning", "Seasonal performance inspection"],
     queryTitle: "AC Service",
   },
   {
-    title: "HVAC Systems",
+    key: "hvacSystems",
     image: "/images/Exhaust Ducting.jpg",
-    description:
-      "End-to-end HVAC planning, integration, and optimization for commercial and industrial spaces.",
-    points: ["Commercial duct and airflow planning", "Zoned cooling architecture", "Energy optimization", "Long-term maintenance planning"],
     queryTitle: "Exhaust Ducting",
   },
 ];
 
+const servicesCopy = {
+  en: {
+    kicker: "Our Services",
+    title: "Reliable AC Solutions for Homes & Businesses",
+    subtitle:
+      "Expert installation, maintenance, and repair services tailored to your needs. We serve residential and commercial properties with precision and professionalism.",
+    trustHighlightsAria: "Service trust highlights",
+    trustHighlights: ["Certified AC Specialists", "Same-Day Response", "Commercial & Residential Coverage"],
+    offeringsAria: "Service offerings",
+    bookService: "Book This Service",
+    pageCtaAria: "Book service call to action",
+    pageCtaTitle: "Need Expert AC Service?",
+    pageCtaButton: "Book Now",
+    serviceDetails: {
+      acRepair: {
+        title: "AC Repair",
+        description: "Rapid diagnostics and dependable repairs to minimize downtime for critical cooling infrastructure.",
+        points: ["All brands supported", "Genuine spare parts", "Same-day service", "90-day warranty"],
+      },
+      acInstallation: {
+        title: "AC Installation",
+        description: "Precision installation for split, ducted, and central AC systems with optimal airflow planning.",
+        points: ["Site assessment included", "Expert mounting and setup", "Leak-proof copper piping", "Performance testing"],
+      },
+      acService: {
+        title: "AC Service & Maintenance",
+        description: "Preventive maintenance that improves efficiency and extends unit lifespan for homes and businesses.",
+        points: ["Deep coil and filter cleaning", "Gas pressure checks", "Drainage and airflow tuning", "Seasonal performance inspection"],
+      },
+      hvacSystems: {
+        title: "HVAC Systems",
+        description: "End-to-end HVAC planning, integration, and optimization for commercial and industrial spaces.",
+        points: ["Commercial duct and airflow planning", "Zoned cooling architecture", "Energy optimization", "Long-term maintenance planning"],
+      },
+    },
+  },
+  hi: {
+    kicker: "हमारी सेवाएं",
+    title: "घर और व्यवसाय के लिए भरोसेमंद एसी समाधान",
+    subtitle: "आपकी जरूरत के अनुसार इंस्टॉलेशन, मेंटेनेंस और रिपेयर सेवाएं। रिहायशी और कमर्शियल दोनों के लिए सहायता।",
+    trustHighlightsAria: "सेवा विश्वसनीयता हाइलाइट्स",
+    trustHighlights: ["प्रमाणित एसी विशेषज्ञ", "उसी दिन प्रतिक्रिया", "कमर्शियल और रिहायशी कवरेज"],
+    offeringsAria: "सेवा विकल्प",
+    bookService: "यह सेवा बुक करें",
+    pageCtaAria: "सेवा बुक करने का कॉल टू एक्शन",
+    pageCtaTitle: "विशेषज्ञ एसी सेवा चाहिए?",
+    pageCtaButton: "अभी बुक करें",
+    serviceDetails: {
+      acRepair: {
+        title: "एसी रिपेयर",
+        description: "तेज़ जांच और भरोसेमंद रिपेयर से डाउनटाइम कम होता है।",
+        points: ["सभी ब्रांड सपोर्ट", "जेन्युइन स्पेयर पार्ट्स", "उसी दिन सेवा", "90 दिन वारंटी"],
+      },
+      acInstallation: {
+        title: "एसी इंस्टॉलेशन",
+        description: "स्प्लिट, डक्टेड और सेंट्रल एसी के लिए सटीक इंस्टॉलेशन।",
+        points: ["साइट आकलन शामिल", "विशेषज्ञ सेटअप", "लीक-प्रूफ पाइपिंग", "प्रदर्शन परीक्षण"],
+      },
+      acService: {
+        title: "एसी सर्विस और मेंटेनेंस",
+        description: "प्रिवेंटिव मेंटेनेंस जो दक्षता बढ़ाता है और एसी की उम्र लंबी करता है।",
+        points: ["डीप क्लीनिंग", "गैस प्रेशर जांच", "ड्रेनेज ट्यूनिंग", "मौसमी निरीक्षण"],
+      },
+      hvacSystems: {
+        title: "एचवीएसी सिस्टम",
+        description: "कमर्शियल और इंडस्ट्रियल स्पेस के लिए सम्पूर्ण एचवीएसी प्लानिंग।",
+        points: ["डक्ट प्लानिंग", "ज़ोन आधारित कूलिंग", "ऊर्जा अनुकूलन", "दीर्घकालिक मेंटेनेंस"],
+      },
+    },
+  },
+  te: {
+    kicker: "Mana Sevalu",
+    title: "Homes mariyu Businesses kosam Reliable AC Solutions",
+    subtitle: "Mee avasaralaki taggattu installation, maintenance mariyu repair services. Residential mariyu commercial support.",
+    trustHighlightsAria: "Service trust highlights",
+    trustHighlights: ["Certified AC Specialists", "Same-Day Response", "Commercial & Residential Coverage"],
+    offeringsAria: "Service offerings",
+    bookService: "Ee Service Book Cheyyandi",
+    pageCtaAria: "Book service call to action",
+    pageCtaTitle: "Expert AC Service Kavala?",
+    pageCtaButton: "Ippude Book Cheyyandi",
+    serviceDetails: {
+      acRepair: {
+        title: "AC Repair",
+        description: "Fast diagnosis mariyu reliable repair tho downtime tagguthundi.",
+        points: ["Anni brands support", "Genuine spare parts", "Same-day service", "90-day warranty"],
+      },
+      acInstallation: {
+        title: "AC Installation",
+        description: "Split, ducted mariyu central AC systems kosam precise installation.",
+        points: ["Site assessment", "Expert setup", "Leak-proof piping", "Performance testing"],
+      },
+      acService: {
+        title: "AC Service & Maintenance",
+        description: "Preventive maintenance valla efficiency perigedi, unit life extend avutundi.",
+        points: ["Deep cleaning", "Gas checks", "Drainage tuning", "Seasonal inspection"],
+      },
+      hvacSystems: {
+        title: "HVAC Systems",
+        description: "Commercial mariyu industrial spaces kosam complete HVAC planning.",
+        points: ["Duct planning", "Zoned cooling", "Energy optimization", "Long-term maintenance"],
+      },
+    },
+  },
+};
+
 function ServicesSection({ showPageCta = false }) {
+  const { language } = useAppPreferences();
+  const copy = servicesCopy[language] ?? servicesCopy.en;
+
   return (
     <section className="services-section" id="services">
       <div className="services-content">
           <div className="services-header">
-            <p className="services-kicker">Our Services</p>
-            <h2 className="services-title">Reliable AC Solutions for Homes &amp; Businesses</h2>
+            <p className="services-kicker">{copy.kicker}</p>
+            <h2 className="services-title">{copy.title}</h2>
             <div className="services-divider" aria-hidden="true" />
-            <p className="services-subtitle">
-              Expert installation, maintenance, and repair services tailored to your needs. We serve
-              residential and commercial properties with precision and professionalism.
-            </p>
+            <p className="services-subtitle">{copy.subtitle}</p>
           </div>
 
+<<<<<<< HEAD
           <div className="services-bands" aria-label="Service offerings">
             {services.map((service) => (
               <ServiceRow key={service.title} service={service} />
             ))}
+=======
+          <ul className="services-trust-strip" aria-label={copy.trustHighlightsAria}>
+            {copy.trustHighlights.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+
+          <div className="services-bands" aria-label={copy.offeringsAria}>
+            {services.map((service, index) => {
+              const reverse = index % 2 === 1;
+              const details = copy.serviceDetails[service.key] ?? servicesCopy.en.serviceDetails[service.key];
+
+              return (
+                <article key={service.key} className={`service-band ${reverse ? "service-band--reverse" : ""}`}>
+                  <div className="service-band-media">
+                    <img src={service.image} alt={details.title} loading="lazy" />
+                  </div>
+
+                  <div className="service-band-content">
+                    <h3>{details.title}</h3>
+                    <p>{details.description}</p>
+
+                    <ul className="service-band-points">
+                      {details.points.map((point) => (
+                        <li key={point}>{point}</li>
+                      ))}
+                    </ul>
+
+                    <Link className="service-band-cta" to={`/book-service?service=${encodeURIComponent(service.queryTitle)}`}>
+                      {copy.bookService}
+                    </Link>
+                  </div>
+                </article>
+              );
+            })}
+>>>>>>> b25b333 (Added blog pages with routing and improved homepage UI)
           </div>
 
           {showPageCta && (
-            <section className="services-bottom-cta" aria-label="Book service call to action">
-              <h3>Need Expert AC Service?</h3>
+            <section className="services-bottom-cta" aria-label={copy.pageCtaAria}>
+              <h3>{copy.pageCtaTitle}</h3>
               <Link className="services-bottom-cta-button" to="/book-service">
-                Book Now
+                {copy.pageCtaButton}
               </Link>
             </section>
           )}

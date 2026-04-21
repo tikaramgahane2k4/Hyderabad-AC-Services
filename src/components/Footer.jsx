@@ -1,7 +1,62 @@
 import { Link, useLocation } from "react-router-dom";
-import { siteContent } from "../data/siteContent";
+import { useAppPreferences } from "../context/AppPreferencesContext";
+import { getLocalizedSiteContent } from "../data/localizedSiteContent";
+
+const footerTranslations = {
+  en: {
+    services: "Services",
+    quickLinks: "Quick Links",
+    contactInfo: "Contact Info",
+    home: "Home",
+    about: "About",
+    blog: "Blog",
+    contact: "Contact",
+    phone: "Phone:",
+    location: "Location:",
+    email: "Email:",
+    note: "Note:",
+    socialLinks: "Social links",
+    copyright: "Copyright Hyderabad AC Services 2021",
+    backToTop: "Back to top",
+  },
+  hi: {
+    services: "सेवाएं",
+    quickLinks: "त्वरित लिंक",
+    contactInfo: "संपर्क जानकारी",
+    home: "होम",
+    about: "हमारे बारे में",
+    blog: "ब्लॉग",
+    contact: "संपर्क",
+    phone: "फ़ोन:",
+    location: "स्थान:",
+    email: "ईमेल:",
+    note: "नोट:",
+    socialLinks: "सोशल लिंक",
+    copyright: "कॉपीराइट हैदराबाद एसी सर्विसेज 2021",
+    backToTop: "ऊपर जाएं",
+  },
+  te: {
+    services: "Sevalu",
+    quickLinks: "Quick Links",
+    contactInfo: "Sampradimpu Vivaralu",
+    home: "Home",
+    about: "Maa Gurinchi",
+    blog: "Blog",
+    contact: "Sampradinchandi",
+    phone: "Phone:",
+    location: "Sthanam:",
+    email: "Email:",
+    note: "Note:",
+    socialLinks: "Social links",
+    copyright: "Copyright Hyderabad AC Services 2021",
+    backToTop: "Paiki Vellu",
+  },
+};
 
 function Footer() {
+  const { language } = useAppPreferences();
+  const siteContent = getLocalizedSiteContent(language);
+  const labels = footerTranslations[language] ?? footerTranslations.en;
   const location = useLocation();
   const socialIcons = {
     Facebook: (
@@ -34,6 +89,7 @@ function Footer() {
 
   return (
     <footer className="site-footer">
+<<<<<<< HEAD
       <div className="footer-container">
         <div className="footer-grid">
           <div className="footer-column footer-brand">
@@ -110,6 +166,59 @@ function Footer() {
             Back to top
           </button>
         </div>
+=======
+      <div className="footer-grid">
+        <div className="footer-column footer-brand">
+          <p className="footer-label">{siteContent.businessName}</p>
+          <p className="footer-description">
+            {siteContent.companyDescription[0]}
+          </p>
+          <div className="footer-socials" aria-label={labels.socialLinks}>
+            {siteContent.socialLinks.map((link) => (
+              <a key={link.label} href={link.href} target="_blank" rel="noreferrer" aria-label={link.label}>
+                {socialIcons[link.label]}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <div className="footer-column">
+          <p className="footer-label">{labels.services}</p>
+          <ul>
+            {siteContent.airConditioningServices.slice(0, 4).map((service) => (
+              <li key={service}><Link to="/services">{service}</Link></li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="footer-column">
+          <p className="footer-label">{labels.quickLinks}</p>
+          <ul>
+            <li><Link to="/" onClick={handleHomeClick}>{labels.home}</Link></li>
+            <li><Link to="/about">{labels.about}</Link></li>
+            <li><Link to="/services">{labels.services}</Link></li>
+            <li><Link to="/blog">{labels.blog}</Link></li>
+            <li><Link to="/contact">{labels.contact}</Link></li>
+          </ul>
+        </div>
+
+        <div className="footer-column">
+          <p className="footer-label">{labels.contactInfo}</p>
+          <ul className="footer-contact-list">
+            <li><span>{labels.phone}</span> {siteContent.phoneDisplay}</li>
+            <li><span>{labels.location}</span> {siteContent.location}</li>
+            <li><span>{labels.email}</span> {siteContent.email}</li>
+            <li><span>{labels.note}</span> {siteContent.serviceChargeNote}</li>
+          </ul>
+        </div>
+      </div>
+
+      <div className="footer-bottom">
+        <p>© {labels.copyright}</p>
+        <button type="button" className="footer-top-link" onClick={handleBackToTop}>
+          {labels.backToTop}
+        </button>
+>>>>>>> b25b333 (Added blog pages with routing and improved homepage UI)
       </div>
     </footer>
   );

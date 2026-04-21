@@ -155,6 +155,28 @@
   animation-delay: 2s;
 }
 
+body[data-theme="dark"] .cta-section {
+  background: linear-gradient(135deg, #0f2f49 0%, #0d253a 100%);
+  border: 1px solid rgba(104, 168, 208, 0.32);
+}
+
+body[data-theme="dark"] .cta-description {
+  color: rgba(225, 241, 255, 0.84);
+}
+
+body[data-theme="dark"] .cta-button--primary {
+  box-shadow: 0 8px 20px rgba(22, 132, 194, 0.46);
+}
+
+body[data-theme="dark"] .cta-button--secondary {
+  border-color: rgba(178, 214, 238, 0.4);
+  color: #eaf6ff;
+}
+
+body[data-theme="dark"] .cta-button--secondary:hover {
+  background: rgba(110, 171, 209, 0.16);
+}
+
 @keyframes float {
   0%, 100% {
     transform: translateY(0px);

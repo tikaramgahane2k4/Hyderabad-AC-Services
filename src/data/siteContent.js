@@ -72,12 +72,72 @@ export const siteContent = {
         "As per the Thumb Rule, 1 Ton AC is required to cool 130 - 160 sft area zone. The temperature to be maintained for human comfort is 22*C to 24*C.",
       ],
     },
+    {
+      question: "HOW OFTEN SHOULD I SERVICE MY AC?",
+      answer: [
+        "For most homes, regular AC service every 6 months is recommended. If usage is heavy or the environment is dusty, service every 3 to 4 months helps maintain cooling and efficiency.",
+        "Routine maintenance includes filter cleaning, coil inspection, drain line check, and gas pressure verification.",
+      ],
+    },
+    {
+      question: "WHY IS WATER LEAKING FROM MY INDOOR AC UNIT?",
+      answer: [
+        "Water leakage usually happens due to a blocked drain pipe, dirty filters, improper installation slope, or frozen evaporator coils.",
+        "A technician should clean the drain line, check insulation, and inspect the indoor unit alignment to stop repeat leakage.",
+      ],
+    },
+    {
+      question: "WHEN DOES AN AC NEED GAS REFILL?",
+      answer: [
+        "AC gas is not a regular consumable. If cooling drops and gas level is low, it usually indicates a leak that must be fixed before refilling.",
+        "Signs include weak cooling, ice on coils, hissing sound, and longer compressor run time.",
+      ],
+    },
+    {
+      question: "WHAT IS AMC AND IS IT USEFUL?",
+      answer: [
+        "AMC means Annual Maintenance Contract. It covers scheduled servicing and preventive checks to reduce breakdown risk.",
+        "AMC is useful for homes and offices because it improves performance, extends AC life, and helps avoid costly emergency repairs.",
+      ],
+    },
+    {
+      question: "HOW LONG DOES SPLIT AC INSTALLATION TAKE?",
+      answer: [
+        "Standard split AC installation typically takes around 2 to 4 hours depending on site conditions, copper pipe length, and electrical readiness.",
+        "Additional work like core drilling, long piping, or bracket changes can increase installation time.",
+      ],
+    },
+    {
+      question: "DOES REGULAR SERVICING REDUCE ELECTRICITY BILL?",
+      answer: [
+        "Yes. Clean filters, healthy coils, and correct gas pressure reduce compressor load, which improves cooling efficiency and lowers power usage.",
+        "Ignoring service causes the AC to work harder, resulting in higher electricity bills and faster component wear.",
+      ],
+    },
   ],
   blogTitles: [
     "Benefits of Copper Pipe Pre-Installation",
     "Preventing AC Gas Leakage",
     "Importance of Proper AC Installation",
     "Importance of Regular AC Service",
+  ],
+  blogPosts: [
+    {
+      title: "Benefits of Copper Pipe Pre-Installation",
+      href: "https://hyderabadacservices.com/blog1.php",
+    },
+    {
+      title: "Preventing AC Gas Leakage",
+      href: "https://hyderabadacservices.com/blog2.php",
+    },
+    {
+      title: "Importance of Proper AC Installation",
+      href: "https://hyderabadacservices.com/blog3.php",
+    },
+    {
+      title: "Importance of Regular AC Service",
+      href: "https://hyderabadacservices.com/blog4.php",
+    },
   ],
   featuredInstallation: {
     title: "Ac Installation In Hyderabad",

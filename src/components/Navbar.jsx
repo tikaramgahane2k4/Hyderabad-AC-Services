@@ -1,21 +1,93 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { siteContent } from "../data/siteContent";
+import { useAppPreferences } from "../context/AppPreferencesContext";
+import { getLocalizedSiteContent } from "../data/localizedSiteContent";
 import "./Navbar.css";
 
 const navItems = [
+<<<<<<< HEAD
   { id: "home", label: "Home", to: "/" },
   { id: "about", label: "About Us", to: "/about" },
   { id: "services", label: "Services", to: "/services" },
   { id: "services-hash", label: "Services", to: "/#services", hashId: "services" },
   { id: "contact", label: "Contact", to: "/contact" },
+=======
+  { id: "home", labelKey: "home", to: "/" },
+  { id: "services", labelKey: "services", to: "/services" },
+  { id: "about", labelKey: "about", to: "/about" },
+  { id: "services-section", labelKey: "services", to: "/#services", hashId: "services" },
+  { id: "blog", labelKey: "blog", to: "/blog" },
+  { id: "contact", labelKey: "contact", to: "/contact" },
+>>>>>>> b25b333 (Added blog pages with routing and improved homepage UI)
 ];
+
+const uiTranslations = {
+  en: {
+    home: "Home",
+    services: "Services",
+    about: "About Us",
+    blog: "Blog",
+    contact: "Contact",
+    bookNow: "Book Now",
+    language: "Language",
+    dark: "Dark",
+    light: "Light",
+    openMenu: "Open navigation menu",
+    closeMenu: "Close navigation menu",
+    primaryNavigation: "Primary navigation",
+    selectLanguage: "Select language",
+    switchThemeTo: "Switch to",
+    theme: "theme",
+    callAriaPrefix: "Call",
+    logoSuffix: "logo",
+  },
+  hi: {
+    home: "होम",
+    services: "सेवाएं",
+    about: "हमारे बारे में",
+    blog: "ब्लॉग",
+    contact: "संपर्क",
+    bookNow: "अभी बुक करें",
+    language: "भाषा",
+    dark: "डार्क",
+    light: "लाइट",
+    openMenu: "नेविगेशन मेनू खोलें",
+    closeMenu: "नेविगेशन मेनू बंद करें",
+    primaryNavigation: "मुख्य नेविगेशन",
+    selectLanguage: "भाषा चुनें",
+    switchThemeTo: "बदलें",
+    theme: "थीम",
+    callAriaPrefix: "कॉल",
+    logoSuffix: "लोगो",
+  },
+  te: {
+    home: "Home",
+    services: "Sevalu",
+    about: "Maa Gurinchi",
+    blog: "Blog",
+    contact: "Sampradinchandi",
+    bookNow: "Book Cheyyandi",
+    language: "Bhasha",
+    dark: "Dark",
+    light: "Light",
+    openMenu: "Navigation menu open cheyyandi",
+    closeMenu: "Navigation menu close cheyyandi",
+    primaryNavigation: "Primary navigation",
+    selectLanguage: "Bhasha select cheyyandi",
+    switchThemeTo: "Marchandi",
+    theme: "theme",
+    callAriaPrefix: "Call",
+    logoSuffix: "logo",
+  },
+};
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { language, setLanguage, theme, setTheme, languageOptions } = useAppPreferences();
   const location = useLocation();
   const headerRef = useRef(null);
+  const siteContent = getLocalizedSiteContent(language);
 
   useEffect(() => {
     const updateScrolledState = () => {
@@ -78,7 +150,17 @@ function Navbar() {
     }
   };
 
-  const isActiveItem = (item) => location.pathname === item.to;
+  const isActiveItem = (item) => {
+    if (item.to === "/blog") {
+      return location.pathname === "/blog" || location.pathname.startsWith("/blog/");
+    }
+
+    return location.pathname === item.to;
+  };
+
+  const labels = uiTranslations[language] ?? uiTranslations.en;
+  const nextThemeMode = theme === "light" ? "dark" : "light";
+  const nextThemeLabel = nextThemeMode === "light" ? labels.light : labels.dark;
 
   return (
     <header className={`site-header ${isScrolled ? "site-header--scrolled" : ""}`} ref={headerRef}>
@@ -93,7 +175,7 @@ function Navbar() {
             <img
               className="navbar__logo-image"
               src={siteContent.logoUrl}
-              alt={`${siteContent.businessName} logo`}
+              alt={`${siteContent.businessName} ${labels.logoSuffix}`}
             />
           </Link>
 
@@ -102,7 +184,7 @@ function Navbar() {
             className={`navbar__toggle ${isMenuOpen ? "navbar__toggle--open" : ""}`}
             aria-expanded={isMenuOpen}
             aria-controls="primary-navigation"
-            aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-label={isMenuOpen ? labels.closeMenu : labels.openMenu}
             onClick={() => setIsMenuOpen((currentState) => !currentState)}
           >
             <span />
@@ -113,7 +195,7 @@ function Navbar() {
           <nav
             id="primary-navigation"
             className={`navbar__nav ${isMenuOpen ? "navbar__nav--open" : ""}`}
-            aria-label="Primary navigation"
+            aria-label={labels.primaryNavigation}
           >
             <ul className={`navbar__menu ${isMenuOpen ? "navbar__menu--open" : ""}`}>
               {navItems.map((item) => (
@@ -124,18 +206,46 @@ function Navbar() {
                     aria-current={isActiveItem(item) ? "page" : undefined}
                     onClick={handleNavItemClick(item)}
                   >
-                    {item.label}
+                    {labels[item.labelKey]}
                   </Link>
                 </li>
               ))}
+
+              <li className="navbar__menu-controls">
+                <label className="navbar__language" htmlFor="navbar-language-select">
+                  <span>{labels.language}</span>
+                  <select
+                    id="navbar-language-select"
+                    value={language}
+                    onChange={(event) => setLanguage(event.target.value)}
+                    aria-label={labels.selectLanguage}
+                  >
+                    {languageOptions.map((option) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+
+                <button
+                  type="button"
+                  className="navbar__theme-btn"
+                  onClick={() => setTheme(nextThemeMode)}
+                  aria-label={`${labels.switchThemeTo} ${nextThemeLabel} ${labels.theme}`}
+                  title={`${labels.switchThemeTo} ${nextThemeLabel} ${labels.theme}`}
+                >
+                  {theme === "light" ? labels.dark : labels.light}
+                </button>
+              </li>
             </ul>
 
             <a
               href={siteContent.phoneLink}
               className="navbar__book-btn"
-              aria-label={`Call ${siteContent.phoneDisplay}`}
+              aria-label={`${labels.callAriaPrefix} ${siteContent.phoneDisplay}`}
             >
-              Book Now
+              {labels.bookNow}
             </a>
           </nav>
         </div>

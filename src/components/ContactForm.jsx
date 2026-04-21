@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useAppPreferences } from "../context/AppPreferencesContext";
 
 const initialFormState = {
   name: "",
@@ -7,7 +8,61 @@ const initialFormState = {
   message: "",
 };
 
+const contactFormCopy = {
+  en: {
+    name: "Name",
+    phone: "Phone",
+    message: "Message",
+    namePlaceholder: "Your full name",
+    phonePlaceholder: "10-digit phone number",
+    messagePlaceholder: "Briefly describe your AC requirement",
+    submit: "Send Message",
+    success: "Thanks for reaching out. Our team will contact you shortly.",
+    errors: {
+      nameRequired: "Name is required.",
+      phoneRequired: "Phone number is required.",
+      phoneInvalid: "Enter a valid 10-digit phone number.",
+      messageRequired: "Message is required.",
+    },
+  },
+  hi: {
+    name: "नाम",
+    phone: "फ़ोन",
+    message: "संदेश",
+    namePlaceholder: "अपना पूरा नाम लिखें",
+    phonePlaceholder: "10 अंकों का फ़ोन नंबर",
+    messagePlaceholder: "अपनी एसी आवश्यकता संक्षेप में बताएं",
+    submit: "संदेश भेजें",
+    success: "धन्यवाद! हमारी टीम जल्द आपसे संपर्क करेगी।",
+    errors: {
+      nameRequired: "नाम आवश्यक है।",
+      phoneRequired: "फ़ोन नंबर आवश्यक है।",
+      phoneInvalid: "सही 10 अंकों का फ़ोन नंबर दर्ज करें।",
+      messageRequired: "संदेश आवश्यक है।",
+    },
+  },
+  te: {
+    name: "Peru",
+    phone: "Phone",
+    message: "Message",
+    namePlaceholder: "Mee poorthi peru",
+    phonePlaceholder: "10-digit phone number",
+    messagePlaceholder: "Mee AC requirement gurinchi short ga rayandi",
+    submit: "Message Pampandi",
+    success: "Dhanyavadalu! Maa team tondaralo mimmalni contact chestundi.",
+    errors: {
+      nameRequired: "Peru avasaram.",
+      phoneRequired: "Phone number avasaram.",
+      phoneInvalid: "Sariyana 10-digit phone number ivvandi.",
+      messageRequired: "Message avasaram.",
+    },
+  },
+};
+
 function ContactForm() {
+  const { language } = useAppPreferences();
+  const copy = contactFormCopy[language] ?? contactFormCopy.en;
+
   const [formState, setFormState] = useState(initialFormState);
   const [errors, setErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState("");
@@ -17,13 +72,13 @@ function ContactForm() {
     const digitsOnlyPhone = formState.phone.replace(/\D/g, "");
 
     if (!formState.name.trim()) {
-      nextErrors.name = "Name is required.";
+      nextErrors.name = copy.errors.nameRequired;
     }
 
     if (!formState.phone.trim()) {
-      nextErrors.phone = "Phone number is required.";
+      nextErrors.phone = copy.errors.phoneRequired;
     } else if (digitsOnlyPhone.length !== 10) {
-      nextErrors.phone = "Enter a valid 10-digit phone number.";
+      nextErrors.phone = copy.errors.phoneInvalid;
     }
 
     if (!formState.service) {
@@ -31,7 +86,7 @@ function ContactForm() {
     }
 
     if (!formState.message.trim()) {
-      nextErrors.message = "Message is required.";
+      nextErrors.message = copy.errors.messageRequired;
     }
 
     return nextErrors;
@@ -62,32 +117,32 @@ function ContactForm() {
 
     setErrors({});
     setFormState(initialFormState);
-    setSuccessMessage("Thanks for reaching out. Our team will contact you shortly.");
+    setSuccessMessage(copy.success);
   };
 
   return (
     <form className="contact-form" onSubmit={handleSubmit} noValidate>
       <label>
-        <span>Name</span>
+        <span>{copy.name}</span>
         <input
           type="text"
           name="name"
           value={formState.name}
           onChange={handleChange}
-          placeholder="Your full name"
+          placeholder={copy.namePlaceholder}
           aria-invalid={Boolean(errors.name)}
         />
         {errors.name && <small className="field-error">{errors.name}</small>}
       </label>
 
       <label>
-        <span>Phone</span>
+        <span>{copy.phone}</span>
         <input
           type="tel"
           name="phone"
           value={formState.phone}
           onChange={handleChange}
-          placeholder="10-digit phone number"
+          placeholder={copy.phonePlaceholder}
           inputMode="numeric"
           aria-invalid={Boolean(errors.phone)}
         />
@@ -114,12 +169,12 @@ function ContactForm() {
       </label>
 
       <label className="contact-form-message">
-        <span>Message</span>
+        <span>{copy.message}</span>
         <textarea
           name="message"
           value={formState.message}
           onChange={handleChange}
-          placeholder="Briefly describe your AC requirement"
+          placeholder={copy.messagePlaceholder}
           rows="5"
           aria-invalid={Boolean(errors.message)}
         />
@@ -127,7 +182,7 @@ function ContactForm() {
       </label>
 
       <button type="submit" className="contact-submit-button">
-        Send Message
+        {copy.submit}
       </button>
 
       {successMessage && (

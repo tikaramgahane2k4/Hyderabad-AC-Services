@@ -1,35 +1,114 @@
 import ContactForm from "../components/ContactForm";
 import Footer from "../components/Footer";
+import { useAppPreferences } from "../context/AppPreferencesContext";
+import { getLocalizedSiteContent } from "../data/localizedSiteContent";
+
+const contactPageCopy = {
+  en: {
+    eyebrow: "Contact Us",
+    title: "Send an inquiry and get a quick response from Hyderabad AC Services",
+    description:
+      "Share your requirement and our team will connect with you to discuss installation, maintenance, or repair support.",
+    quickInquiryBadge: "Quick Inquiry",
+    quickInquiryTitle: "Tell us what you need",
+    quickInquiryDescription: "Use the form below for a fast callback from our support team.",
+    businessInfoAria: "Business information",
+    businessInfoBadge: "Business Info",
+    businessName: "Hyderabad AC Services",
+    businessDescription: "Trusted AC installation, maintenance, and repair services in Hyderabad.",
+    phoneLabel: "Phone",
+    locationLabel: "Location",
+    workingHoursLabel: "Working Hours",
+    trustTitle: "Why customers call us",
+    trustPoints: [
+      "Prompt response for residential and commercial requests",
+      "Professional service with clear communication",
+      "Flexible support for maintenance and emergency repairs",
+    ],
+  },
+  hi: {
+    eyebrow: "संपर्क करें",
+    title: "अपनी पूछताछ भेजें और हैदराबाद एसी सर्विसेज से जल्दी जवाब पाएं",
+    description: "अपनी आवश्यकता साझा करें। इंस्टॉलेशन, मेंटेनेंस और रिपेयर सहायता के लिए हमारी टीम आपसे संपर्क करेगी।",
+    quickInquiryBadge: "त्वरित पूछताछ",
+    quickInquiryTitle: "बताएं आपको क्या चाहिए",
+    quickInquiryDescription: "तेज़ कॉल-बैक के लिए नीचे दिया गया फॉर्म भरें।",
+    businessInfoAria: "व्यवसाय जानकारी",
+    businessInfoBadge: "व्यवसाय जानकारी",
+    businessName: "हैदराबाद एसी सर्विसेज",
+    businessDescription: "हैदराबाद में भरोसेमंद एसी इंस्टॉलेशन, मेंटेनेंस और रिपेयर सेवाएं।",
+    phoneLabel: "फ़ोन",
+    locationLabel: "स्थान",
+    workingHoursLabel: "कार्य समय",
+    trustTitle: "ग्राहक हमें क्यों कॉल करते हैं",
+    trustPoints: [
+      "रिहायशी और कमर्शियल रिक्वेस्ट पर तेज़ प्रतिक्रिया",
+      "पेशेवर सेवा और स्पष्ट संवाद",
+      "मेंटेनेंस और इमरजेंसी रिपेयर के लिए लचीला समर्थन",
+    ],
+  },
+  te: {
+    eyebrow: "Sampradinchandi",
+    title: "Inquiry pampandi, Hyderabad AC Services nundi tondaraga response pondandi",
+    description: "Mee requirement share cheyyandi. Installation, maintenance leka repair support kosam maa team meetho connect avutundi.",
+    quickInquiryBadge: "Quick Inquiry",
+    quickInquiryTitle: "Mee avasaram emito cheppandi",
+    quickInquiryDescription: "Fast callback kosam kinda form fill cheyyandi.",
+    businessInfoAria: "Business information",
+    businessInfoBadge: "Business Info",
+    businessName: "Hyderabad AC Services",
+    businessDescription: "Hyderabad lo trusted AC installation, maintenance mariyu repair services.",
+    phoneLabel: "Phone",
+    locationLabel: "Sthanam",
+    workingHoursLabel: "Working Hours",
+    trustTitle: "Customers enduku maaku call chestaru",
+    trustPoints: [
+      "Residential mariyu commercial requests ki prompt response",
+      "Professional service mariyu clear communication",
+      "Maintenance mariyu emergency repairs ki flexible support",
+    ],
+  },
+};
 
 function ContactPage() {
+  const { language } = useAppPreferences();
+  const siteContent = getLocalizedSiteContent(language);
+  const copy = contactPageCopy[language] ?? contactPageCopy.en;
+
   return (
     <div className="contact-page">
       <section className="contact-hero">
+<<<<<<< HEAD
         <p className="services-kicker">Contact Us</p>
         <h1>Send an inquiry and get a quick response from Hyderabad AC Services</h1>
         <p>
           Share your requirement and our team will connect with you to discuss installation,
           maintenance, or repair support.
         </p>
+=======
+        <p className="eyebrow">{copy.eyebrow}</p>
+        <h1>{copy.title}</h1>
+        <p>{copy.description}</p>
+>>>>>>> b25b333 (Added blog pages with routing and improved homepage UI)
       </section>
 
       <section className="contact-section contact-section--page">
         <div className="contact-grid">
           <div className="contact-card contact-card--form">
             <div className="contact-card-header">
-              <div className="contact-badge">Quick Inquiry</div>
-              <h3>Tell us what you need</h3>
-              <p>Use the form below for a fast callback from our support team.</p>
+              <div className="contact-badge">{copy.quickInquiryBadge}</div>
+              <h3>{copy.quickInquiryTitle}</h3>
+              <p>{copy.quickInquiryDescription}</p>
             </div>
 
             <ContactForm />
           </div>
 
-          <aside className="contact-card contact-card--info" aria-label="Business information">
+          <aside className="contact-card contact-card--info" aria-label={copy.businessInfoAria}>
             <div className="contact-card-header">
-              <div className="contact-badge contact-badge--alt">Business Info</div>
-              <h3>Hyderabad AC Services</h3>
-              <p>Trusted AC installation, maintenance, and repair services in Hyderabad.</p>
+              <div className="contact-badge contact-badge--alt">{copy.businessInfoBadge}</div>
+              <h3>{copy.businessName}</h3>
+              <p>{copy.businessDescription}</p>
             </div>
 
             <div className="contact-info-list">
@@ -40,8 +119,13 @@ function ContactPage() {
                   </svg>
                 </span>
                 <div>
+<<<<<<< HEAD
                   <span>Phone</span>
                   <strong>+91 87123 22475</strong>
+=======
+                  <span>{copy.phoneLabel}</span>
+                  <strong>{siteContent.phoneDisplay}</strong>
+>>>>>>> b25b333 (Added blog pages with routing and improved homepage UI)
                 </div>
               </div>
 
@@ -52,8 +136,8 @@ function ContactPage() {
                   </svg>
                 </span>
                 <div>
-                  <span>Location</span>
-                  <strong>Hyderabad, India</strong>
+                  <span>{copy.locationLabel}</span>
+                  <strong>{siteContent.location}</strong>
                 </div>
               </div>
 
@@ -64,18 +148,18 @@ function ContactPage() {
                   </svg>
                 </span>
                 <div>
-                  <span>Working Hours</span>
-                  <strong>9 AM – 9 PM</strong>
+                  <span>{copy.workingHoursLabel}</span>
+                  <strong>{siteContent.workingHours}</strong>
                 </div>
               </div>
             </div>
 
             <div className="contact-trust-box">
-              <h4>Why customers call us</h4>
+              <h4>{copy.trustTitle}</h4>
               <ul>
-                <li>Prompt response for residential and commercial requests</li>
-                <li>Professional service with clear communication</li>
-                <li>Flexible support for maintenance and emergency repairs</li>
+                {copy.trustPoints.map((point) => (
+                  <li key={point}>{point}</li>
+                ))}
               </ul>
             </div>
           </aside>
