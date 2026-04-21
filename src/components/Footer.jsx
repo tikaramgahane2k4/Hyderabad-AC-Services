@@ -218,6 +218,7 @@ function Footer() {
           {labels.backToTop}
         </button>
       </div>
+    </div>
     </footer>
   );
 }
