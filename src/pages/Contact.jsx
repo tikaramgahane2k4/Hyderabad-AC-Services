@@ -78,18 +78,9 @@ function ContactPage() {
   return (
     <div className="contact-page">
       <section className="contact-hero">
-<<<<<<< HEAD
-        <p className="services-kicker">Contact Us</p>
-        <h1>Send an inquiry and get a quick response from Hyderabad AC Services</h1>
-        <p>
-          Share your requirement and our team will connect with you to discuss installation,
-          maintenance, or repair support.
-        </p>
-=======
         <p className="eyebrow">{copy.eyebrow}</p>
         <h1>{copy.title}</h1>
         <p>{copy.description}</p>
->>>>>>> b25b333 (Added blog pages with routing and improved homepage UI)
       </section>
 
       <section className="contact-section contact-section--page">
@@ -119,13 +110,8 @@ function ContactPage() {
                   </svg>
                 </span>
                 <div>
-<<<<<<< HEAD
-                  <span>Phone</span>
-                  <strong>+91 87123 22475</strong>
-=======
                   <span>{copy.phoneLabel}</span>
                   <strong>{siteContent.phoneDisplay}</strong>
->>>>>>> b25b333 (Added blog pages with routing and improved homepage UI)
                 </div>
               </div>
 

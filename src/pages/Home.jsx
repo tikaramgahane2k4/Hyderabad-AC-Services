@@ -381,7 +381,8 @@ function Home() {
   }, []);
 
   return (
-    <div className="home-page home-page--modern">
+    <>
+      <div className="home-page home-page--modern">
       <section className="home-modern-hero" style={{ "--hero-image": `url(${heroBackground})` }}>
         <div className="home-modern-hero__media" aria-hidden="true"></div>
         <div className="home-modern-hero__overlay" aria-hidden="true"></div>
@@ -535,62 +536,6 @@ function Home() {
         </Link>
       </HomeSection>
 
-      <HomeSection
-        eyebrow={copy.serviceSupportEyebrow}
-        title={copy.serviceSupportTitle}
-        description={siteContent.contactPageDescription[0]}
-        revealClass="home-reveal-delay-1"
-      >
-        <div className="home-modern-contact-layout">
-          <div className="home-modern-contact-copy">
-            <p>{siteContent.contactPageDescription[1]}</p>
-
-            <ul className="home-modern-contact-list" aria-label={copy.contactDetailsLabel}>
-              <li>
-                <span>{copy.phoneLabel}</span>
-                <strong>
-                  <a href={siteContent.phoneLink}>{siteContent.phoneDisplay}</a>
-                </strong>
-              </li>
-              <li>
-                <span>{copy.emailLabel}</span>
-                <strong>
-                  <a href={siteContent.emailLink}>{siteContent.email}</a>
-                </strong>
-              </li>
-              <li>
-                <span>{copy.locationLabel}</span>
-                <strong>{siteContent.location}</strong>
-              </li>
-              <li>
-                <span>{copy.workingHoursLabel}</span>
-                <strong>{siteContent.workingHours}</strong>
-              </li>
-            </ul>
-
-            <div className="home-modern-contact-actions">
-              <a className="home-modern-contact-action home-modern-contact-action--primary" href={siteContent.phoneLink}>
-                {copy.callNow}
-              </a>
-              <a className="home-modern-contact-action" href={siteContent.whatsappLink}>
-                {copy.whatsappUs}
-              </a>
-            </div>
-          </div>
-
-          <div className="home-modern-map-card">
-            <div className="home-modern-map">
-              <iframe
-                title={`${siteContent.businessName} ${copy.locationMapSuffix}`}
-                src={mapEmbedUrl}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
-            </div>
-          </div>
-        </div>
-      </HomeSection>
-
       <HomeFaqAccordion
         items={siteContent.faqItems}
         eyebrow={copy.faqEyebrow}
@@ -610,46 +555,9 @@ function Home() {
         />
       </div>
 
-      <div className="home-modern-footer-wrap home-reveal home-reveal-delay-1" data-reveal>
-        <Footer />
-
-        <div className="home-footer-utility" aria-label={copy.footerLinksAria}>
-          <div className="home-footer-utility__legal">
-            <Link to="/contact">{copy.privacyPolicy}</Link>
-          </div>
-
-          <nav className="home-footer-utility__sitemap" aria-label={copy.sitemapLabel}>
-            {copy.sitemapLinks.map((link) => (
-              <Link key={link.to} to={link.to}>
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-
-          <div className="home-footer-utility__contact">
-            <a href={siteContent.phoneLink}>{siteContent.phoneDisplay}</a>
-            <a href={siteContent.emailLink}>{siteContent.email}</a>
-          </div>
-
-          <div className="home-footer-utility__socials" aria-label={copy.socialLinksLabel}>
-            {siteContent.socialLinks.map((link) => (
-              <a key={link.label} href={link.href} target="_blank" rel="noreferrer" aria-label={link.label}>
-                {utilitySocialIcons[link.label]}
-              </a>
-            ))}
-          </div>
-
-          <p className="home-footer-utility__copyright">© {copy.copyright}</p>
-        </div>
-      </div>
-
-      <a className="home-floating-call" href={siteContent.phoneLink} aria-label={`${copy.callAriaPrefix} ${siteContent.phoneDisplay}`}>
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1.02-.24c1.1.37 2.29.57 3.52.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C11.85 21 3 12.15 3 1a1 1 0 0 1 1-1h3.2a1 1 0 0 1 1 1c0 1.23.2 2.42.57 3.52a1 1 0 0 1-.24 1.02L6.6 10.8Z" fill="currentColor" />
-        </svg>
-        <span>{copy.callNow}</span>
-      </a>
-    </div>
+            </div>
+      <Footer />
+    </>
   );
 }
 

@@ -1,34 +1,25 @@
 import { Link } from "react-router-dom";
-<<<<<<< HEAD
 import ServiceRow from "./ServiceRow";
-=======
 import { useAppPreferences } from "../context/AppPreferencesContext";
->>>>>>> b25b333 (Added blog pages with routing and improved homepage UI)
 
 const services = [
   {
     key: "acRepair",
     image: "/images/AC repair.jpg",
-<<<<<<< HEAD
     imageClass: "service-row-image--repair-focus",
     description:
       "Rapid diagnostics and dependable repairs to minimize downtime for critical cooling infrastructure.",
     points: ["All brands supported", "Genuine spare parts", "Same-day service", "90-day warranty"],
-=======
->>>>>>> b25b333 (Added blog pages with routing and improved homepage UI)
     queryTitle: "AC Repair",
   },
   {
     key: "acInstallation",
     image: "/images/AC Installation.jpg",
-<<<<<<< HEAD
     imageClass: "service-row-image--installation-focus",
     logoClass: "service-row-logo--installation-top",
     description:
       "Precision installation for split, ducted, and central AC systems with optimal airflow planning.",
     points: ["Site assessment included", "Expert mounting and setup", "Leak-proof copper piping", "Performance testing"],
-=======
->>>>>>> b25b333 (Added blog pages with routing and improved homepage UI)
     queryTitle: "AC Installation",
   },
   {
@@ -163,47 +154,10 @@ function ServicesSection({ showPageCta = false }) {
             <p className="services-subtitle">{copy.subtitle}</p>
           </div>
 
-<<<<<<< HEAD
           <div className="services-bands" aria-label="Service offerings">
             {services.map((service) => (
               <ServiceRow key={service.title} service={service} />
             ))}
-=======
-          <ul className="services-trust-strip" aria-label={copy.trustHighlightsAria}>
-            {copy.trustHighlights.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-
-          <div className="services-bands" aria-label={copy.offeringsAria}>
-            {services.map((service, index) => {
-              const reverse = index % 2 === 1;
-              const details = copy.serviceDetails[service.key] ?? servicesCopy.en.serviceDetails[service.key];
-
-              return (
-                <article key={service.key} className={`service-band ${reverse ? "service-band--reverse" : ""}`}>
-                  <div className="service-band-media">
-                    <img src={service.image} alt={details.title} loading="lazy" />
-                  </div>
-
-                  <div className="service-band-content">
-                    <h3>{details.title}</h3>
-                    <p>{details.description}</p>
-
-                    <ul className="service-band-points">
-                      {details.points.map((point) => (
-                        <li key={point}>{point}</li>
-                      ))}
-                    </ul>
-
-                    <Link className="service-band-cta" to={`/book-service?service=${encodeURIComponent(service.queryTitle)}`}>
-                      {copy.bookService}
-                    </Link>
-                  </div>
-                </article>
-              );
-            })}
->>>>>>> b25b333 (Added blog pages with routing and improved homepage UI)
           </div>
 
           {showPageCta && (

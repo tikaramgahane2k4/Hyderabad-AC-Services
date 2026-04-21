@@ -154,70 +154,13 @@ function Footer() {
           </div>
         </div>
 
-        <div className="footer-bottom">
-          <div className="footer-bottom-left">
-            <Link to="/privacy">Privacy & Policy</Link> <span className="separator">|</span> <Link to="/sitemap">Sitemap</Link>
-          </div>
-          <div className="footer-bottom-center">
-            <p>© Copyright Hyderabad Ac Services 2021, <span className="footer-bottom-center-highlight">Designed By: MSN Technologies</span></p>
-          </div>
-          <button type="button" className="footer-top-link" onClick={handleBackToTop}>
-            Back to top
-          </button>
-        </div>
-
-      <div className="footer-grid">
-        <div className="footer-column footer-brand">
-          <p className="footer-label">{siteContent.businessName}</p>
-          <p className="footer-description">
-            {siteContent.companyDescription[0]}
-          </p>
-          <div className="footer-socials" aria-label={labels.socialLinks}>
-            {siteContent.socialLinks.map((link) => (
-              <a key={link.label} href={link.href} target="_blank" rel="noreferrer" aria-label={link.label}>
-                {socialIcons[link.label]}
-              </a>
-            ))}
-          </div>
-        </div>
-
-        <div className="footer-column">
-          <p className="footer-label">{labels.services}</p>
-          <ul>
-            {siteContent.airConditioningServices.slice(0, 4).map((service) => (
-              <li key={service}><Link to="/services">{service}</Link></li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="footer-column">
-          <p className="footer-label">{labels.quickLinks}</p>
-          <ul>
-            <li><Link to="/" onClick={handleHomeClick}>{labels.home}</Link></li>
-            <li><Link to="/about">{labels.about}</Link></li>
-            <li><Link to="/services">{labels.services}</Link></li>
-            <li><Link to="/blog">{labels.blog}</Link></li>
-            <li><Link to="/contact">{labels.contact}</Link></li>
-          </ul>
-        </div>
-
-        <div className="footer-column">
-          <p className="footer-label">{labels.contactInfo}</p>
-          <ul className="footer-contact-list">
-            <li><span>{labels.phone}</span> {siteContent.phoneDisplay}</li>
-            <li><span>{labels.location}</span> {siteContent.location}</li>
-            <li><span>{labels.email}</span> {siteContent.email}</li>
-            <li><span>{labels.note}</span> {siteContent.serviceChargeNote}</li>
-          </ul>
-        </div>
-      </div>
-
-      <div className="footer-bottom">
+              <div className="footer-bottom">
         <p>© {labels.copyright}</p>
         <button type="button" className="footer-top-link" onClick={handleBackToTop}>
           {labels.backToTop}
         </button>
       </div>
+    </div>
     </footer>
   );
 }
