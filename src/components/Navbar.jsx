@@ -8,7 +8,6 @@ const navItems = [
   { id: "home", labelKey: "home", to: "/" },
   { id: "services", labelKey: "services", to: "/services" },
   { id: "about", labelKey: "about", to: "/about" },
-  { id: "services-section", labelKey: "services", to: "/#services", hashId: "services" },
   { id: "blog", labelKey: "blog", to: "/blog" },
   { id: "contact", labelKey: "contact", to: "/contact" },
 ];

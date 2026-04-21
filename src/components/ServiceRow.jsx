@@ -32,7 +32,7 @@ function ServiceRow({ service }) {
         </ul>
 
         <Link className="service-row-cta" to={`/book-service?service=${encodeURIComponent(service.queryTitle)}`}>
-          Book This Service
+          {service.bookLabel || "Book This Service"}
         </Link>
       </div>
     </section>

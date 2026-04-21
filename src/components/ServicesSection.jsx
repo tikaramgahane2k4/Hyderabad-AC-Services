@@ -1,15 +1,12 @@
 import { Link } from "react-router-dom";
-import ServiceRow from "./ServiceRow";
 import { useAppPreferences } from "../context/AppPreferencesContext";
+import ServiceRow from "./ServiceRow";
 
 const services = [
   {
     key: "acRepair",
     image: "/images/AC repair.jpg",
     imageClass: "service-row-image--repair-focus",
-    description:
-      "Rapid diagnostics and dependable repairs to minimize downtime for critical cooling infrastructure.",
-    points: ["All brands supported", "Genuine spare parts", "Same-day service", "90-day warranty"],
     queryTitle: "AC Repair",
   },
   {
@@ -17,9 +14,6 @@ const services = [
     image: "/images/AC Installation.jpg",
     imageClass: "service-row-image--installation-focus",
     logoClass: "service-row-logo--installation-top",
-    description:
-      "Precision installation for split, ducted, and central AC systems with optimal airflow planning.",
-    points: ["Site assessment included", "Expert mounting and setup", "Leak-proof copper piping", "Performance testing"],
     queryTitle: "AC Installation",
   },
   {
@@ -40,8 +34,6 @@ const servicesCopy = {
     title: "Reliable AC Solutions for Homes & Businesses",
     subtitle:
       "Expert installation, maintenance, and repair services tailored to your needs. We serve residential and commercial properties with precision and professionalism.",
-    trustHighlightsAria: "Service trust highlights",
-    trustHighlights: ["Certified AC Specialists", "Same-Day Response", "Commercial & Residential Coverage"],
     offeringsAria: "Service offerings",
     bookService: "Book This Service",
     pageCtaAria: "Book service call to action",
@@ -74,8 +66,6 @@ const servicesCopy = {
     kicker: "हमारी सेवाएं",
     title: "घर और व्यवसाय के लिए भरोसेमंद एसी समाधान",
     subtitle: "आपकी जरूरत के अनुसार इंस्टॉलेशन, मेंटेनेंस और रिपेयर सेवाएं। रिहायशी और कमर्शियल दोनों के लिए सहायता।",
-    trustHighlightsAria: "सेवा विश्वसनीयता हाइलाइट्स",
-    trustHighlights: ["प्रमाणित एसी विशेषज्ञ", "उसी दिन प्रतिक्रिया", "कमर्शियल और रिहायशी कवरेज"],
     offeringsAria: "सेवा विकल्प",
     bookService: "यह सेवा बुक करें",
     pageCtaAria: "सेवा बुक करने का कॉल टू एक्शन",
@@ -108,8 +98,6 @@ const servicesCopy = {
     kicker: "Mana Sevalu",
     title: "Homes mariyu Businesses kosam Reliable AC Solutions",
     subtitle: "Mee avasaralaki taggattu installation, maintenance mariyu repair services. Residential mariyu commercial support.",
-    trustHighlightsAria: "Service trust highlights",
-    trustHighlights: ["Certified AC Specialists", "Same-Day Response", "Commercial & Residential Coverage"],
     offeringsAria: "Service offerings",
     bookService: "Ee Service Book Cheyyandi",
     pageCtaAria: "Book service call to action",
@@ -147,27 +135,44 @@ function ServicesSection({ showPageCta = false }) {
   return (
     <section className="services-section" id="services">
       <div className="services-content">
-          <div className="services-header">
-            <p className="services-kicker">{copy.kicker}</p>
-            <h2 className="services-title">{copy.title}</h2>
-            <div className="services-divider" aria-hidden="true" />
-            <p className="services-subtitle">{copy.subtitle}</p>
-          </div>
+        <div className="services-header">
+          <p className="services-kicker">{copy.kicker}</p>
+          <h2 className="services-title">{copy.title}</h2>
+          <div className="services-divider" aria-hidden="true" />
+          <p className="services-subtitle">{copy.subtitle}</p>
+        </div>
 
-          <div className="services-bands" aria-label="Service offerings">
-            {services.map((service) => (
-              <ServiceRow key={service.title} service={service} />
-            ))}
-          </div>
+        <div className="services-bands" aria-label={copy.offeringsAria}>
+          {services.map((service) => {
+            const details = copy.serviceDetails[service.key] ?? servicesCopy.en.serviceDetails[service.key];
 
-          {showPageCta && (
-            <section className="services-bottom-cta" aria-label={copy.pageCtaAria}>
-              <h3>{copy.pageCtaTitle}</h3>
-              <Link className="services-bottom-cta-button" to="/book-service">
-                {copy.pageCtaButton}
-              </Link>
-            </section>
-          )}
+            return (
+              <ServiceRow
+                key={service.key}
+                service={{
+                  title: details.title,
+                  image: service.image,
+                  imageClass: service.imageClass,
+                  logoClass: service.logoClass,
+                  description: details.description,
+                  points: details.points,
+                  queryTitle: service.queryTitle,
+                  bookLabel: copy.bookService,
+                }}
+              />
+            );
+          })}
+        </div>
+
+        {showPageCta && (
+          <section className="services-bottom-cta" aria-label={copy.pageCtaAria}>
+            <h3>{copy.pageCtaTitle}</h3>
+            <Link className="services-bottom-cta-button" to="/book-service">
+              {copy.pageCtaButton}
+            </Link>
+          </section>
+        )}
+
       </div>
     </section>
   );
