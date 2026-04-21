@@ -78,13 +78,6 @@ function ContactPage() {
   return (
     <div className="contact-page">
       <section className="contact-hero">
-        <p className="services-kicker">Contact Us</p>
-        <h1>Send an inquiry and get a quick response from Hyderabad AC Services</h1>
-        <p>
-          Share your requirement and our team will connect with you to discuss installation,
-          maintenance, or repair support.
-        </p>
-
         <p className="eyebrow">{copy.eyebrow}</p>
         <h1>{copy.title}</h1>
         <p>{copy.description}</p>

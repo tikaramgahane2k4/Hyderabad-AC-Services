@@ -5,15 +5,9 @@ import { getLocalizedSiteContent } from "../data/localizedSiteContent";
 import "./Navbar.css";
 
 const navItems = [
-  { id: "home", label: "Home", to: "/" },
-  { id: "about", label: "About Us", to: "/about" },
-  { id: "services", label: "Services", to: "/services" },
-  { id: "services-hash", label: "Services", to: "/#services", hashId: "services" },
-  { id: "contact", label: "Contact", to: "/contact" },
   { id: "home", labelKey: "home", to: "/" },
   { id: "services", labelKey: "services", to: "/services" },
   { id: "about", labelKey: "about", to: "/about" },
-  { id: "services-section", labelKey: "services", to: "/#services", hashId: "services" },
   { id: "blog", labelKey: "blog", to: "/blog" },
   { id: "contact", labelKey: "contact", to: "/contact" },
 ];

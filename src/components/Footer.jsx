@@ -103,7 +103,7 @@ function Footer() {
                 </div>
               </div>
             </div>
-            
+
             <div className="footer-description">
               <p>As one of the Best AC Companies in Hyderabad, we provide high-quality air conditioning services for homes, offices, commercial spaces and industries. Our professionally trained and certified HVAC experts ensure every service and installation is completed with precision and reliability.</p>
               <p>Whether you need reliable AC contractors for your home or experienced HVAC contractors for your business, Hyderabad AC Services is your trusted partner for professional and efficient air conditioning solutions across the city.</p>
@@ -165,60 +165,8 @@ function Footer() {
             Back to top
           </button>
         </div>
-
-      <div className="footer-grid">
-        <div className="footer-column footer-brand">
-          <p className="footer-label">{siteContent.businessName}</p>
-          <p className="footer-description">
-            {siteContent.companyDescription[0]}
-          </p>
-          <div className="footer-socials" aria-label={labels.socialLinks}>
-            {siteContent.socialLinks.map((link) => (
-              <a key={link.label} href={link.href} target="_blank" rel="noreferrer" aria-label={link.label}>
-                {socialIcons[link.label]}
-              </a>
-            ))}
-          </div>
-        </div>
-
-        <div className="footer-column">
-          <p className="footer-label">{labels.services}</p>
-          <ul>
-            {siteContent.airConditioningServices.slice(0, 4).map((service) => (
-              <li key={service}><Link to="/services">{service}</Link></li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="footer-column">
-          <p className="footer-label">{labels.quickLinks}</p>
-          <ul>
-            <li><Link to="/" onClick={handleHomeClick}>{labels.home}</Link></li>
-            <li><Link to="/about">{labels.about}</Link></li>
-            <li><Link to="/services">{labels.services}</Link></li>
-            <li><Link to="/blog">{labels.blog}</Link></li>
-            <li><Link to="/contact">{labels.contact}</Link></li>
-          </ul>
-        </div>
-
-        <div className="footer-column">
-          <p className="footer-label">{labels.contactInfo}</p>
-          <ul className="footer-contact-list">
-            <li><span>{labels.phone}</span> {siteContent.phoneDisplay}</li>
-            <li><span>{labels.location}</span> {siteContent.location}</li>
-            <li><span>{labels.email}</span> {siteContent.email}</li>
-            <li><span>{labels.note}</span> {siteContent.serviceChargeNote}</li>
-          </ul>
-        </div>
       </div>
 
-      <div className="footer-bottom">
-        <p>© {labels.copyright}</p>
-        <button type="button" className="footer-top-link" onClick={handleBackToTop}>
-          {labels.backToTop}
-        </button>
-      </div>
-    </div>
     </footer>
   );
 }
