@@ -1,47 +1,54 @@
 import { Link } from "react-router-dom";
-<<<<<<< HEAD
 import ServiceRow from "./ServiceRow";
-=======
 import { useAppPreferences } from "../context/AppPreferencesContext";
->>>>>>> b25b333 (Added blog pages with routing and improved homepage UI)
 
 const services = [
   {
     key: "acRepair",
     image: "/images/AC repair.jpg",
-<<<<<<< HEAD
     imageClass: "service-row-image--repair-focus",
     description:
       "Rapid diagnostics and dependable repairs to minimize downtime for critical cooling infrastructure.",
     points: ["All brands supported", "Genuine spare parts", "Same-day service", "90-day warranty"],
-=======
->>>>>>> b25b333 (Added blog pages with routing and improved homepage UI)
     queryTitle: "AC Repair",
   },
   {
     key: "acInstallation",
     image: "/images/AC Installation.jpg",
-<<<<<<< HEAD
     imageClass: "service-row-image--installation-focus",
     logoClass: "service-row-logo--installation-top",
     description:
       "Precision installation for split, ducted, and central AC systems with optimal airflow planning.",
     points: ["Site assessment included", "Expert mounting and setup", "Leak-proof copper piping", "Performance testing"],
-=======
->>>>>>> b25b333 (Added blog pages with routing and improved homepage UI)
     queryTitle: "AC Installation",
   },
   {
     key: "acService",
     image: "/images/AC Service & Maintenance.jpg",
+    description:
+      "Preventive maintenance that improves efficiency and extends unit lifespan.",
+    points: [
+      "Deep cleaning",
+      "Gas pressure check",
+      "Drain cleaning",
+      "Performance inspection"
+    ],
     queryTitle: "AC Service",
   },
   {
     key: "hvacSystems",
     image: "/images/Exhaust Ducting.jpg",
+    description:
+      "Complete HVAC solutions for commercial and industrial spaces.",
+    points: [
+      "Duct planning",
+      "Airflow design",
+      "Energy optimization",
+      "Maintenance planning"
+    ],
     queryTitle: "Exhaust Ducting",
-  },
-];
+  }
+  ];
 
 const servicesCopy = {
   en: {
@@ -148,7 +155,6 @@ const servicesCopy = {
     },
   },
 };
-
 function ServicesSection({ showPageCta = false }) {
   const { language } = useAppPreferences();
   const copy = servicesCopy[language] ?? servicesCopy.en;
@@ -156,64 +162,91 @@ function ServicesSection({ showPageCta = false }) {
   return (
     <section className="services-section" id="services">
       <div className="services-content">
-          <div className="services-header">
-            <p className="services-kicker">{copy.kicker}</p>
-            <h2 className="services-title">{copy.title}</h2>
-            <div className="services-divider" aria-hidden="true" />
-            <p className="services-subtitle">{copy.subtitle}</p>
-          </div>
 
-<<<<<<< HEAD
-          <div className="services-bands" aria-label="Service offerings">
-            {services.map((service) => (
-              <ServiceRow key={service.title} service={service} />
-            ))}
-=======
-          <ul className="services-trust-strip" aria-label={copy.trustHighlightsAria}>
-            {copy.trustHighlights.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
+        {/* HEADER */}
+        <div className="services-header">
+          <p className="services-kicker">{copy.kicker}</p>
+          <h2 className="services-title">{copy.title}</h2>
+          <div className="services-divider" />
+          <p className="services-subtitle">{copy.subtitle}</p>
+        </div>
 
-          <div className="services-bands" aria-label={copy.offeringsAria}>
-            {services.map((service, index) => {
-              const reverse = index % 2 === 1;
-              const details = copy.serviceDetails[service.key] ?? servicesCopy.en.serviceDetails[service.key];
+        {/* SIMPLE SERVICE ROWS */}
+        <div className="services-bands">
+          {services.map((service) => (
+            <ServiceRow key={service.key} service={service} />
+          ))}
+        </div>
 
-              return (
-                <article key={service.key} className={`service-band ${reverse ? "service-band--reverse" : ""}`}>
-                  <div className="service-band-media">
-                    <img src={service.image} alt={details.title} loading="lazy" />
-                  </div>
+        {/* TRUST STRIP */}
+        <ul className="services-trust-strip">
+          {copy.trustHighlights.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
 
-                  <div className="service-band-content">
-                    <h3>{details.title}</h3>
-                    <p>{details.description}</p>
+        {/* DETAILED SERVICE BANDS */}
+        <div className="services-bands">
+          {services.map((service, index) => {
+            const reverse = index % 2 === 1;
 
+            const details =
+              copy?.serviceDetails?.[service.key] ||
+              servicesCopy?.en?.serviceDetails?.[service.key];
+
+            // 🛑 Safety fallback (VERY IMPORTANT)
+            if (!details) return null;
+
+            return (
+              <article
+                key={service.key}
+                className={`service-band ${reverse ? "service-band--reverse" : ""}`}
+              >
+                <div className="service-band-media">
+                  <img
+                    src={service.image}
+                    alt={details.title || service.queryTitle}
+                  />
+                </div>
+
+                <div className="service-band-content">
+                  <h3>{details.title || service.queryTitle}</h3>
+
+                  <p>{details.description || ""}</p>
+
+                  {/* ✅ SAFE MAP */}
+                  {details.points && details.points.length > 0 && (
                     <ul className="service-band-points">
-                      {details.points.map((point) => (
-                        <li key={point}>{point}</li>
+                      {details.points.map((point, i) => (
+                        <li key={i}>{point}</li>
                       ))}
                     </ul>
+                  )}
 
-                    <Link className="service-band-cta" to={`/book-service?service=${encodeURIComponent(service.queryTitle)}`}>
-                      {copy.bookService}
-                    </Link>
-                  </div>
-                </article>
-              );
-            })}
->>>>>>> b25b333 (Added blog pages with routing and improved homepage UI)
-          </div>
+                  <Link
+                    className="service-band-cta"
+                    to={`/book-service?service=${encodeURIComponent(
+                      service.queryTitle || details.title
+                    )}`}
+                  >
+                    {copy.bookService}
+                  </Link>
+                </div>
+              </article>
+            );
+          })}
+        </div>
 
-          {showPageCta && (
-            <section className="services-bottom-cta" aria-label={copy.pageCtaAria}>
-              <h3>{copy.pageCtaTitle}</h3>
-              <Link className="services-bottom-cta-button" to="/book-service">
-                {copy.pageCtaButton}
-              </Link>
-            </section>
-          )}
+        {/* CTA */}
+        {showPageCta && (
+          <section className="services-bottom-cta">
+            <h3>{copy.pageCtaTitle}</h3>
+            <Link className="services-bottom-cta-button" to="/book-service">
+              {copy.pageCtaButton}
+            </Link>
+          </section>
+        )}
+
       </div>
     </section>
   );
