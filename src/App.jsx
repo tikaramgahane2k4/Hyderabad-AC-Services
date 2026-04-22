@@ -11,8 +11,6 @@ import BlogPostPage from "./pages/BlogPost";
 // Service Pages (merged cleanly)
 import AcService from "./pages/services/AcService";
 import AcRepair from "./pages/services/AcRepair";
-import CentralizedAc from "./pages/services/CentralizedAc";
-import CopperPiping from "./pages/services/CopperPiping";
 import Ducting from "./pages/services/Ducting";
 
 // Additional service pages (from both branches)
@@ -39,8 +37,8 @@ function App() {
         {/* Service Pages */}
         <Route path="/services/ac-repair" element={<AcRepair />} />
         <Route path="/services/ac-service" element={<AcService />} />
-        <Route path="/services/centralized-ac" element={<CentralizedAc />} />
-        <Route path="/services/copper-piping" element={<CopperPiping />} />
+        <Route path="/services/centralized-ac" element={<CentralizedAirConditioning />} />
+        <Route path="/services/copper-piping" element={<CopperPipePlanning />} />
         <Route path="/services/ducting" element={<Ducting />} />
 
         {/* Additional Service Routes */}
