@@ -1,8 +1,6 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import Testimonials from "../components/Testimonials";
-import CTA from "../components/CTA";
 import AnimatedStats from "../components/AnimatedStats";
 import HomeCard from "../components/home/HomeCard";
 import HomeFaqAccordion from "../components/home/HomeFaqAccordion";
@@ -385,38 +383,6 @@ function Home() {
     };
   });
 
-  useEffect(() => {
-    const revealElements = Array.from(document.querySelectorAll(".home-page--modern [data-reveal]"));
-
-    if (!revealElements.length) {
-      return undefined;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) {
-            return;
-          }
-
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        });
-      },
-      {
-        threshold: 0.18,
-        rootMargin: "0px 0px -8% 0px",
-      }
-    );
-
-    revealElements.forEach((element) => observer.observe(element));
-
-    return () => {
-      observer.disconnect();
-      revealElements.forEach((element) => element.classList.remove("is-visible"));
-    };
-  }, []);
-
   return (
     <>
       <div className="home-page home-page--modern">
@@ -602,18 +568,6 @@ function Home() {
         title={copy.faqTitle}
         subtitle={copy.faqSubtitle}
       />
-
-      <div className="home-modern-block home-reveal home-reveal-delay-1" data-reveal>
-        <CTA
-          title={copy.ctaTitle}
-          description={copy.ctaDescription}
-          primaryButtonText={copy.bookConsultation}
-          primaryButtonLink="/book-service"
-          secondaryButtonText={copy.whatsappUs}
-          secondaryButtonLink={siteContent.whatsappLink}
-          icon="phone"
-        />
-      </div>
 
             </div>
       <Footer />
