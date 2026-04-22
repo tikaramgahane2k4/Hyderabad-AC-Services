@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import { useAppPreferences } from "../context/AppPreferencesContext";
 import { getLocalizedSiteContent } from "../data/localizedSiteContent";
@@ -531,9 +532,9 @@ function About() {
             <p className="process-cta-text">{copy.finalText}</p>
           </div>
           <div className="hero-actions">
-            <a href="/contact" className="btn-primary btn-primary--white">
+            <Link to="/book-service" className="btn-primary btn-primary--white">
               {copy.finalBook}
-            </a>
+            </Link>
             <a href={siteContent.phoneLink} className="btn-secondary btn-secondary--outline-light">
               {copy.callPrefix} {siteContent.phoneDisplay}
             </a>

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import Testimonials from "../components/Testimonials";
 import CTA from "../components/CTA";
+import AnimatedStats from "../components/AnimatedStats";
 import HomeCard from "../components/home/HomeCard";
 import HomeFaqAccordion from "../components/home/HomeFaqAccordion";
 import HomeSection from "../components/home/HomeSection";
@@ -99,6 +100,16 @@ const homeCopyByLanguage = {
       },
     ],
     trustBadges: ["Multi-Brand Specialists", "Transparent Pricing", "Emergency Support", "Verified Service Team"],
+    statsEyebrow: "Service Numbers",
+    statsTitle: "Numbers That Reflect Consistent Cooling Support",
+    statsDescription:
+      "A quick snapshot of the reliability, customer trust, and always-on support that shape our AC service experience across Hyderabad.",
+    stats: [
+      { value: 4.9, decimals: 1, label: "Google Rating" },
+      { value: 500, suffix: "+", label: "Happy Customers" },
+      { value: 10, suffix: "+", label: "Years Experience" },
+      { value: 24, suffix: "/7", label: "Direct Support" },
+    ],
     collaboratorsEyebrow: "Our Collaborators",
     collaboratorsTitle: "Brands We Work With",
     collaboratorsDescription: "Trusted support for leading air conditioning brands across residential and commercial spaces.",
@@ -168,6 +179,16 @@ const homeCopyByLanguage = {
       },
     ],
     trustBadges: ["मल्टी-ब्रांड विशेषज्ञ", "पारदर्शी मूल्य", "इमरजेंसी सहायता", "सत्यापित टीम"],
+    statsEyebrow: "सेवा आंकड़े",
+    statsTitle: "वे नंबर जो हमारी भरोसेमंद सेवा दिखाते हैं",
+    statsDescription:
+      "रेटिंग से लेकर उपलब्ध सहायता तक, ये आंकड़े हैदराबाद में हमारी लगातार और भरोसेमंद एसी सेवा को दर्शाते हैं।",
+    stats: [
+      { value: 4.9, decimals: 1, label: "गूगल रेटिंग" },
+      { value: 500, suffix: "+", label: "संतुष्ट ग्राहक" },
+      { value: 10, suffix: "+", label: "सालों का अनुभव" },
+      { value: 24, suffix: "/7", label: "सीधा सहायता" },
+    ],
     collaboratorsEyebrow: "हमारे सहयोगी",
     collaboratorsTitle: "वे ब्रांड जिनके साथ हम काम करते हैं",
     collaboratorsDescription: "शीर्ष एसी ब्रांड्स के लिए भरोसेमंद सपोर्ट।",
@@ -236,6 +257,16 @@ const homeCopyByLanguage = {
       },
     ],
     trustBadges: ["Multi-Brand Experts", "Transparent Pricing", "Emergency Support", "Verified Team"],
+    statsEyebrow: "Service Numbers",
+    statsTitle: "Maa Reliable Cooling Support ni chupinche numbers",
+    statsDescription:
+      "Rating nundi support availability varaku, ee numbers Hyderabad lo customers nammina maa consistent AC service ni chupistayi.",
+    stats: [
+      { value: 4.9, decimals: 1, label: "Google Rating" },
+      { value: 500, suffix: "+", label: "Happy Customers" },
+      { value: 10, suffix: "+", label: "Years Experience" },
+      { value: 24, suffix: "/7", label: "Direct Support" },
+    ],
     collaboratorsEyebrow: "Mana Collaborators",
     collaboratorsTitle: "Memu Panichesey Brands",
     collaboratorsDescription: "Top AC brands kosam trusted support.",
@@ -311,6 +342,11 @@ function Home() {
   const { language } = useAppPreferences();
   const siteContent = getLocalizedSiteContent(language);
   const copy = homeCopyByLanguage[language] ?? homeCopyByLanguage.en;
+  const statsLocaleByLanguage = {
+    en: "en-IN",
+    hi: "hi-IN",
+    te: "te-IN",
+  };
 
   const serviceCards = [
     {
@@ -405,9 +441,9 @@ function Home() {
             <a className="home-modern-button home-modern-button--call" href={siteContent.phoneLink}>
               {copy.callNow}
             </a>
-            <a className="home-modern-button home-modern-button--primary" href={siteContent.whatsappLink}>
+            <Link className="home-modern-button home-modern-button--primary" to="/book-service">
               {copy.bookConsultation}
-            </a>
+            </Link>
             <a className="home-modern-button home-modern-button--secondary" href={siteContent.phoneLink}>
               {copy.callPrefix} {siteContent.phoneDisplay}
             </a>
@@ -453,12 +489,22 @@ function Home() {
         </ul>
       </section>
 
+      <AnimatedStats
+        eyebrow={copy.statsEyebrow}
+        title={copy.statsTitle}
+        description={copy.statsDescription}
+        stats={copy.stats}
+        locale={statsLocaleByLanguage[language] ?? "en-IN"}
+      />
+
       <HomeSection
-        className="home-trusted-by-section"
-        title="Trusted by 100+ Businesses & Commercial Spaces"
-        description="We partner with leading AC brands to deliver reliable and high-quality cooling solutions."
+        className="home-modern-section--collaborators"
+        eyebrow={copy.collaboratorsEyebrow}
+        title={copy.collaboratorsTitle}
+        description={copy.collaboratorsDescription}
         revealClass="home-reveal-delay-1"
       >
+      
         <div className="home-trusted-by__layout">
           <div className="home-trusted-by__left">
             <div className="home-trusted-by__logos home-modern-grid home-modern-grid--logos" aria-label={copy.collaboratorsTitle}>
@@ -521,6 +567,7 @@ function Home() {
       </div>
 
       <HomeSection
+        className="home-modern-section--articles"
         eyebrow={copy.latestArticlesEyebrow}
         title={copy.latestArticlesTitle}
         description={copy.latestArticlesDescription}
@@ -561,7 +608,7 @@ function Home() {
           title={copy.ctaTitle}
           description={copy.ctaDescription}
           primaryButtonText={copy.bookConsultation}
-          primaryButtonLink="/contact"
+          primaryButtonLink="/book-service"
           secondaryButtonText={copy.whatsappUs}
           secondaryButtonLink={siteContent.whatsappLink}
           icon="phone"

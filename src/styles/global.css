@@ -1971,21 +1971,59 @@ body[data-theme="dark"] .app-shell {
   margin: 0 auto;
   padding: 1rem 0 1.8rem;
   text-align: center;
+  overflow: clip;
 }
 
-.contact-hero h1 {
+.contact-hero__eyebrow,
+.contact-hero__title,
+.contact-hero__description {
+  opacity: 0;
+  transform: translate3d(0, 26px, 0);
+  animation: contactSlideUp 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.contact-hero__eyebrow {
+  animation-delay: 0.05s;
+}
+
+.contact-hero__title {
   margin: 0.6rem 0 0;
   color: var(--primary);
   font-family: "Nasalization", "Poppins", sans-serif;
   font-size: clamp(1.8rem, 4vw, 3rem);
   line-height: 1.2;
+  animation-delay: 0.14s;
 }
 
-.contact-hero p {
+.contact-hero__description {
   margin: 0.85rem auto 0;
   max-width: 760px;
   color: var(--text-soft);
   line-height: 1.7;
+  animation-delay: 0.24s;
+}
+
+@keyframes contactSlideUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 34px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-hero__eyebrow,
+  .contact-hero__title,
+  .contact-hero__description {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
 }
 
 .contact-grid {

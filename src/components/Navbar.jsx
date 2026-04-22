@@ -343,13 +343,13 @@ function Navbar() {
               </li>
             </ul>
 
-            <a
-              href={siteContent.phoneLink}
+            <Link
+              to="/book-service"
               className="navbar__book-btn"
-              aria-label={`${labels.callAriaPrefix} ${siteContent.phoneDisplay}`}
+              aria-label={labels.bookNow}
             >
               {labels.bookNow}
-            </a>
+            </Link>
           </nav>
         </div>
       </div>
