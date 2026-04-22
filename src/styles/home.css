@@ -1529,3 +1529,57 @@ body[data-theme="dark"] .home-footer-utility__socials a {
     transition: none;
   }
 }
+
+/* Explicit Theme Overrides for Services Section (requested) */
+
+/* Dark Mode - Services Section */
+body[data-theme="dark"] #services .home-modern-section__title,
+body[data-theme="dark"] #services .home-modern-card__title {
+  color: #ffffff !important;
+}
+
+body[data-theme="dark"] #services .home-modern-section__description,
+body[data-theme="dark"] #services .home-modern-card__description {
+  color: #d1d5db !important;
+}
+
+body[data-theme="dark"] #services .home-modern-list li {
+  color: #cbd5e1 !important;
+}
+
+body[data-theme="dark"] #services .home-modern-chip {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+body[data-theme="dark"] #services .home-modern-card__icon {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Light Mode - Services Section */
+body[data-theme="light"] #services .home-modern-section__title,
+body[data-theme="light"] #services .home-modern-card__title {
+  color: #1f2937 !important;
+}
+
+body[data-theme="light"] #services .home-modern-section__description,
+body[data-theme="light"] #services .home-modern-card__description {
+  color: #4b5563 !important;
+}
+
+body[data-theme="light"] #services .home-modern-list li {
+  color: #374151 !important;
+}
+
+body[data-theme="light"] #services .home-modern-chip {
+  color: #1f2937 !important;
+  background: rgba(0, 174, 221, 0.1) !important;
+  border-color: rgba(0, 174, 221, 0.24) !important;
+}
+
+body[data-theme="light"] #services .home-modern-card__icon {
+  color: #1f2937 !important;
+  background: rgba(0, 174, 221, 0.15) !important;
+}

@@ -2935,7 +2935,7 @@ body[data-theme="dark"] .contact-submit-button:hover {
 }
 
 body[data-theme="dark"] .services-title,
-body[data-theme="dark"] .service-band-content h3,
+body[data-theme="dark"] .service-row-content h3,
 body[data-theme="dark"] .services-bottom-cta h3,
 body[data-theme="dark"] .booking-head h1,
 body[data-theme="dark"] .contact-hero h1,
@@ -2950,8 +2950,8 @@ body[data-theme="dark"] .footer-contact-list span {
 }
 
 body[data-theme="dark"] .services-subtitle,
-body[data-theme="dark"] .service-band-content p,
-body[data-theme="dark"] .service-band-points li,
+body[data-theme="dark"] .service-row-content p,
+body[data-theme="dark"] .service-row-points li,
 body[data-theme="dark"] .booking-head p,
 body[data-theme="dark"] .booking-service-tile p,
 body[data-theme="dark"] .booking-footnote,
@@ -2988,7 +2988,7 @@ body[data-theme="dark"] .contact-badge {
   color: #d2edff;
 }
 
-body[data-theme="dark"] .service-band-media {
+body[data-theme="dark"] .service-row-media {
   box-shadow: 0 18px 34px rgba(2, 10, 20, 0.44);
 }
 
@@ -3105,7 +3105,7 @@ body[data-theme="dark"] .booking-back-button:hover {
 
 body[data-theme="dark"] .booking-submit-button,
 body[data-theme="dark"] .services-bottom-cta-button,
-body[data-theme="dark"] .service-band-cta,
+body[data-theme="dark"] .service-row-cta,
 body[data-theme="dark"] .quote-submit-button,
 body[data-theme="dark"] .quote-success-button {
   background: linear-gradient(135deg, #1797cf, #0c75b4);
@@ -3113,7 +3113,7 @@ body[data-theme="dark"] .quote-success-button {
 
 body[data-theme="dark"] .booking-submit-button:hover,
 body[data-theme="dark"] .services-bottom-cta-button:hover,
-body[data-theme="dark"] .service-band-cta:hover,
+body[data-theme="dark"] .service-row-cta:hover,
 body[data-theme="dark"] .quote-submit-button:hover,
 body[data-theme="dark"] .quote-success-button:hover {
   background: linear-gradient(135deg, #12a3df, #0d7ec3);
