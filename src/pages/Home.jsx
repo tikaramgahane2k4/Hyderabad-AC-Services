@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import Testimonials from "../components/Testimonials";
@@ -384,38 +383,6 @@ function Home() {
       slug: matchedBlog?.slug ?? null,
     };
   });
-
-  useEffect(() => {
-    const revealElements = Array.from(document.querySelectorAll(".home-page--modern [data-reveal]"));
-
-    if (!revealElements.length) {
-      return undefined;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) {
-            return;
-          }
-
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        });
-      },
-      {
-        threshold: 0.18,
-        rootMargin: "0px 0px -8% 0px",
-      }
-    );
-
-    revealElements.forEach((element) => observer.observe(element));
-
-    return () => {
-      observer.disconnect();
-      revealElements.forEach((element) => element.classList.remove("is-visible"));
-    };
-  }, []);
 
   return (
     <>

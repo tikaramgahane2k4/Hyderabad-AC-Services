@@ -1,233 +1,173 @@
-import { useState, useEffect } from "react";
-import { useAppPreferences } from "../context/AppPreferencesContext";
+import { useEffect, useRef, useState } from "react";
 import "./Testimonials.css";
 
-const testimonialsCopy = {
-  en: {
-    eyebrow: "What Our Customers Say",
-    title: "Join hundreds of satisfied customers",
-    subtitle: "Experience world-class AC services with 4.9★ Google Rating",
-    previous: "Previous testimonial",
-    next: "Next testimonial",
-    goTo: "Go to testimonial",
-    stats: [
-      { value: "4.9★", label: "Google Rating" },
-      { value: "500+", label: "Happy Customers" },
-      { value: "10+", label: "Years Experience" },
-      { value: "24/7", label: "Support Available" },
-    ],
-    testimonials: [
-      {
-        id: 1,
-        name: "Rajesh Kumar",
-        title: "Homeowner, Jubilee Hills",
-        rating: 5,
-        text: "Excellent service! They installed a 2-ton split AC in my living room within 3 hours. Very professional team and fair pricing.",
-        initials: "RK",
-      },
-      {
-        id: 2,
-        name: "Priya Sharma",
-        title: "Office Manager, Gachibowli",
-        rating: 5,
-        text: "We've been using their AMC plan for our office of 20 ACs. Prompt service, well-trained technicians, and great communication.",
-        initials: "PS",
-      },
-      {
-        id: 3,
-        name: "Mohammed Rizwan",
-        title: "Restaurant Owner, Banjara Hills",
-        rating: 5,
-        text: "They fixed our commercial AC that two other companies couldn't repair. Saved us from buying a new unit. Highly recommended!",
-        initials: "MR",
-      },
-    ],
+const reviews = [
+  {
+    id: 1,
+    name: "Aijaz Khan",
+    role: "Software Engineer",
+    rating: 5,
+    text: "Always impressed with these guys. Friendly, professional, thorough and honest. They always take the time to explain exactly what they are doing and what my options are. Prices are fair, and they are always so nice! I highly recommend them to give you a bid at least, work is quality and professional! Thank you!",
   },
-  hi: {
-    eyebrow: "हमारे ग्राहक क्या कहते हैं",
-    title: "सैकड़ों संतुष्ट ग्राहकों के साथ जुड़ें",
-    subtitle: "4.9★ गूगल रेटिंग के साथ उच्च गुणवत्ता वाली एसी सेवा का अनुभव करें",
-    previous: "पिछला प्रशंसापत्र",
-    next: "अगला प्रशंसापत्र",
-    goTo: "प्रशंसापत्र पर जाएं",
-    stats: [
-      { value: "4.9★", label: "गूगल रेटिंग" },
-      { value: "500+", label: "संतुष्ट ग्राहक" },
-      { value: "10+", label: "साल का अनुभव" },
-      { value: "24/7", label: "सहायता उपलब्ध" },
-    ],
-    testimonials: [
-      {
-        id: 1,
-        name: "राजेश कुमार",
-        title: "गृहस्वामी, जुबली हिल्स",
-        rating: 5,
-        text: "बहुत बढ़िया सेवा! 3 घंटे के अंदर स्प्लिट एसी इंस्टॉल कर दिया। टीम प्रोफेशनल थी और कीमत भी उचित थी।",
-        initials: "रक",
-      },
-      {
-        id: 2,
-        name: "प्रिया शर्मा",
-        title: "ऑफिस मैनेजर, गाचीबौली",
-        rating: 5,
-        text: "हम अपने ऑफिस के 20 एसी के लिए इनका एएमसी प्लान उपयोग कर रहे हैं। तेज़ प्रतिक्रिया और स्पष्ट संवाद मिलता है।",
-        initials: "प्र",
-      },
-      {
-        id: 3,
-        name: "मोहम्मद रिजवान",
-        title: "रेस्टोरेंट मालिक, बंजारा हिल्स",
-        rating: 5,
-        text: "दो कंपनियां जो ठीक नहीं कर पाईं, उन्होंने हमारा कमर्शियल एसी ठीक कर दिया। बहुत अनुशंसित सेवा।",
-        initials: "मर",
-      },
-    ],
+  {
+    id: 2,
+    name: "Raju",
+    role: "Doctor",
+    rating: 5,
+    text: "When I called they were out within two hours of me calling, and they were extremely professional. The technicians that showed up were very friendly, worked quickly, and explained every detail of what was wrong with our air conditioning. They fixed it for a reasonable price and overall the experience was wonderful. Will only use this company from here on out.",
   },
-  te: {
-    eyebrow: "Mana Customers Emantunnaru",
-    title: "Santoshamga unna customers tho kalavandi",
-    subtitle: "4.9★ Google Rating tho best AC service experience pondandi",
-    previous: "Mundhati testimonial",
-    next: "Tarvata testimonial",
-    goTo: "Testimonial ki vellandi",
-    stats: [
-      { value: "4.9★", label: "Google Rating" },
-      { value: "500+", label: "Happy Customers" },
-      { value: "10+", label: "Years Experience" },
-      { value: "24/7", label: "Support Available" },
-    ],
-    testimonials: [
-      {
-        id: 1,
-        name: "Rajesh Kumar",
-        title: "Homeowner, Jubilee Hills",
-        rating: 5,
-        text: "Excellent service! 3 gantallo split AC install chesaru. Team chala professional ga undi.",
-        initials: "RK",
-      },
-      {
-        id: 2,
-        name: "Priya Sharma",
-        title: "Office Manager, Gachibowli",
-        rating: 5,
-        text: "Office AMC support kosam vallani use chestunnam. Prompt response mariyu manchi communication untundi.",
-        initials: "PS",
-      },
-      {
-        id: 3,
-        name: "Mohammed Rizwan",
-        title: "Restaurant Owner, Banjara Hills",
-        rating: 5,
-        text: "Inko rendu companies fix cheyaleni commercial AC ni vallu fix chesaru. Highly recommended.",
-        initials: "MR",
-      },
-    ],
+  {
+    id: 3,
+    name: "Sangeeta",
+    role: "Chartered Accountant",
+    rating: 4,
+    text: "Excellent customer service to start off! My AC went out over the weekend. I called Tuesday and they showed up within two hours to diagnose and fix the problem with my AC unit and already had the replacement part on hand. Technicians were very professional and excellent with timing and solving our issue. I will definitely be a returning customer.",
   },
+];
+
+const starsFor = (rating) => `${"★".repeat(rating)}${"☆".repeat(5 - rating)}`;
+
+const getScrollStep = (container) => {
+  if (!container) {
+    return 0;
+  }
+
+  const firstCard = container.querySelector(".trust-review-card");
+  if (!firstCard) {
+    return 0;
+  }
+
+  const sliderStyle = window.getComputedStyle(container);
+  const gap = Number.parseFloat(sliderStyle.columnGap || sliderStyle.gap || "0") || 0;
+  return firstCard.getBoundingClientRect().width + gap;
 };
 
 function Testimonials() {
-  const { language } = useAppPreferences();
-  const copy = testimonialsCopy[language] ?? testimonialsCopy.en;
+  const sliderRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isAutoplay, setIsAutoplay] = useState(true);
-  const testimonials = copy.testimonials;
 
   useEffect(() => {
-    if (!isAutoplay) return;
+    const slider = sliderRef.current;
+    if (!slider) {
+      return undefined;
+    }
+
+    const handleScroll = () => {
+      const step = getScrollStep(slider);
+      if (!step) {
+        return;
+      }
+
+      const index = Math.round(slider.scrollLeft / step);
+      setActiveIndex(Math.max(0, Math.min(index, reviews.length - 1)));
+    };
+
+    slider.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      slider.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    const slider = sliderRef.current;
+    if (!slider || reviews.length <= 1) {
+      return undefined;
+    }
 
     const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % testimonials.length);
-    }, 6000);
+      const step = getScrollStep(slider);
+      if (!step) {
+        return;
+      }
+
+      const nextIndex = activeIndex >= reviews.length - 1 ? 0 : activeIndex + 1;
+      slider.scrollTo({
+        left: step * nextIndex,
+        behavior: "smooth",
+      });
+      setActiveIndex(nextIndex);
+    }, 5200);
 
     return () => clearInterval(interval);
-  }, [isAutoplay, testimonials.length]);
+  }, [activeIndex]);
 
-  const handlePrev = () => {
-    setIsAutoplay(false);
-    setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  const scrollCards = (direction) => {
+    const slider = sliderRef.current;
+    if (!slider) {
+      return;
+    }
+
+    const step = getScrollStep(slider);
+    if (!step) {
+      return;
+    }
+
+    const nextIndex = Math.max(0, Math.min(activeIndex + direction, reviews.length - 1));
+    slider.scrollTo({
+      left: step * nextIndex,
+      behavior: "smooth",
+    });
+    setActiveIndex(nextIndex);
   };
 
-  const handleNext = () => {
-    setIsAutoplay(false);
-    setActiveIndex((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const goToSlide = (index) => {
-    setIsAutoplay(false);
-    setActiveIndex(index);
-  };
+  const canGoPrev = activeIndex > 0;
+  const canGoNext = activeIndex < reviews.length - 1;
 
   return (
-    <section className="testimonials-section">
-      <div className="testimonials-container">
-        <div className="testimonials-header">
-          <div>
-            <span className="eyebrow" style={{ marginBottom: "0.2rem" }}>{copy.eyebrow}</span>
-            <h2>{copy.title}</h2>
-            <p className="testimonials-subtitle">
-              {copy.subtitle}
-            </p>
-          </div>
-        </div>
+    <section className="trust-reviews-section" aria-label="Customer Reviews">
+      <header className="trust-reviews-top">
+        <h2>
+          Read reviews, <strong>ride with confidence.</strong>
+        </h2>
+        <p>⭐ 4.5/5 Trustpilot | Based on 5000+ reviews</p>
+      </header>
 
-        <div className="testimonials-carousel">
-          <div
-            className="testimonials-track"
-            style={{ transform: `translateX(-${activeIndex * 100}%)` }}
-          >
-            {testimonials.map((testimonial, index) => (
-              <div
-                key={testimonial.id}
-                className={`testimonial-card ${index === activeIndex ? "active" : ""}`}
-              >
-                <div className="testimonial-header">
-                  <div className="testimonial-avatar">{testimonial.initials}</div>
-                  <div className="testimonial-meta">
-                    <h4>{testimonial.name}</h4>
-                    <p>{testimonial.title}</p>
+      <div className="trust-reviews-layout">
+        <aside className="trust-reviews-side" aria-label="Reviews overview">
+          <span className="trust-quote-icon" aria-hidden="true">
+            “
+          </span>
+          <p>What our customers are saying</p>
+          <div className="trust-reviews-nav">
+            <button
+              type="button"
+              className="trust-reviews-arrow"
+              onClick={() => scrollCards(-1)}
+              disabled={!canGoPrev}
+              aria-label="Previous review"
+            >
+              ←
+            </button>
+            <button
+              type="button"
+              className="trust-reviews-arrow"
+              onClick={() => scrollCards(1)}
+              disabled={!canGoNext}
+              aria-label="Next review"
+            >
+              →
+            </button>
+          </div>
+        </aside>
+
+        <div className="trust-reviews-slider-wrap">
+          <div className="trust-reviews-slider" ref={sliderRef}>
+            {reviews.map((review) => (
+              <article className="trust-review-card" key={review.id}>
+                <p className="trust-review-text">"{review.text}"</p>
+                <p className="trust-review-stars" aria-label={`${review.rating} out of 5 stars`}>
+                  {starsFor(review.rating)}
+                </p>
+
+                <div className="trust-review-user">
+                  <div>
+                    <h3>{review.name}</h3>
+                    <p>{review.role}</p>
                   </div>
                 </div>
-                <div className="testimonial-rating">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <span key={i} className="star">★</span>
-                  ))}
-                </div>
-                <p className="testimonial-text">{testimonial.text}</p>
-              </div>
+              </article>
             ))}
           </div>
-
-          <button className="carousel-button carousel-button--prev" onClick={handlePrev} aria-label={copy.previous}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-
-          <button className="carousel-button carousel-button--next" onClick={handleNext} aria-label={copy.next}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-        </div>
-
-        <div className="carousel-indicators">
-          {testimonials.map((_, index) => (
-            <button
-              key={index}
-              className={`carousel-dot ${index === activeIndex ? "active" : ""}`}
-              onClick={() => goToSlide(index)}
-              aria-label={`${copy.goTo} ${index + 1}`}
-            />
-          ))}
-        </div>
-
-        <div className="testimonials-stats">
-          {copy.stats.map((item) => (
-            <div className="stat" key={item.label}>
-              <h3>{item.value}</h3>
-              <p>{item.label}</p>
-            </div>
-          ))}
         </div>
       </div>
     </section>
