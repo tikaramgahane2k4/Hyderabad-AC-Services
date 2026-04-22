@@ -1172,60 +1172,60 @@ body[data-theme="dark"] .home-faq-panel__content {
 }
 
 body[data-theme="dark"] .home-page--modern {
-  --home-surface: rgba(12, 27, 43, 0.82);
-  --home-surface-strong: rgba(15, 33, 52, 0.96);
-  --home-border: rgba(123, 179, 221, 0.28);
-  --home-shadow: 0 24px 58px rgba(1, 8, 16, 0.45);
-  --home-shadow-hover: 0 32px 68px rgba(1, 8, 16, 0.62);
-  --home-text: #e7f4ff;
-  --home-text-soft: rgba(214, 232, 248, 0.84);
-  --home-accent: #57c9f7;
-  --home-accent-deep: #9ddfff;
+  --home-surface: rgba(11, 25, 39, 0.84);
+  --home-surface-strong: rgba(14, 31, 49, 0.97);
+  --home-border: rgba(123, 179, 221, 0.24);
+  --home-shadow: 0 24px 58px rgba(1, 8, 16, 0.42);
+  --home-shadow-hover: 0 32px 68px rgba(1, 8, 16, 0.58);
+  --home-text: #edf7ff;
+  --home-text-soft: rgba(214, 232, 248, 0.82);
+  --home-accent: #5dd0ff;
+  --home-accent-deep: #9adfff;
 }
 
 body[data-theme="dark"] .home-modern-hero__overlay {
   background:
-    radial-gradient(circle at 85% 20%, rgba(56, 160, 232, 0.3) 0%, rgba(56, 160, 232, 0) 44%),
-    linear-gradient(110deg, rgba(4, 16, 28, 0.94) 0%, rgba(5, 24, 42, 0.86) 42%, rgba(8, 45, 75, 0.56) 100%);
+    radial-gradient(circle at 85% 20%, rgba(93, 208, 255, 0.22) 0%, rgba(93, 208, 255, 0) 44%),
+    linear-gradient(110deg, rgba(4, 16, 28, 0.92) 0%, rgba(7, 25, 43, 0.82) 42%, rgba(13, 56, 92, 0.5) 100%);
 }
 
 body[data-theme="dark"] .home-modern-hero__phone-highlight {
-  border-color: rgba(132, 191, 233, 0.5);
-  background: rgba(6, 30, 50, 0.56);
+  border-color: rgba(132, 191, 233, 0.48);
+  background: rgba(7, 30, 48, 0.58);
   color: #e6f4ff;
 }
 
 body[data-theme="dark"] .home-modern-button--call {
   color: #e8f4ff;
-  border-color: rgba(146, 200, 238, 0.4);
-  background: linear-gradient(120deg, rgba(14, 50, 80, 0.96) 0%, rgba(18, 73, 110, 0.92) 100%);
+  border-color: rgba(146, 200, 238, 0.38);
+  background: linear-gradient(120deg, rgba(12, 47, 77, 0.96) 0%, rgba(18, 73, 110, 0.92) 100%);
   box-shadow: 0 14px 30px rgba(1, 14, 24, 0.45);
 }
 
 body[data-theme="dark"] .home-modern-button--secondary {
   color: #dff2ff;
-  border-color: rgba(139, 194, 233, 0.44);
-  background: rgba(8, 33, 56, 0.48);
+  border-color: rgba(139, 194, 233, 0.42);
+  background: rgba(8, 33, 56, 0.5);
 }
 
 body[data-theme="dark"] .home-trust-section {
-  border-color: rgba(116, 171, 212, 0.28);
-  background: linear-gradient(160deg, rgba(15, 35, 55, 0.96) 0%, rgba(8, 33, 56, 0.88) 100%);
+  border-color: rgba(116, 171, 212, 0.24);
+  background: linear-gradient(160deg, rgba(15, 35, 55, 0.95) 0%, rgba(9, 33, 56, 0.9) 100%);
 }
 
 body[data-theme="dark"] .home-trust-card,
 body[data-theme="dark"] .home-modern-card,
 body[data-theme="dark"] .home-modern-map-card,
 body[data-theme="dark"] .home-faq-item {
-  border-color: rgba(122, 177, 217, 0.26);
-  background: rgba(14, 31, 49, 0.95);
-  box-shadow: 0 16px 30px rgba(2, 12, 22, 0.42);
+  border-color: rgba(122, 177, 217, 0.22);
+  background: rgba(14, 31, 49, 0.94);
+  box-shadow: 0 16px 30px rgba(2, 12, 22, 0.38);
 }
 
 body[data-theme="dark"] .home-modern-service-card,
 body[data-theme="dark"] .home-modern-blog-card {
   background:
-    linear-gradient(180deg, rgba(18, 42, 64, 0.98) 0%, rgba(13, 54, 83, 0.7) 100%),
+    linear-gradient(180deg, rgba(18, 42, 64, 0.98) 0%, rgba(13, 54, 83, 0.72) 100%),
     rgba(14, 31, 49, 0.95);
 }
 
@@ -1250,8 +1250,8 @@ body[data-theme="dark"] .home-footer-utility__copyright {
 
 body[data-theme="dark"] .home-modern-chip,
 body[data-theme="dark"] .home-trust-badges li {
-  border-color: rgba(100, 189, 239, 0.42);
-  background: rgba(11, 74, 109, 0.36);
+  border-color: rgba(100, 189, 239, 0.38);
+  background: rgba(11, 74, 109, 0.34);
   color: #ddf2ff;
 }
 
