@@ -4,12 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hyderabad AC Services</title>
-    <script type="module" crossorigin src="/assets/index-DqpcPEpD.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-BDBjjP6w.css">
   </head>
   <body>
     <!-- Hidden Google Translate Element -->
     <div id="google_translate_element" style="display: none;"></div>
+
     <script type="text/javascript">
       function googleTranslateElementInit() {
         new google.translate.TranslateElement(
@@ -18,12 +17,15 @@
         );
       }
     </script>
-    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <div id="root"></div>
-    
+
+    <!-- Vite entry point -->
+    <script type="module" src="/src/main.jsx"></script>
+
     <style>
-      /* Hide Google Translate Toolbar & Popups globally */
       .skiptranslate { display: none !important; }
       body { top: 0 !important; }
     </style>

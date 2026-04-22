@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import Testimonials from "../components/Testimonials";
-import CTA from "../components/CTA";
 import AnimatedStats from "../components/AnimatedStats";
 import HomeCard from "../components/home/HomeCard";
 import HomeFaqAccordion from "../components/home/HomeFaqAccordion";
@@ -569,18 +568,6 @@ function Home() {
         title={copy.faqTitle}
         subtitle={copy.faqSubtitle}
       />
-
-      <div className="home-modern-block home-reveal home-reveal-delay-1" data-reveal>
-        <CTA
-          title={copy.ctaTitle}
-          description={copy.ctaDescription}
-          primaryButtonText={copy.bookConsultation}
-          primaryButtonLink="/book-service"
-          secondaryButtonText={copy.whatsappUs}
-          secondaryButtonLink={siteContent.whatsappLink}
-          icon="phone"
-        />
-      </div>
 
             </div>
       <Footer />

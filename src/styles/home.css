@@ -16,6 +16,14 @@
   position: relative;
 }
 
+.home-page--modern > .home-trust-section,
+.home-page--modern > .home-modern-section,
+.home-page--modern > .home-modern-block,
+.home-page--modern > .home-modern-section--faq {
+  width: min(100%, 1240px);
+  margin-inline: auto;
+}
+
 .home-page--modern::before {
   content: none;
 }
@@ -371,7 +379,8 @@
   align-self: center;
 }
 
-.home-trusted-by__logos {
+.home-trusted-by__logos,
+.home-trusted-by__logos.home-modern-grid--logos {
   width: 100%;
   max-width: 680px;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -489,9 +498,9 @@
 .home-modern-section--articles .home-modern-section__title {
   margin: 0;
   max-inline-size: 52rem;
-  font-size: clamp(1.9rem, 4.2vw, 3.4rem);
+  font-size: clamp(1.9rem, 3vw, 3rem);
   line-height: 1.08;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.03em;
   color: #154769;
   text-wrap: balance;
 }
@@ -499,8 +508,8 @@
 .home-modern-section--articles .home-modern-section__description {
   margin: 0;
   max-inline-size: 44rem;
-  font-size: clamp(0.95rem, 1.5vw, 1.02rem);
-  line-height: 1.7;
+  font-size: 1rem;
+  line-height: 1.72;
   color: rgba(21, 71, 105, 0.82);
   text-wrap: balance;
 }
@@ -531,14 +540,16 @@
 .home-modern-section__title {
   margin: 0.55rem 0 0;
   font-family: "Nasalization", "Poppins", sans-serif;
-  font-size: clamp(1.5rem, 3vw, 2.35rem);
-  line-height: 1.2;
+  font-size: clamp(1.9rem, 3vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
   color: var(--home-text);
 }
 
 .home-modern-section__description {
   margin: 0.9rem 0 0;
   color: var(--home-text-soft);
+  font-size: 1rem;
   line-height: 1.72;
 }
 
@@ -1094,24 +1105,29 @@ body[data-theme="dark"] .home-faq-panel__content {
   font-weight: 700;
   line-height: 1.35;
 }
-    color: rgba(171, 218, 255, 0.76);
-  }
 
-  body[data-theme="dark"] .home-faq-item.is-open .home-faq-chevron {
-    color: #69d0f7;
-  }
+.home-footer-utility {
+  border-top: 1px solid rgba(9, 73, 122, 0.14);
+  background: linear-gradient(180deg, rgba(240, 249, 255, 0.95) 0%, rgba(229, 244, 255, 0.92) 100%);
+  padding: 1rem clamp(1rem, 3vw, 1.6rem);
+  display: grid;
+  gap: 0.8rem;
+}
 
-  body[data-theme="dark"] .home-faq-answer {
-    border-top-color: rgba(112, 171, 211, 0.24);
-  }
+.home-footer-utility__legal,
+.home-footer-utility__contact,
+.home-footer-utility__sitemap,
+.home-footer-utility__socials {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.7rem;
+}
 
-  body[data-theme="dark"] .home-faq-panel__content {
-    color: rgba(211, 231, 248, 0.82);
-  }
-
-  .home-faq-panel__inner {
-    overflow: hidden;
-  }
+.home-footer-utility a {
+  color: #0a4f84;
+  text-decoration: none;
+  font-weight: 600;
   font-size: 0.9rem;
 }
 
@@ -1295,6 +1311,29 @@ body[data-theme="dark"] .home-footer-utility__socials a {
   background: rgba(10, 35, 56, 0.88);
 }
 
+/* Remove outer boxes from home content blocks for a cleaner text-first layout */
+.home-page--modern .home-trust-section,
+.home-page--modern .home-trust-card,
+.home-page--modern .home-modern-section,
+.home-page--modern .home-modern-section--collaborators,
+.home-page--modern .home-modern-section--articles,
+.home-page--modern .home-modern-card,
+.home-page--modern .home-modern-service-card,
+.home-page--modern .home-modern-logo-card,
+.home-page--modern .home-modern-blog-card,
+.home-page--modern .home-trusted-by__logo-card,
+.home-page--modern .home-trusted-by__media,
+.home-page--modern .home-modern-map-card,
+.home-page--modern .home-modern-contact-list li,
+.home-page--modern .home-faq-item,
+.home-page--modern .home-faq-trigger,
+.home-modern-footer-wrap .site-footer,
+.home-footer-utility {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
 @keyframes heroRise {
   from {
     opacity: 0;
@@ -1377,7 +1416,8 @@ body[data-theme="dark"] .home-footer-utility__socials a {
     grid-template-columns: 1fr;
   }
 
-  .home-trusted-by__logos {
+  .home-trusted-by__logos,
+  .home-trusted-by__logos.home-modern-grid--logos {
     max-width: none;
     gap: 1.15rem;
   }
@@ -1386,18 +1426,15 @@ body[data-theme="dark"] .home-footer-utility__socials a {
     gap: 0.55rem;
   }
 
-<<<<<<< HEAD
-.home-modern-logo-card {
-  min-height: 112px;
-  padding: 0.9rem;
-}
-=======
-  .home-trusted-by__logo-card {
-    min-height: 136px;
-    padding: 0.65rem 0.74rem;
+ .home-trusted-by__logo-card {
+    min-height: 120px;
+    padding: 0.72rem 0.82rem;
   }
->>>>>>> 0d23db1c561daafb774072f95cb602062008f2df
 
+  .home-trusted-by__media img {
+    aspect-ratio: 4 / 4.7;
+  }
+  
 .home-trusted-by__logo-card {
   min-height: 120px;
   padding: 0.72rem 0.82rem;
@@ -1407,9 +1444,10 @@ body[data-theme="dark"] .home-footer-utility__socials a {
   aspect-ratio: 4 / 4.7;
 }
 
-.home-modern-section--articles {
-  padding: 1.2rem 0.9rem;
-}
+
+  .home-modern-section--articles {
+    padding: 1.2rem 0.9rem;
+  }
 
   .home-modern-contact-list li {
     flex-direction: column;
@@ -1419,6 +1457,7 @@ body[data-theme="dark"] .home-footer-utility__socials a {
 
 @media (max-width: 520px) {
   .home-trusted-by__logos,
+  .home-trusted-by__logos.home-modern-grid--logos,
   .home-modern-grid--logos {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.95rem;
