@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import ContactForm from "../components/ContactForm";
 import Footer from "../components/Footer";
 import { useAppPreferences } from "../context/AppPreferencesContext";
@@ -76,16 +75,12 @@ function ContactPage() {
   const siteContent = getLocalizedSiteContent(language);
   const copy = contactPageCopy[language] ?? contactPageCopy.en;
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <div className="contact-page">
       <section className="contact-hero">
-        <span className="eyebrow contact-hero__eyebrow">{copy.eyebrow}</span>
-        <h1 className="contact-hero__title">{copy.title}</h1>
-        <p className="contact-hero__description">{copy.description}</p>
+        <span className="eyebrow" style={{ marginBottom: "0.2rem" }}>{copy.eyebrow}</span>
+        <h1>{copy.title}</h1>
+        <p>{copy.description}</p>
       </section>
 
       <section className="contact-section contact-section--page">
