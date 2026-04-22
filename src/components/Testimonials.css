@@ -1,230 +1,91 @@
 .trust-reviews-section {
   margin: 0;
-  width: 100%;
-  background: transparent;
-}
-
-.trust-reviews-container {
-  width: min(100%, 1100px);
-  margin: 0 auto;
-  padding: clamp(1rem, 2.2vw, 1.5rem);
-  border-radius: 0;
-  background: transparent;
-  border: 0;
-  box-shadow: none;
+  padding: clamp(1.5rem, 3.2vw, 2.4rem);
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.97) 0%, rgba(250, 252, 255, 0.97) 100%);
+  border: 1px solid rgba(15, 50, 76, 0.08);
+  box-shadow: 0 10px 28px rgba(15, 50, 76, 0.06);
 }
 
 .trust-reviews-top {
   text-align: center;
+  margin-bottom: clamp(1.3rem, 3vw, 2rem);
   max-width: 760px;
-  margin: 0 auto clamp(1.6rem, 3.2vw, 2.2rem);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .trust-reviews-top h2 {
   margin: 0;
-  font-family: "Poppins", "Inter", sans-serif;
   font-size: clamp(1.45rem, 3.4vw, 2.2rem);
-  font-weight: 500;
+  font-weight: 600;
   color: #14344f;
-  letter-spacing: -0.01em;
-}
-
-.trust-reviews-top h2 strong {
-  font-weight: 700;
 }
 
 .trust-reviews-top p {
-  margin: 0.72rem 0 0;
-  color: rgba(20, 52, 79, 0.74);
-  font-size: clamp(0.92rem, 1.5vw, 1.02rem);
-  font-weight: 500;
+  margin-top: 0.7rem;
+  color: rgba(20, 52, 79, 0.75);
 }
 
-.trust-reviews-grid {
+.trust-reviews-layout {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: minmax(220px, 280px) 1fr;
+  gap: 1.5rem;
+}
+
+.trust-reviews-slider {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(280px, 320px);
   gap: 1rem;
-  align-items: stretch;
-  justify-content: center;
+  overflow-x: auto;
 }
 
 .trust-review-card {
-  display: grid;
-  gap: 0.95rem;
-  min-height: 280px;
-  background: transparent;
-  border-radius: 0;
-  border: 0;
-  box-shadow: none;
-  padding: 1.1rem 1.15rem;
-  transition: none;
+  background: #fff;
+  border-radius: 16px;
+  padding: 1rem;
+  border: 1px solid rgba(19, 62, 92, 0.08);
+  box-shadow: 0 10px 22px rgba(16, 45, 67, 0.07);
+  transition: transform 0.2s ease;
 }
 
 .trust-review-card:hover {
-  transform: none;
-  box-shadow: none;
+  transform: translateY(-3px);
 }
 
 .trust-review-text {
-  margin: 0;
-  color: rgba(20, 52, 79, 0.9);
   font-size: 0.95rem;
-  line-height: 1.72;
+  line-height: 1.6;
 }
 
 .trust-review-stars {
-  margin: 0;
   color: #0ca678;
-  font-size: 1.03rem;
-  letter-spacing: 0.02em;
-  font-weight: 700;
-}
-
-.trust-review-user {
-  margin-top: auto;
-  display: grid;
-  gap: 0.2rem;
-}
-
-.trust-stats-section {
-  margin-top: clamp(3.8rem, 7vw, 4.8rem);
-}
-
-.trust-stats-grid {
-  width: min(100%, 900px);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0.85rem;
-}
-
-.trust-stat-card {
-  border-radius: 0;
-  border: 0;
-  background: transparent;
-  box-shadow: none;
-  padding: 0.95rem 0.8rem;
-  text-align: center;
-}
-
-.trust-stat-value {
-  margin: 0;
-  color: #103c5b;
-  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
-  font-weight: 700;
-  line-height: 1.2;
-}
-
-.trust-stat-label {
-  margin: 0.35rem 0 0;
-  color: rgba(20, 52, 79, 0.65);
-  font-size: 0.82rem;
-  font-weight: 500;
+  font-weight: bold;
 }
 
 .trust-review-user h3 {
+  font-size: 0.95rem;
   margin: 0;
-  color: #14344f;
-  font-size: 0.97rem;
-  font-weight: 700;
 }
 
 .trust-review-user p {
-  margin: 0.12rem 0 0;
-  color: rgba(20, 52, 79, 0.64);
-  font-size: 0.86rem;
-}
-
-body[data-theme="dark"] .trust-reviews-section {
-  background: transparent;
-}
-
-body[data-theme="dark"] .trust-reviews-container {
-  background: transparent;
-  border-color: transparent;
-  box-shadow: none;
-}
-
-body[data-theme="dark"] .trust-reviews-top h2,
-body[data-theme="dark"] .trust-review-user h3 {
-  color: #e4f2ff;
-}
-
-body[data-theme="dark"] .trust-reviews-top p,
-body[data-theme="dark"] .trust-review-text,
-body[data-theme="dark"] .trust-review-user p,
-body[data-theme="dark"] .trust-stat-label {
-  color: rgba(214, 231, 245, 0.78);
-}
-
-body[data-theme="dark"] .trust-review-card {
-  background: transparent;
-  border-color: transparent;
-  box-shadow: none;
-}
-
-body[data-theme="dark"] .trust-stat-card {
-  background: transparent;
-  border-color: transparent;
-  box-shadow: none;
-}
-
-body[data-theme="dark"] .trust-stat-value {
-  color: #e4f2ff;
-}
-
-@media (min-width: 1220px) {
-  .trust-reviews-grid {
-    gap: 1.1rem;
-  }
+  font-size: 0.85rem;
+  color: rgba(20, 52, 79, 0.6);
 }
 
 @media (max-width: 940px) {
-  .trust-reviews-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .trust-stats-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .trust-reviews-layout {
+    grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 680px) {
-  .trust-reviews-container {
-    padding: 1rem;
-    border-radius: 18px;
-  }
-
-  .trust-reviews-top h2 {
-    font-size: 1.35rem;
-  }
-
-  .trust-reviews-top p {
-    font-size: 0.9rem;
-  }
-
-  .trust-reviews-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .trust-review-card {
-    min-height: 0;
+  .trust-reviews-section {
     padding: 1rem;
   }
 
-  .trust-stats-section {
-    margin-top: 3.8rem;
-  }
-
-  .trust-stats-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .trust-reviews-section,
-  .trust-review-card,
-  .trust-reviews-arrow {
-    transition: none;
+  .trust-reviews-slider {
+    grid-auto-columns: 100%;
   }
 }

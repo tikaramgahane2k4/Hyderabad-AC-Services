@@ -8,6 +8,21 @@ const navItems = [
   { id: "home", labelKey: "home", to: "/" },
   { id: "services", labelKey: "services", to: "/services" },
   { id: "about", labelKey: "about", to: "/about" },
+  {
+    id: "airConditioning",
+    labelKey: "airConditioning",
+    dropdown: [
+      { id: "acService", labelKey: "acService", to: "/services/ac-service" },
+      { id: "centralizedAc", labelKey: "centralizedAc", to: "/services/centralized-air-conditioning" },
+      { id: "copperPiping", labelKey: "copperPiping", to: "/services/copper-pipe-planning" },
+      { id: "ducting", labelKey: "ducting", to: "/services/ducting" },
+      { id: "acGasLeak", labelKey: "acGasLeak", to: "/services/ac-gas-leak" },
+      { id: "acInstallation", labelKey: "acInstallation", to: "/services/ac-installation" },
+      { id: "acRepair", labelKey: "acRepair", to: "/services/ac-repair" },
+      { id: "acScrap", labelKey: "acScrap", to: "/services/ac-scrap" },
+      { id: "airCurtain", labelKey: "airCurtain", to: "/services/air-curtain" },
+    ]
+  },
   { id: "blog", labelKey: "blog", to: "/blog" },
   { id: "contact", labelKey: "contact", to: "/contact" },
 ];
@@ -31,6 +46,16 @@ const uiTranslations = {
     theme: "theme",
     callAriaPrefix: "Call",
     logoSuffix: "logo",
+    airConditioning: "Air Conditioning",
+    acService: "Ac Service",
+    centralizedAc: "Centralized Air Conditioning",
+    copperPiping: "Copper Pipe Planning",
+    ducting: "Ducting",
+    acGasLeak: "Ac Gas Leak",
+    acInstallation: "Ac Installation",
+    acRepair: "Ac Repair",
+    acScrap: "Ac Scrap",
+    airCurtain: "Air Curtain",
   },
   hi: {
     home: "होम",
@@ -231,6 +256,10 @@ function Navbar() {
     return location.pathname === item.to;
   };
 
+  const isActiveDropdown = (item) => {
+    return item.dropdown?.some(subItem => location.pathname === subItem.to);
+  };
+
   const labels = uiTranslations[language] ?? uiTranslations.en;
   const nextThemeMode = theme === "light" ? "dark" : "light";
   const nextThemeLabel = nextThemeMode === "light" ? labels.light : labels.dark;
@@ -272,15 +301,37 @@ function Navbar() {
           >
             <ul className={`navbar__menu ${isMenuOpen ? "navbar__menu--open" : ""}`}>
               {navItems.map((item) => (
-                <li key={item.id}>
-                  <Link
-                    className={`navbar__menu-link ${isActiveItem(item) ? "navbar__menu-link--active" : ""}`}
-                    to={item.to}
-                    aria-current={isActiveItem(item) ? "page" : undefined}
-                    onClick={handleNavItemClick(item)}
-                  >
-                    {labels[item.labelKey]}
-                  </Link>
+                <li key={item.id} className={item.dropdown ? "navbar__menu-item-dropdown" : ""}>
+                  {item.dropdown ? (
+                    <>
+                      <button className={`navbar__menu-link navbar__menu-dropdown-toggle ${isActiveDropdown(item) ? "navbar__menu-link--active" : ""}`}>
+                        {labels[item.labelKey] || item.labelKey}
+                        <svg className="navbar__dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                      </button>
+                      <ul className="navbar__dropdown-menu">
+                        {item.dropdown.map((subItem) => (
+                          <li key={subItem.id}>
+                            <Link
+                              className="navbar__dropdown-link"
+                              to={subItem.to}
+                              onClick={handleNavItemClick(subItem)}
+                            >
+                              {labels[subItem.labelKey] || subItem.labelKey}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </>
+                  ) : (
+                    <Link
+                      className={`navbar__menu-link ${isActiveItem(item) ? "navbar__menu-link--active" : ""}`}
+                      to={item.to}
+                      aria-current={isActiveItem(item) ? "page" : undefined}
+                      onClick={handleNavItemClick(item)}
+                    >
+                      {labels[item.labelKey] || item.labelKey}
+                    </Link>
+                  )}
                 </li>
               ))}
 

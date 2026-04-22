@@ -1,0 +1,123 @@
+/* Services Pages Shared Styles */
+.service-page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px 80px;
+  font-family: inherit;
+  color: #333;
+}
+
+.service-page-header {
+  margin-bottom: 40px;
+}
+
+.service-page-header h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.service-page-subtitle {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #222;
+  margin: 30px 0 15px;
+}
+
+.service-page-content p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  color: #444;
+}
+
+.service-page-list {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 25px;
+}
+
+.service-page-list li {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: flex-start;
+  color: #333;
+}
+
+.service-page-list .icon {
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.service-page-list--dots li {
+  list-style-type: disc;
+  margin-left: 20px;
+  display: list-item;
+  color: #0c84cc;
+}
+
+.service-page-list--dots li span.text {
+  color: #333;
+}
+
+.service-page-list--check li::before {
+  content: "✓";
+  color: #0c84cc;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.service-page-cta {
+  margin-top: 40px;
+}
+
+.service-page-button {
+  display: inline-block;
+  background-color: #2b2b2b;
+  color: #fff;
+  padding: 12px 30px;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.service-page-button:hover {
+  background-color: #000;
+}
+
+.service-page-content--split {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.service-page-text {
+  flex: 1;
+}
+
+.service-page-image {
+  flex: 1;
+  max-width: 500px;
+}
+
+.service-page-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 768px) {
+  .service-page-content--split {
+    flex-direction: column;
+  }
+  .service-page-image {
+    max-width: 100%;
+    margin-top: 30px;
+  }
+}
