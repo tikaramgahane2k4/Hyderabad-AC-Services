@@ -1,110 +1,182 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import "./AnimatedStats.css";
 
-// Ease-out effect for smooth deceleration
-const easeOutExpo = (t) => {
-  return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+const DEFAULT_STATS = [
+  { value: 4.9, decimals: 1, label: "Google Rating" },
+  { value: 500, suffix: "+", label: "Happy Customers" },
+  { value: 10, suffix: "+", label: "Years Experience" },
+  { value: 24, suffix: "/7", label: "Direct Support" },
+];
+
+const easeOutQuint = (progress) => 1 - (1 - progress) ** 5;
+
+const getDecimalPlaces = (value) => {
+  const [, fraction = ""] = String(value).split(".");
+  return fraction.length;
 };
 
-const AnimatedCounter = ({ target, suffix = "", decimals = 0, duration = 2000, label }) => {
-  const [count, setCount] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
+const normalizeStat = (stat) => {
+  const numericValue = Number(stat.value ?? stat.target ?? 0);
+  const safeValue = Number.isFinite(numericValue) ? numericValue : 0;
+
+  return {
+    ...stat,
+    value: safeValue,
+    decimals: stat.decimals ?? getDecimalPlaces(safeValue),
+    duration: stat.duration ?? 2600,
+    prefix: stat.prefix ?? "",
+    suffix: stat.suffix ?? "",
+  };
+};
+
+const formatCounterValue = (value, decimals, locale) =>
+  new Intl.NumberFormat(locale, {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  }).format(value);
+
+function useInViewOnce({ threshold = 0.3, rootMargin = "0px 0px -12% 0px" } = {}) {
   const elementRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect(); // Ensure it runs only once
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    if (elementRef.current) {
-      observer.observe(elementRef.current);
+    if (isVisible) {
+      return undefined;
     }
 
+    const node = elementRef.current;
+
+    if (!node) {
+      return undefined;
+    }
+
+    if (typeof IntersectionObserver === "undefined") {
+      setIsVisible(true);
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+
+        if (!entry?.isIntersecting) {
+          return;
+        }
+
+        setIsVisible(true);
+        observer.disconnect();
+      },
+      { threshold, rootMargin }
+    );
+
+    observer.observe(node);
+
     return () => observer.disconnect();
-  }, []);
+  }, [isVisible, rootMargin, threshold]);
+
+  return { elementRef, isVisible };
+}
+
+function AnimatedCounterCard({ stat, index, isActive, stagger = 140, locale }) {
+  const [displayValue, setDisplayValue] = useState(0);
+  const hasAnimatedRef = useRef(false);
 
   useEffect(() => {
-    if (!isVisible) return;
+    if (!isActive || hasAnimatedRef.current) {
+      return undefined;
+    }
 
-    let startTime = null;
+    hasAnimatedRef.current = true;
 
-    const animate = (currentTime) => {
-      if (!startTime) startTime = currentTime;
-      const progress = Math.min((currentTime - startTime) / duration, 1);
-      const easedProgress = easeOutExpo(progress);
+    const prefersReducedMotion =
+      typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 
-      setCount(easedProgress * target);
+    if (prefersReducedMotion) {
+      setDisplayValue(stat.value);
+      return undefined;
+    }
+
+    let animationFrameId = 0;
+    let startTime = 0;
+
+    const startAnimation = (timestamp) => {
+      if (!startTime) {
+        startTime = timestamp;
+      }
+
+      const elapsed = timestamp - startTime;
+      const progress = Math.min(elapsed / stat.duration, 1);
+      const easedProgress = easeOutQuint(progress);
+
+      setDisplayValue(progress >= 1 ? stat.value : stat.value * easedProgress);
 
       if (progress < 1) {
-        requestAnimationFrame(animate);
-      } else {
-        setCount(target);
+        animationFrameId = window.requestAnimationFrame(startAnimation);
       }
     };
 
-    requestAnimationFrame(animate);
-  }, [isVisible, target, duration]);
+    const timeoutId = window.setTimeout(() => {
+      animationFrameId = window.requestAnimationFrame(startAnimation);
+    }, index * stagger);
 
-  // Format to string safely to avoid floating-point overflow rendering
-  const formattedCount = Number(count).toFixed(decimals);
+    return () => {
+      window.clearTimeout(timeoutId);
+      window.cancelAnimationFrame(animationFrameId);
+    };
+  }, [index, isActive, stagger, stat.duration, stat.value]);
 
-  return (
-    <div className={`stat-item ${isVisible ? "animate-up" : ""}`} ref={elementRef}>
-      <h3 className="stat-value">
-        {formattedCount}
-        <span className="stat-suffix">{suffix}</span>
-      </h3>
-      {label && <p className="stat-label">{label}</p>}
-    </div>
+  const formattedValue = useMemo(
+    () => `${stat.prefix}${formatCounterValue(displayValue, stat.decimals, locale)}${stat.suffix}`,
+    [displayValue, locale, stat.decimals, stat.prefix, stat.suffix]
   );
-};
-
-export default function AnimatedStats() {
-  const stats = [
-    { target: 4.9, decimals: 1, suffix: "", label: "Google Rating", delay: 100 },
-    { target: 500, decimals: 0, suffix: "+", label: "Happy Customers", delay: 200 },
-    { target: 10, decimals: 0, suffix: "+", label: "Years Experience", delay: 300 },
-    { target: 24, decimals: 0, suffix: "/7", label: "Direct Support", delay: 400 },
-  ];
-
-  const sectionRef = useRef(null);
-  const [isSectionVisible, setIsSectionVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setIsSectionVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-  }, []);
 
   return (
-    <section className={`animated-stats-section ${isSectionVisible ? "fade-in" : ""}`} ref={sectionRef}>
-      <div className="animated-stats-container">
-        <h2 className="stats-heading">Trusted by Thousands in Hyderabad</h2>
-        <div className="stats-grid">
-          {stats.map((stat, index) => (
-            <AnimatedCounter
-              key={index}
-              target={stat.target}
-              decimals={stat.decimals}
-              suffix={stat.suffix}
-              label={stat.label}
-              duration={2500}
+    <article
+      className={`animated-stat-card ${isActive ? "is-visible" : ""}`}
+      style={{ "--stat-delay": `${index * 90}ms` }}
+    >
+      <p className="animated-stat-card__value">{formattedValue}</p>
+      <p className="animated-stat-card__label">{stat.label}</p>
+      {stat.caption ? <p className="animated-stat-card__caption">{stat.caption}</p> : null}
+    </article>
+  );
+}
+
+export default function AnimatedStats({
+  eyebrow = "Service Numbers",
+  title = "Trusted by Thousands in Hyderabad",
+  description = "Performance-backed AC service with reliable response, expert support, and consistently strong customer trust.",
+  stats = DEFAULT_STATS,
+  className = "",
+  threshold = 0.3,
+  rootMargin = "0px 0px -12% 0px",
+  stagger = 140,
+  locale,
+}) {
+  const normalizedStats = useMemo(() => stats.map(normalizeStat), [stats]);
+  const { elementRef, isVisible } = useInViewOnce({ threshold, rootMargin });
+
+  return (
+    <section
+      ref={elementRef}
+      className={`animated-stats-section ${isVisible ? "is-visible" : ""} ${className}`.trim()}
+    >
+      <div className="animated-stats-shell">
+        <header className="animated-stats-header">
+          {eyebrow ? <p className="animated-stats-header__eyebrow">{eyebrow}</p> : null}
+          {title ? <h2 className="animated-stats-header__title">{title}</h2> : null}
+          {description ? <p className="animated-stats-header__description">{description}</p> : null}
+        </header>
+
+        <div className="animated-stats-grid">
+          {normalizedStats.map((stat, index) => (
+            <AnimatedCounterCard
+              key={`${stat.label}-${stat.value}-${index}`}
+              stat={stat}
+              index={index}
+              isActive={isVisible}
+              stagger={stagger}
+              locale={locale}
             />
           ))}
         </div>
