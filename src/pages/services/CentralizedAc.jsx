@@ -1,9 +1,8 @@
-<<<<<<< HEAD
 import React from "react";
 import Footer from "../../components/Footer";
 import "../../styles/services-pages.css";
 
-function CentralizedAirConditioning() {
+function CentralizedAc() {
   return (
     <>
       <main className="service-page-container">
@@ -20,16 +19,14 @@ function CentralizedAirConditioning() {
             <h2 className="service-page-subtitle">We handle everything from</h2>
             
             <ul className="service-page-list service-page-list--check">
-              <li><strong>System Design & Layout Planning</strong></li>
-              <li><strong>AC Duct Installation & Insulation</strong></li>
-              <li><strong>VRV/VRF, Chiller, or Ducted Split AC Setup</strong></li>
-              <li><strong>Precision Zoning & Control Panels</strong></li>
-              <li><strong>Commissioning, Testing & Optimization</strong></li>
+              <li>System Design & Layout Planning</li>
+              <li>AC Duct Installation & Insulation</li>
+              <li>VRV/VRF, Chiller, or Ducted Split AC Setup</li>
+              <li>Precision Zoning & Control Panels</li>
+              <li>Commissioning, Testing & Optimization</li>
             </ul>
             
-            <p style={{ marginTop: "20px", fontWeight: "bold" }}>
-              Brands We Work With: Blue Star, Daikin, Carrier, Voltas, and more.
-            </p>
+            <p className="service-page-brands">Brands We Work With: Blue Star, Daikin, Carrier, Voltas, and more.</p>
             
             <p style={{ marginTop: "20px" }}>
               Total Comfort. Total Control. Centralized AC Installation in Hyderabad. Upgrade to Central AC—for seamless cooling, energy efficiency, and smarter climate control across your home or office.
@@ -41,7 +38,7 @@ function CentralizedAirConditioning() {
           </div>
           
           <div className="service-page-image">
-            <img src="/images/Centralized AC Installation.png" alt="Centralized Air Conditioning System" onError={(e) => { e.target.src = '/images/AC services.jpg' }} />
+            <img src="/images/Exhaust Ducting.jpg" alt="Centralized Air Conditioning System" />
           </div>
         </div>
       </main>
@@ -50,19 +47,4 @@ function CentralizedAirConditioning() {
   );
 }
 
-export default CentralizedAirConditioning;
-=======
-import Footer from "../../components/Footer";
-
-export default function CentralizedAirConditioning() {
-  return (
-    <div className="service-page">
-      <main className="content">
-        <h1>Centralized Air Conditioning</h1>
-        <p>Content coming — please share the exact service content and I'll add it here.</p>
-      </main>
-      <Footer />
-    </div>
-  );
-}
->>>>>>> feature/contact-footer
+export default CentralizedAc;

@@ -1,9 +1,8 @@
-<<<<<<< HEAD
 import React from "react";
 import Footer from "../../components/Footer";
 import "../../styles/services-pages.css";
 
-function CopperPipePlanning() {
+function CopperPiping() {
   return (
     <>
       <main className="service-page-container">
@@ -17,13 +16,13 @@ function CopperPipePlanning() {
               Avoid the mess of post-construction AC installation! Our copper pipe pre-installation service ensures your air conditioning system is future-ready—concealed, clean, and compliant—right from the construction phase.
             </p>
             
-            <h2 className="service-page-subtitle">Why Choose Us?</h2>
+            <h2 className="service-page-subtitle"><span className="icon" style={{color: '#4CAF50'}}>✅</span> Why Choose Us?</h2>
             
             <ul className="service-page-list service-page-list--check">
               <li><strong>Professional Planning</strong> We coordinate with your builder or interior designer to install high-quality, insulated copper pipes before false ceiling or wall finishing</li>
               <li><strong>Zero Breakage Later</strong> No need for chiseling walls or damaging tiles when it's time for AC installation</li>
               <li><strong>Perfect Routing & Sizing</strong> Optimized pipe length, slope, and insulation for efficient cooling & longer AC life</li>
-              <li><strong>Complete Setup</strong> We include AC drain pipes, AC copper pipe, and all required accessories—all in one go.</li>
+              <li><strong>Complete Setup</strong> We include AC drain pipes, AC copper pipe, and all required accessories —all in one go.</li>
             </ul>
             
             <h2 className="service-page-subtitle">Ideal For:</h2>
@@ -38,7 +37,7 @@ function CopperPipePlanning() {
           </div>
           
           <div className="service-page-image">
-            <img src="/images/Copper piping.png" alt="Copper Pipe Pre-installation" onError={(e) => { e.target.src = '/images/AC services.jpg' }} />
+            <img src="/images/AC Installation.jpg" alt="Copper Pipe Pre-installation" />
           </div>
         </div>
       </main>
@@ -47,19 +46,4 @@ function CopperPipePlanning() {
   );
 }
 
-export default CopperPipePlanning;
-=======
-import Footer from "../../components/Footer";
-
-export default function CopperPipePlanning() {
-  return (
-    <div className="service-page">
-      <main className="content">
-        <h1>Copper Pipe Planning</h1>
-        <p>Content coming — please share the exact service content and I'll add it here.</p>
-      </main>
-      <Footer />
-    </div>
-  );
-}
->>>>>>> feature/contact-footer
+export default CopperPiping;
