@@ -19,20 +19,6 @@
   margin-bottom: 10px;
 }
 
-.service-page-quote {
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 20px;
-  font-style: italic;
-}
-
-.service-page-content {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
-
 .service-page-subtitle {
   font-size: 1.4rem;
   font-weight: 700;
@@ -40,34 +26,11 @@
   margin: 30px 0 15px;
 }
 
-.service-page-content p,
-.service-page-text p {
+.service-page-content p {
   font-size: 1.05rem;
   line-height: 1.6;
   margin-bottom: 15px;
   color: #444;
-}
-
-.service-page-content--split {
-  display: flex;
-  gap: 40px;
-  align-items: flex-start;
-}
-
-.service-page-text {
-  flex: 1;
-}
-
-.service-page-image {
-  flex: 1;
-  max-width: 500px;
-}
-
-.service-page-image img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .service-page-list {
@@ -111,28 +74,6 @@
   margin-right: 10px;
 }
 
-.service-page-list--arrow li {
-  display: flex;
-  align-items: flex-start;
-}
-
-.service-page-list--arrow li::before {
-  content: "➤";
-  color: #0c84cc;
-  margin-right: 10px;
-}
-
-.service-page-list--icon li {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-}
-
-.service-page-list--icon span.icon {
-  flex-shrink: 0;
-  font-size: 1.2rem;
-}
-
 .service-page-cta {
   margin-top: 40px;
 }
@@ -142,7 +83,6 @@
   background-color: #2b2b2b;
   color: #fff;
   padding: 12px 30px;
-  text-transform: uppercase;
   font-weight: bold;
   text-decoration: none;
   border-radius: 4px;
@@ -151,7 +91,21 @@
 
 .service-page-button:hover {
   background-color: #000;
-  color: #fff;
+}
+
+.service-page-content--split {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.service-page-text {
+  flex: 1;
+}
+
+.service-page-image {
+  flex: 1;
+  max-width: 500px;
 }
 
 .service-page-brands {
