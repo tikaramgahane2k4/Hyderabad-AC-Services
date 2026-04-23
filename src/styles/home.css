@@ -436,7 +436,7 @@
   border: 1px solid var(--home-border);
   background: linear-gradient(180deg, var(--home-surface-strong) 0%, var(--home-surface) 100%);
   box-shadow: none;
-  padding: clamp(1.2rem, 2.4vw, 2rem);
+  padding: clamp(4rem, 8vw, 10rem) clamp(1.2rem, 2.4vw, 2rem);
   backdrop-filter: blur(7px);
 }
 
@@ -575,6 +575,42 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(0.9rem, 1.6vw, 1.2rem);
   margin-top: clamp(1.15rem, 2vw, 1.65rem);
+}
+
+.home-industries-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "card1 card1 card2 card3"
+    "card1 card1 card4 card4";
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.home-industry-card--1 { grid-area: card1; }
+.home-industry-card--2 { grid-area: card2; }
+.home-industry-card--3 { grid-area: card3; }
+.home-industry-card--4 { grid-area: card4; }
+
+.home-industry-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-premium);
+}
+
+.home-industry-card .home-modern-card__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.home-industry-card--1 .home-modern-card__title {
+  font-size: 2rem;
 }
 
 .home-modern-card {
@@ -1392,28 +1428,6 @@ body[data-theme="dark"] .home-footer-utility__socials a {
   background: rgba(10, 35, 56, 0.88);
 }
 
-/* Remove outer boxes from home content blocks for a cleaner text-first layout */
-.home-page--modern .home-trust-section,
-.home-page--modern .home-trust-card,
-.home-page--modern .home-modern-section,
-.home-page--modern .home-modern-section--collaborators,
-.home-page--modern .home-modern-section--articles,
-.home-page--modern .home-modern-card,
-.home-page--modern .home-modern-service-card,
-.home-page--modern .home-modern-logo-card,
-.home-page--modern .home-modern-blog-card,
-.home-page--modern .home-trusted-by__logo-card,
-.home-page--modern .home-trusted-by__media,
-.home-page--modern .home-modern-map-card,
-.home-page--modern .home-modern-contact-list li,
-.home-page--modern .home-faq-item,
-.home-page--modern .home-faq-trigger,
-.home-modern-footer-wrap .site-footer,
-.home-footer-utility {
-  background: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
-}
 
 @keyframes heroRise {
   from {
@@ -1491,6 +1505,17 @@ body[data-theme="dark"] .home-footer-utility__socials a {
   .home-modern-grid--services,
   .home-modern-grid--blog {
     grid-template-columns: 1fr;
+  }
+
+  .home-industries-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas: none;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .home-industry-card--1 .home-modern-card__title {
+    font-size: 1.5rem;
   }
 
   .home-trust-grid {

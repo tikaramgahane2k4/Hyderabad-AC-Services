@@ -70,13 +70,37 @@ const trustHighlightIcons = [
   ),
 ];
 
+const industryIcons = [
+  (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+      <path d="M3 21h18M3 7v14M13 3v18M17 7v14M21 3v18M7 9h2M7 13h2M7 17h2" strokeLinecap="round" />
+    </svg>
+  ),
+  (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+      <path d="M3 3h18v18H3zM9 9h6M9 13h6M9 17h6" strokeLinecap="round" />
+    </svg>
+  ),
+  (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+      <path d="M12 21v-4M8 21h8M12 11V3M7 7h10M12 7V3" strokeLinecap="round" />
+      <circle cx="12" cy="12" r="3" />
+    </svg>
+  ),
+  (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+      <path d="M3 21h18M3 10h18M3 7l9-4 9 4M7 21V10M17 21V10" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  ),
+];
+
 const homeCopyByLanguage = {
   en: {
     heroBadge: "Google Rating 4.9",
-    heroTitleStart: "Expert AC Solutions for",
+    heroTitleStart: "Professional HVAC & AC Solutions for",
     heroTitleHighlight: "Every Space",
     heroSummary:
-      "End-to-end air conditioning services - from residential to commercial. Installation, repair, maintenance and AMC plans in Hyderabad.",
+      "Enterprise-grade air conditioning services for businesses and homes. Expert installation, repair, and commercial AMC plans across Hyderabad.",
     directSupport: "Direct Support",
     callNow: "Call Now",
     bookConsultation: "Book Free Consultation",
@@ -111,6 +135,15 @@ const homeCopyByLanguage = {
     collaboratorsEyebrow: "Our Collaborators",
     collaboratorsTitle: "Brands We Work With",
     collaboratorsDescription: "Trusted support for leading air conditioning brands across residential and commercial spaces.",
+    industriesEyebrow: "Industries We Serve",
+    industriesTitle: "Specialized Cooling for Every Sector",
+    industriesDescription: "From corporate headquarters to industrial warehouses, we provide tailored HVAC infrastructure.",
+    industries: [
+      { title: "Corporate Offices", description: "Efficient multi-zone cooling systems for productive workspaces." },
+      { title: "Restaurants & Kitchens", description: "Heavy-duty exhaust and climate control for the hospitality industry." },
+      { title: "Healthcare Facilities", description: "Precision temperature and air quality control for clinics and hospitals." },
+      { title: "Industrial & Warehouses", description: "Large-scale HVAC solutions for factories and storage facilities." },
+    ],
     serviceFocusEyebrow: "Service Focus",
     serviceFocusTitle: "Professional Cooling Services with Better Coverage",
     latestArticlesEyebrow: "Latest Articles",
@@ -190,6 +223,15 @@ const homeCopyByLanguage = {
     collaboratorsEyebrow: "हमारे सहयोगी",
     collaboratorsTitle: "वे ब्रांड जिनके साथ हम काम करते हैं",
     collaboratorsDescription: "शीर्ष एसी ब्रांड्स के लिए भरोसेमंद सपोर्ट।",
+    industriesEyebrow: "उद्योग क्षेत्र",
+    industriesTitle: "हर क्षेत्र के लिए विशेष कूलिंग",
+    industriesDescription: "कॉर्पोरेट ऑफिस से लेकर इंडस्ट्रियल वेयरहाउस तक, हम समाधान प्रदान करते हैं।",
+    industries: [
+      { title: "कॉर्पोरेट ऑफिस", description: "कार्यस्थलों के लिए कुशल मल्टी-ज़ोन कूलिंग सिस्टम।" },
+      { title: "रेस्टोरेंट और किचन", description: "हॉस्पिटालिटी उद्योग के लिए हैवी-ड्यूटी एग्जॉस्ट।" },
+      { title: "स्वास्थ्य सुविधाएं", description: "क्लीनिक और अस्पतालों के लिए सटीक तापमान नियंत्रण।" },
+      { title: "औद्योगिक और वेयरहाउस", description: "फैक्ट्रियों के लिए बड़े पैमाने पर एचवीएसी समाधान।" },
+    ],
     serviceFocusEyebrow: "सेवा फोकस",
     serviceFocusTitle: "पेशेवर कूलिंग सेवाएं",
     latestArticlesEyebrow: "नए लेख",
@@ -268,6 +310,15 @@ const homeCopyByLanguage = {
     collaboratorsEyebrow: "Mana Collaborators",
     collaboratorsTitle: "Memu Panichesey Brands",
     collaboratorsDescription: "Top AC brands kosam trusted support.",
+    industriesEyebrow: "Industries We Serve",
+    industriesTitle: "Prathi Sector ki Specialized Cooling",
+    industriesDescription: "Corporate offices nundi industrial warehouses varaku tailored HVAC infrastructure.",
+    industries: [
+      { title: "Corporate Offices", description: "Workspaces kosam efficient multi-zone cooling systems." },
+      { title: "Restaurants & Kitchens", description: "Hospitality industry kosam heavy-duty exhaust systems." },
+      { title: "Healthcare Facilities", description: "Clinics mariyu hospitals kosam precision cooling." },
+      { title: "Industrial & Warehouses", description: "Factories mariyu storage kosam large-scale solutions." },
+    ],
     serviceFocusEyebrow: "Service Focus",
     serviceFocusTitle: "Professional Cooling Services",
     latestArticlesEyebrow: "Latest Articles",
@@ -462,6 +513,28 @@ function Home() {
         stats={copy.stats}
         locale={statsLocaleByLanguage[language] ?? "en-IN"}
       />
+
+      <HomeSection
+        id="industries"
+        className="home-modern-section--industries"
+        eyebrow={copy.industriesEyebrow}
+        title={copy.industriesTitle}
+        description={copy.industriesDescription}
+        revealClass="home-reveal-delay-1"
+      >
+        <div className="home-industries-grid">
+          {copy.industries.map((industry, index) => (
+            <HomeCard
+              key={industry.title}
+              className={`home-industry-card home-industry-card--${index + 1}`}
+              icon={industryIcons[index]}
+              title={industry.title}
+              description={industry.description}
+              revealClass={revealDelayClass(index + 1)}
+            />
+          ))}
+        </div>
+      </HomeSection>
 
       <HomeSection
         className="home-modern-section--collaborators"
