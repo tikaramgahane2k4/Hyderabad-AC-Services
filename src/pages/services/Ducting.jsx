@@ -7,11 +7,7 @@ function Ducting() {
     <>
       <main className="service-page-container">
         <div className="service-page-header">
-<<<<<<< HEAD
           <p className="service-page-quote" style={{ fontSize: "1.2rem", fontStyle: "italic", fontWeight: "bold", marginBottom: "15px" }}>"Smart Ducting. Seamless Airflow. Precision Cooling Starts Here."</p>
-=======
-          <p className="service-page-quote">"Smart Ducting. Seamless Airflow. Precision Cooling Starts Here."</p>
->>>>>>> feature/contact-footer
           <h1>DUCTING CONTRACTORS IN HYDERABAD</h1>
         </div>
         
@@ -23,19 +19,11 @@ function Ducting() {
             
             <h2 className="service-page-subtitle">We offer complete ducting solutions, including:</h2>
             
-<<<<<<< HEAD
             <ul className="service-page-list service-page-list--dots">
               <li><span className="text"><strong>Air Duct Installation, Design & Layout Planning</strong></span></li>
               <li><span className="text"><strong>Exhaust Duct Installation & Maintenance</strong></span></li>
               <li><span className="text"><strong>Fabrication & Installation of AC Ducts</strong></span></li>
               <li><span className="text"><strong>Diffuser, Grill, and Damper Installation</strong></span></li>
-=======
-            <ul className="service-page-list service-page-list--arrow">
-              <li>Air Duct Installation, Design & Layout Planning</li>
-              <li>Exhaust Duct Installation & Maintenance</li>
-              <li>Fabrication & Installation of AC Ducts</li>
-              <li>Diffuser, Grill, and Damper Installation</li>
->>>>>>> feature/contact-footer
             </ul>
             
             <div className="service-page-cta">
@@ -44,11 +32,7 @@ function Ducting() {
           </div>
           
           <div className="service-page-image">
-<<<<<<< HEAD
             <img src="/images/Exhaust Ducting.jpg" alt="Ducting Services" onError={(e) => { e.target.src = '/images/AC services.jpg' }} />
-=======
-            <img src="/images/Exhaust Ducting.jpg" alt="Ducting Services" />
->>>>>>> feature/contact-footer
           </div>
         </div>
       </main>

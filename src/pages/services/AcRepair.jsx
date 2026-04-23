@@ -7,18 +7,13 @@ function AcRepair() {
     <>
       <main className="service-page-container">
         <div className="service-page-header">
-<<<<<<< HEAD
           <h1>AC REPAIR SERVICES IN HYDERABAD</h1>
           <p className="service-page-subtitle" style={{ marginTop: "10px" }}>Fast, Reliable, and Affordable AC Repair Solutions</p>
-=======
-          <h1>BEAT THE HEAT—FIX AC GAS LEAKS FAST WITH OUR EXPERT AC REPAIR SERVICES IN HYDERABAD!</h1>
->>>>>>> feature/contact-footer
         </div>
         
         <div className="service-page-content">
           <div className="service-page-text">
             <p>
-<<<<<<< HEAD
               Is your air conditioner not cooling properly, making unusual noises, or leaking water? Don't worry — Hyderabad AC Services is here to help! We specialize in professional AC repair services in Hyderabad for all major brands and models. Our skilled technicians diagnose and fix AC problems quickly and efficiently, ensuring your cooling system works like new again. Whether it's a residential or commercial unit, we've got you covered with reliable and affordable AC repair solutions.
             </p>
             
@@ -65,28 +60,6 @@ function AcRepair() {
               <li><strong>Call Hyderabad AC Services today for fast, reliable, and affordable AC Repair in Hyderabad.</strong></li>
               <li><strong>WhatsApp: 8712322475</strong> <span style={{margin: "0 10px"}}>|</span> <strong>Email: info@hyderabadacservices.com</strong></li>
             </ul>
-=======
-              Is your air conditioner not cooling like it used to? You may be facing a refrigerant gas leak - one of the most common yet often overlooked issues affecting AC performance. At Hyderabad AC Services, we specialize in AC Gas Leak Rectification Service designed to:
-            </p>
-            
-            <ul className="service-page-list service-page-list--dots">
-              <li>Detect leaks accurately using advanced tools</li>
-              <li>Seal and repair leaks permanently</li>
-              <li>Recharge gas to optimal levels</li>
-              <li>Improve cooling efficiency and extend AC life</li>
-              <li>Reduce electricity bills</li>
-            </ul>
-            
-            <p>
-              Our trained AC technicians ensure a safe, environmentally compliant, and cost-effective solution for homes, offices, and commercial spaces.
-            </p>
-            
-            <h2 className="service-page-subtitle">All AC Types Covered</h2>
-            <p>Split AC, Cassette AC, Ductable AC, Centralized AC Systems, and more.</p>
-            
-            <h2 className="service-page-subtitle">On-Site Reporting</h2>
-            <p>Immediate results with leak confirmation.</p>
->>>>>>> feature/contact-footer
             
             <div className="service-page-cta">
               <a href="/contact" className="service-page-button">CONTACT US</a>
