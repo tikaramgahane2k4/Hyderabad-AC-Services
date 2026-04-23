@@ -43,8 +43,6 @@
   font-size: 1.05rem;
   line-height: 1.6;
   margin-bottom: 10px;
-  display: flex;
-  align-items: flex-start;
   color: #333;
 }
 
@@ -62,6 +60,11 @@
 
 .service-page-list--dots li span.text {
   color: #333;
+}
+
+.service-page-list--check li {
+  display: flex;
+  align-items: flex-start;
 }
 
 .service-page-list--check li::before {
@@ -105,17 +108,16 @@
   max-width: 500px;
 }
 
-.service-page-image img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+.service-page-brands {
+  margin-top: 20px;
+  font-weight: bold;
 }
 
 @media (max-width: 768px) {
   .service-page-content--split {
     flex-direction: column;
   }
+
   .service-page-image {
     max-width: 100%;
     margin-top: 30px;
