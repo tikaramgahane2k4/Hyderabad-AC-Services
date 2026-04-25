@@ -36,7 +36,7 @@ function HomeFaqAccordion({
                 aria-controls={panelId}
                 onClick={() => toggleItem(index)}
               >
-                <span>{item.question}</span>
+                <span className="home-faq-question">{item.question}</span>
                 <svg className="home-faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                   <polyline points="6 9 12 15 18 9" />
                 </svg>

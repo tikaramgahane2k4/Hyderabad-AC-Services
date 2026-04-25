@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import Testimonials from "../components/Testimonials";
 import AnimatedStats from "../components/AnimatedStats";
-import ContactSectionPremium from "../components/ContactSectionPremium";
 import HomeCard from "../components/home/HomeCard";
 import HomeFaqAccordion from "../components/home/HomeFaqAccordion";
 import HomeSection from "../components/home/HomeSection";
@@ -58,12 +57,68 @@ const serviceCardIcons = [
   ),
 ];
 
-const articleIcon = (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
-    <path d="M6 4h12v16H6z" />
-    <path d="M9 9h6M9 13h6M9 17h4" strokeLinecap="round" />
-  </svg>
-);
+const blogCardDefaults = {
+  category: "Tips",
+  image: "/images/AC%20services.jpg",
+  meta: "3 min read",
+  ctaLabel: "Read More →",
+};
+
+const blogCardPresets = {
+  installation: {
+    category: "Installation",
+    image: "/images/AC%20Service%20%26%20Maintenance.jpg",
+    meta: "Expert Tip",
+    ctaLabel: "Read More →",
+  },
+  maintenance: {
+    category: "Maintenance",
+    image: "/images/AC%20services.jpg",
+    meta: "3 min read",
+    ctaLabel: "Read More →",
+  },
+  repair: {
+    category: "Repair",
+    image: "/images/AC%20Installation.jpg",
+    meta: "4 min read",
+    ctaLabel: "Read More →",
+  },
+  copper: {
+    category: "Tips",
+    image: "/images/Annual%20Maintenance%20Contracts.jpg",
+    meta: "Expert Guide",
+    ctaLabel: "Read More →",
+  },
+};
+
+const getBlogCardPreset = (post, index) => {
+  const searchText = `${post?.slug ?? ""} ${post?.title ?? ""}`.toLowerCase();
+
+  if (searchText.includes("copper")) {
+    return blogCardPresets.copper;
+  }
+
+  if (searchText.includes("install")) {
+    return blogCardPresets.installation;
+  }
+
+  if (searchText.includes("repair") || searchText.includes("leak")) {
+    return blogCardPresets.repair;
+  }
+
+  if (searchText.includes("service") || searchText.includes("maint")) {
+    return blogCardPresets.maintenance;
+  }
+
+  const fallbackByIndex = [
+    blogCardPresets.installation,
+    blogCardPresets.repair,
+    blogCardPresets.copper,
+    blogCardPresets.maintenance,
+  ];
+
+  return fallbackByIndex[index % fallbackByIndex.length] ?? blogCardDefaults;
+};
 
 const trustHighlightIcons = [
   (
@@ -341,16 +396,6 @@ const utilitySocialIcons = {
   ),
 };
 
-function HomeWaveDivider({ flip = false }) {
-  return (
-    <div className={`home-wave-divider ${flip ? "home-wave-divider--flip" : ""}`} aria-hidden="true">
-      <svg viewBox="0 0 1600 120" preserveAspectRatio="none">
-        <path d="M0 64C178 16 356 16 534 64C712 112 890 112 1068 64C1246 16 1424 16 1600 64V120H0V64Z" />
-      </svg>
-    </div>
-  );
-}
-
 function Home() {
   const { language } = useAppPreferences();
   const siteContent = getLocalizedSiteContent(language);
@@ -389,14 +434,29 @@ function Home() {
     Array.isArray(siteContent.blogPosts) && siteContent.blogPosts.length
       ? siteContent.blogPosts
       : siteContent.blogTitles.map((title) => ({ title, href: null }));
-  const blogLinks = blogPosts.map((post, index) => {
-    const matchedBlog = blogs[index] ?? null;
 
-    return {
-      ...post,
-      slug: matchedBlog?.slug ?? null,
-    };
-  });
+  const blogImageOverrides = [
+    null,
+    "/images/AC Service & Maintenance.jpg",
+    "/images/AC services.jpg",
+    "/images/AC repair.jpg",
+  ];
+
+  const blogLinks = blogPosts
+    .filter((post) => typeof post?.title === "string" && post.title.trim().length > 0)
+    .map((post, index) => {
+      const matchedBlog = blogs[index] ?? null;
+      const slug = matchedBlog?.slug ?? null;
+      const cardPreset = getBlogCardPreset({ ...post, slug }, index);
+
+      return {
+        ...post,
+        slug,
+        ...blogCardDefaults,
+        ...cardPreset,
+        image: blogImageOverrides[index] ?? cardPreset.image ?? blogCardDefaults.image,
+      };
+    });
 
   return (
     <>
@@ -602,8 +662,6 @@ function Home() {
         </div>
       </HomeSection>
 
-      <HomeWaveDivider flip />
-
       <div className="home-modern-block home-reveal home-reveal-delay-1" data-reveal>
         <Testimonials />
       </div>
@@ -618,15 +676,17 @@ function Home() {
         <div className="home-modern-grid home-modern-grid--blog">
           {blogLinks.map((post, index) => (
             <HomeCard key={post.title} className="home-modern-blog-card" revealClass={revealDelayClass(index + 1)}>
-              <span className="home-modern-blog-icon" aria-hidden="true">
-                {articleIcon}
-              </span>
+              <div className="home-modern-blog-card__media">
+                <img src={post.image} alt={post.title} loading="lazy" />
+              </div>
 
               <div className="home-modern-blog-card__content">
+                <span className="home-modern-blog-tag">{post.category}</span>
                 <h3>{post.title}</h3>
+                <p className="home-modern-blog-meta">{post.meta}</p>
 
                 <Link className="home-modern-blog-link" to={post.slug ? `/blog/${post.slug}` : "/blog"}>
-                  {copy.readArticle}
+                  {post.ctaLabel}
                 </Link>
               </div>
             </HomeCard>
@@ -644,8 +704,6 @@ function Home() {
         title={copy.faqTitle}
         subtitle={copy.faqSubtitle}
       />
-
-      <ContactSectionPremium />
 
             </div>
       <Footer />
