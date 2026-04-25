@@ -1,29 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useAppPreferences } from "../context/AppPreferencesContext";
-import { getLocalizedSiteContent } from "../data/localizedSiteContent";
 import "./Navbar.css";
 
 const navItems = [
   { id: "home", labelKey: "home", to: "/" },
-  { id: "services", labelKey: "services", to: "/services" },
   { id: "about", labelKey: "about", to: "/about" },
-  {
-    id: "airConditioning",
-    labelKey: "airConditioning",
-    dropdown: [
-      { id: "acService", labelKey: "acService", to: "/services/ac-service" },
-      { id: "centralizedAc", labelKey: "centralizedAc", to: "/services/centralized-air-conditioning" },
-      { id: "copperPiping", labelKey: "copperPiping", to: "/services/copper-pipe-planning" },
-      { id: "ducting", labelKey: "ducting", to: "/services/ducting" },
-      { id: "acGasLeak", labelKey: "acGasLeak", to: "/services/ac-gas-leak" },
-      { id: "acInstallation", labelKey: "acInstallation", to: "/services/ac-installation" },
-      { id: "acRepair", labelKey: "acRepair", to: "/services/ac-repair" },
-      { id: "acScrap", labelKey: "acScrap", to: "/services/ac-scrap" },
-      { id: "airCurtain", labelKey: "airCurtain", to: "/services/air-curtain" },
-    ]
-  },
-  { id: "blog", labelKey: "blog", to: "/blog" },
+  { id: "services", labelKey: "services", to: "/services" },
   { id: "contact", labelKey: "contact", to: "/contact" },
 ];
 
@@ -175,13 +158,10 @@ const uiTranslations = {
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isLangOpen, setIsLangOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const { language, setLanguage, theme, setTheme, languageOptions } = useAppPreferences();
+  const { language } = useAppPreferences();
   const location = useLocation();
   const headerRef = useRef(null);
-  const langDropdownRef = useRef(null);
-  const siteContent = getLocalizedSiteContent(language);
 
   useEffect(() => {
     const updateScrolledState = () => {
@@ -203,15 +183,11 @@ function Navbar() {
       if (headerRef.current && !headerRef.current.contains(event.target)) {
         setIsMenuOpen(false);
       }
-      if (langDropdownRef.current && !langDropdownRef.current.contains(event.target)) {
-        setIsLangOpen(false);
-      }
     };
 
     const handleEscape = (event) => {
       if (event.key === "Escape") {
         setIsMenuOpen(false);
-        setIsLangOpen(false);
       }
     };
 
@@ -224,7 +200,7 @@ function Navbar() {
       document.removeEventListener("touchstart", handlePointerDown);
       window.removeEventListener("keydown", handleEscape);
     };
-  }, [isMenuOpen, isLangOpen]);
+  }, [isMenuOpen]);
 
   useEffect(() => {
     setIsMenuOpen(false);
@@ -256,13 +232,7 @@ function Navbar() {
     return location.pathname === item.to;
   };
 
-  const isActiveDropdown = (item) => {
-    return item.dropdown?.some(subItem => location.pathname === subItem.to);
-  };
-
   const labels = uiTranslations[language] ?? uiTranslations.en;
-  const nextThemeMode = theme === "light" ? "dark" : "light";
-  const nextThemeLabel = nextThemeMode === "light" ? labels.light : labels.dark;
 
   return (
     <header className={`site-header ${isScrolled ? "site-header--scrolled" : ""}`} ref={headerRef}>
@@ -272,13 +242,9 @@ function Navbar() {
             className="navbar__logo"
             to="/"
             onClick={handleBrandClick}
-            aria-label={siteContent.businessName}
+            aria-label="Hyderabad AC Services"
           >
-            <img
-              className="navbar__logo-image"
-              src={siteContent.logoUrl}
-              alt={`${siteContent.businessName} ${labels.logoSuffix}`}
-            />
+            <span className="navbar__logo-text">Hyderabad AC Services</span>
           </Link>
 
           <button
@@ -301,97 +267,17 @@ function Navbar() {
           >
             <ul className={`navbar__menu ${isMenuOpen ? "navbar__menu--open" : ""}`}>
               {navItems.map((item) => (
-                <li key={item.id} className={item.dropdown ? "navbar__menu-item-dropdown" : ""}>
-                  {item.dropdown ? (
-                    <>
-                      <button className={`navbar__menu-link navbar__menu-dropdown-toggle ${isActiveDropdown(item) ? "navbar__menu-link--active" : ""}`}>
-                        {labels[item.labelKey] || item.labelKey}
-                        <svg className="navbar__dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                      </button>
-                      <ul className="navbar__dropdown-menu">
-                        {item.dropdown.map((subItem) => (
-                          <li key={subItem.id}>
-                            <Link
-                              className="navbar__dropdown-link"
-                              to={subItem.to}
-                              onClick={handleNavItemClick(subItem)}
-                            >
-                              {labels[subItem.labelKey] || subItem.labelKey}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </>
-                  ) : (
-                    <Link
-                      className={`navbar__menu-link ${isActiveItem(item) ? "navbar__menu-link--active" : ""}`}
-                      to={item.to}
-                      aria-current={isActiveItem(item) ? "page" : undefined}
-                      onClick={handleNavItemClick(item)}
-                    >
-                      {labels[item.labelKey] || item.labelKey}
-                    </Link>
-                  )}
+                <li key={item.id}>
+                  <Link
+                    className={`navbar__menu-link ${isActiveItem(item) ? "navbar__menu-link--active" : ""}`}
+                    to={item.to}
+                    aria-current={isActiveItem(item) ? "page" : undefined}
+                    onClick={handleNavItemClick(item)}
+                  >
+                    {labels[item.labelKey] || item.labelKey}
+                  </Link>
                 </li>
               ))}
-
-              <li className="navbar__menu-controls">
-                <div className="navbar__language-proxy notranslate" ref={langDropdownRef}>
-                  <button 
-                    type="button"
-                    className={`navbar__language-toggle ${isLangOpen ? "navbar__language-toggle--open" : ""}`}
-                    onClick={() => setIsLangOpen(!isLangOpen)}
-                    aria-haspopup="listbox"
-                    aria-expanded={isLangOpen}
-                    aria-label={labels.selectLanguage}
-                  >
-                    <span>{labels.language}</span>
-                    <span className="navbar__language-current">
-                      {languageOptions.find(opt => opt.value === language)?.label || language}
-                    </span>
-                    <svg className="navbar__language-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="6 9 12 15 18 9"></polyline>
-                    </svg>
-                  </button>
-
-                  <ul 
-                    className={`navbar__language-dropdown ${isLangOpen ? "navbar__language-dropdown--open" : ""}`}
-                    role="listbox"
-                  >
-                    {languageOptions.map((option) => (
-                      <li key={option.value} role="none">
-                        <button
-                          type="button"
-                          className="navbar__language-option"
-                          aria-selected={language === option.value}
-                          role="option"
-                          onClick={() => {
-                            setLanguage(option.value);
-                            setIsLangOpen(false);
-                          }}
-                        >
-                          <span className="navbar__language-optlabel">{option.label}</span>
-                          {language === option.value && (
-                            <svg className="navbar__language-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                              <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                          )}
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <button
-                  type="button"
-                  className="navbar__theme-btn"
-                  onClick={() => setTheme(nextThemeMode)}
-                  aria-label={`${labels.switchThemeTo} ${nextThemeLabel} ${labels.theme}`}
-                  title={`${labels.switchThemeTo} ${nextThemeLabel} ${labels.theme}`}
-                >
-                  {theme === "light" ? labels.dark : labels.light}
-                </button>
-              </li>
             </ul>
 
             <Link

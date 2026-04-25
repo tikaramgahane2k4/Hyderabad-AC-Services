@@ -1,40 +1,40 @@
 .cta-section {
-  margin: 5rem 0;
-  padding: 3rem 2rem;
-  background: linear-gradient(135deg, #ecf8ff 0%, #d7effc 50%, #c6e7fa 100%);
-  border: 1px solid rgba(0, 174, 221, 0.18);
-  box-shadow: 0 18px 45px rgba(21, 71, 105, 0.08);
-  border-radius: 32px;
+  margin: clamp(3rem, 6vw, 5rem) 0;
+  padding: clamp(2.5rem, 4vw, 4rem);
+  background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 50%, #BFDBFE 100%);
+  border: 1px solid #BFDBFE;
+  box-shadow: 0 10px 25px rgba(31, 122, 224, 0.1);
+  border-radius: 0;
   overflow: hidden;
   position: relative;
 }
 
 .cta-container {
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  gap: clamp(2rem, 3vw, 3rem);
   align-items: center;
   position: relative;
   z-index: 2;
 }
 
 .cta-content {
-  color: #113651;
+  color: #0B1F33;
 }
 
 .cta-icon {
   width: 64px;
   height: 64px;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.55);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #0a6fab;
+  color: #1F7AE0;
   margin-bottom: 1.5rem;
-  border: 1px solid rgba(0, 174, 221, 0.22);
+  border: 1px solid rgba(31, 122, 224, 0.2);
 }
 
 .cta-icon svg {
@@ -44,25 +44,26 @@
 
 .cta-title {
   margin: 0;
-  font-size: clamp(1.8rem, 4vw, 2.6rem);
-  font-family: "Nasalization", "Poppins", sans-serif;
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-family: "Poppins", sans-serif;
   font-weight: 700;
-  line-height: 1.2;
-  color: #113651;
+  line-height: 1.15;
+  color: #0B1F33;
+  letter-spacing: -0.01em;
 }
 
 .cta-description {
-  margin: 1.2rem 0 0;
-  font-size: 1.05rem;
-  color: rgba(17, 54, 81, 0.78);
-  line-height: 1.8;
-  max-width: 500px;
+  margin: 1rem 0 0;
+  font-size: 1rem;
+  color: #5B6B7C;
+  line-height: 1.7;
+  max-width: 550px;
 }
 
 .cta-buttons {
   display: flex;
-  gap: 1.2rem;
-  margin-top: 2rem;
+  gap: 1rem;
+  margin-top: 1.8rem;
   flex-wrap: wrap;
 }
 
@@ -70,14 +71,14 @@
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  padding: 1rem 1.8rem;
-  border-radius: 12px;
+  padding: 0.9rem 1.8rem;
+  border-radius: 8px;
   border: 2px solid transparent;
   font-weight: 700;
   text-decoration: none;
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: all 0.3s ease;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.95rem;
   min-height: 52px;
   font-family: "Poppins", sans-serif;
 }
