@@ -1713,6 +1713,16 @@ body[data-theme="dark"] .home-page--modern .home-trusted-by__logo-card:hover {
     aspect-ratio: 4 / 4.7;
   }
 
+  .home-trusted-by__logo-card {
+    min-height: 120px;
+    padding: 0.72rem 0.82rem;
+  }
+
+  .home-trusted-by__media img {
+    aspect-ratio: 4 / 4.7;
+  }
+
+
   .home-modern-section--articles {
     padding: 1.2rem 0.9rem;
   }
@@ -1724,6 +1734,7 @@ body[data-theme="dark"] .home-page--modern .home-trusted-by__logo-card:hover {
 }
 
 @media (max-width: 520px) {
+
   .home-trusted-by__logos,
   .home-trusted-by__logos.home-modern-grid--logos,
   .home-modern-grid--logos {

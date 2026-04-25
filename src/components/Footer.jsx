@@ -127,9 +127,9 @@ function Footer() {
             <ul className="footer-link-list footer-blog-list">
               {footerBlogs.map((post) => (
                 <li key={post.title}>
-                  <a href={post.href} target="_blank" rel="noreferrer">
-                    {post.title}
-                  </a>
+                  <Link to={`/blog/${post.slug}`}>
+                    » {post.title}
+                  </Link>
                 </li>
               ))}
             </ul>

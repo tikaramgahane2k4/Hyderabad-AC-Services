@@ -5,8 +5,8 @@ import About from "./pages/About";
 import ContactPage from "./pages/Contact";
 import BookServicePage from "./pages/BookService";
 import ServicesPage from "./pages/Services";
-import BlogsPage from "./pages/Blogs";
-import BlogPostPage from "./pages/BlogPost";
+import BlogsPage from "./pages/Blog";
+import BlogPostPage from "./pages/BlogPostDetail";
 
 // Service Pages (merged cleanly)
 import AcService from "./pages/services/AcService";

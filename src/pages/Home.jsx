@@ -110,7 +110,6 @@ const customerStatIcons = [
     </svg>
   ),
 ];
-
 const homeCopyByLanguage = {
   en: {
     heroBadge: "Google Rating 4.9",
@@ -158,6 +157,7 @@ const homeCopyByLanguage = {
       { value: 10, suffix: "+", label: "Years in Service", icon: customerStatIcons[2] },
       { value: 24, suffix: "/7", label: "Support", icon: customerStatIcons[3] },
     ],
+
     collaboratorsEyebrow: "TRUSTED BRANDS",
     collaboratorsTitle: "Premier Partners in Cooling Solutions",
     collaboratorsDescription: "We're certified partners with industry-leading manufacturers, ensuring the highest standards in installation and maintenance.",
@@ -447,124 +447,116 @@ function Home() {
   return (
     <>
       <div className="home-page home-page--modern">
-      <section
-        className="home-modern-hero home-modern-hero--split"
-        style={{
-          backgroundImage: `url("${heroBackground}")`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
-      >
-        <div className="home-modern-hero__left">
+        <section
+          className="home-modern-hero home-modern-hero--split"
+          style={{
+            backgroundImage: `url("${heroBackground}")`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+        >
+          <div className="home-modern-hero__left">
 
-          <div className="home-modern-hero__content">
-            <p className="home-modern-hero__badge">Trusted HVAC Partner</p>
-            <h1 className="home-modern-hero__title">Reliable AC Solutions for Businesses & Commercial Spaces</h1>
+            <div className="home-modern-hero__content">
+              <p className="home-modern-hero__badge">Trusted HVAC Partner</p>
+              <h1 className="home-modern-hero__title">Reliable AC Solutions for Businesses & Commercial Spaces</h1>
 
-            <p className="home-modern-hero__summary">
-              End-to-end air conditioning services designed to ensure uninterrupted operations, energy efficiency, and long-term system performance.
-            </p>
+              <p className="home-modern-hero__summary">
+                End-to-end air conditioning services designed to ensure uninterrupted operations, energy efficiency, and long-term system performance.
+              </p>
 
-            <div className="home-modern-hero__actions">
-              <Link className="home-modern-button home-modern-button--primary" to="/contact">
-                Get AMC Quote
-              </Link>
-              <Link className="home-modern-button home-modern-button--secondary" to="/book-service">
-                Book Service
-              </Link>
+              <div className="home-modern-hero__actions">
+                <Link className="home-modern-button home-modern-button--primary" to="/contact">
+                  Get AMC Quote
+                </Link>
+                <Link className="home-modern-button home-modern-button--secondary" to="/book-service">
+                  Book Service
+                </Link>
+              </div>
+
+              <ul className="home-modern-hero__trust-indicators" aria-label="Business trust indicators">
+                {enterpriseTrustIndicators.map((item) => (
+                  <li key={item}>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+
             </div>
-
-            <ul className="home-modern-hero__trust-indicators" aria-label="Business trust indicators">
-              {enterpriseTrustIndicators.map((item) => (
-                <li key={item}>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-
           </div>
-        </div>
 
-        <div className="home-modern-hero__right">
-          <form className="home-lead-card" onSubmit={(event) => event.preventDefault()}>
-            <div className="home-lead-card__header">
-              <h2>Get Expert Consultation</h2>
-              <p>Share your details and our commercial HVAC team will respond promptly.</p>
-            </div>
+          <div className="home-modern-hero__right">
+            <form className="home-lead-card" onSubmit={(event) => event.preventDefault()}>
+              <div className="home-lead-card__header">
+                <h2>Get Expert Consultation</h2>
+                <p>Share your details and our commercial HVAC team will respond promptly.</p>
+              </div>
 
-            <div className="home-lead-card__grid">
-              <label>
-                Name
-                <input type="text" name="name" placeholder="Your name" required />
-              </label>
+              <div className="home-lead-card__grid">
+                <label>
+                  Name
+                  <input type="text" name="name" placeholder="Your name" required />
+                </label>
 
-              <label>
-                Email
-                <input type="email" name="email" placeholder="Your email" required />
-              </label>
+                <label>
+                  Email
+                  <input type="email" name="email" placeholder="Your email" required />
+                </label>
 
-              <label className="home-lead-card__full">
-                Service Type
-                <select name="serviceType" defaultValue="" required>
-                  <option value="" disabled>
-                    Select service type
-                  </option>
-                  {heroServiceTypes.map((serviceType) => (
-                    <option key={serviceType} value={serviceType}>
-                      {serviceType}
+                <label className="home-lead-card__full">
+                  Service Type
+                  <select name="serviceType" defaultValue="" required>
+                    <option value="" disabled>
+                      Select service type
                     </option>
-                  ))}
-                </select>
-              </label>
+                    {heroServiceTypes.map((serviceType) => (
+                      <option key={serviceType} value={serviceType}>
+                        {serviceType}
+                      </option>
+                    ))}
+                  </select>
+                </label>
 
-              <label className="home-lead-card__full">
-                Message
-                <textarea name="message" rows="4" placeholder="Tell us about your requirement" />
-              </label>
-            </div>
+                <label className="home-lead-card__full">
+                  Message
+                  <textarea name="message" rows="4" placeholder="Tell us about your requirement" />
+                </label>
+              </div>
 
-            <button type="submit">Submit Request</button>
-            <small>Your information is safe with us.</small>
-          </form>
-        </div>
-      </section>
+              <button type="submit">Submit Request</button>
+              <small>Your information is safe with us.</small>
+            </form>
+          </div>
+        </section>
 
-      <section className="home-trust-section home-reveal home-reveal-delay-1" data-reveal>
-        <header className="home-trust-section__header">
-          <p className="home-modern-eyebrow">{copy.trustEyebrow}</p>
-          <h2 className="home-modern-section__title">{copy.trustTitle}</h2>
-        </header>
+        <section className="home-trust-section home-reveal home-reveal-delay-1" data-reveal>
+          <header className="home-trust-section__header">
+            <p className="home-modern-eyebrow">{copy.trustEyebrow}</p>
+            <h2 className="home-modern-section__title">{copy.trustTitle}</h2>
+          </header>
 
-        <div className="home-trust-grid">
-          {trustHighlights.map((item, index) => (
-            <article key={item.title} className="home-trust-card">
-              <span className="home-trust-card__icon" aria-hidden="true">
-                {item.icon}
-              </span>
-              <h3>{item.title}</h3>
+          <div className="home-trust-grid">
+            {trustHighlights.map((item, index) => (
+              <article key={item.title} className="home-trust-card">
+                <span className="home-trust-card__icon" aria-hidden="true">
+                  {item.icon}
+                </span>
+                <h3>{item.title}</h3>
 
-              {index === 2 ? (
-                <p className="home-trust-card__stars" aria-label={copy.starAria}>
-                  <span>★</span>
-                  <span>★</span>
-                  <span>★</span>
-                  <span>★</span>
-                  <span>★</span>
-                </p>
-              ) : null}
+                {index === 2 ? (
+                  <p className="home-trust-card__stars" aria-label={copy.starAria}>
+                    <span>★</span>
+                    <span>★</span>
+                    <span>★</span>
+                    <span>★</span>
+                    <span>★</span>
+                  </p>
+                ) : null}
 
-              <p>{item.description}</p>
-            </article>
-          ))}
-        </div>
-
-        <ul className="home-trust-badges" aria-label={copy.quickTrustLabel}>
-          {copy.trustBadges.map((badge) => (
-            <li key={badge}>{badge}</li>
-          ))}
-        </ul>
-
+                <p>{item.description}</p>
+              </article>
+            ))}
         <div className="home-trust-section__cta">
           <Link className="home-trust-section__cta-button" to="/book-service">
             Book AC Service
@@ -608,92 +600,139 @@ function Home() {
             </div>
           </div>
 
-          <div className="home-trusted-by__media">
-            <img src="/images/AC%20services.jpg" alt="Technician servicing an AC system" loading="lazy" />
+          <ul className="home-trust-badges" aria-label={copy.quickTrustLabel}>
+            {copy.trustBadges.map((badge) => (
+              <li key={badge}>{badge}</li>
+            ))}
+          </ul>
+
+          <div className="home-trust-section__cta">
+            <Link className="home-trust-section__cta-button" to="/book-service">
+              Book AC Service
+            </Link>
+            <Link className="home-trust-section__cta-button home-trust-section__cta-button--secondary" to="/contact">
+              Get Free Quote
+            </Link>
           </div>
-        </div>
-      </HomeSection>
+        </section>
 
-      <HomeSection
-        id="services"
-        eyebrow={copy.serviceFocusEyebrow}
-        title={copy.serviceFocusTitle}
-        description={siteContent.companyDescription[0]}
-        revealClass="home-reveal-delay-1"
-      >
-        <div className="home-modern-grid home-modern-grid--services">
-          {serviceCards.map((serviceCard, index) => (
-            <HomeCard
-              key={serviceCard.title}
-              className="home-modern-service-card"
-              icon={serviceCard.icon}
-              title={serviceCard.title}
-              revealClass={revealDelayClass(index + 1)}
-            >
-              <ul className="home-modern-list">
-                {serviceCard.points.map((point) => (
-                  <li key={point}>{point}</li>
+        <AnimatedStats
+          eyebrow={copy.statsEyebrow}
+          title={copy.statsTitle}
+          description={copy.statsDescription}
+          stats={copy.stats}
+          locale={statsLocaleByLanguage[language] ?? "en-IN"}
+        />
+
+        <HomeSection
+          className="home-modern-section--collaborators"
+          eyebrow={copy.collaboratorsEyebrow}
+          title={copy.collaboratorsTitle}
+          description={copy.collaboratorsDescription}
+          revealClass="home-reveal-delay-1"
+        >
+
+          <div className="home-trusted-by__layout">
+            <div className="home-trusted-by__left">
+              <div className="home-trusted-by__logos home-modern-grid home-modern-grid--logos" aria-label={copy.collaboratorsTitle}>
+                {partnerBrands.map((brand, index) => (
+                  <HomeCard
+                    key={brand.name}
+                    className="home-modern-logo-card home-trusted-by__logo-card"
+                    revealClass={revealDelayClass(index + 1)}
+                  >
+                    <img className="home-modern-logo-card__image" src={brand.logo} alt={`${brand.name} logo`} loading="lazy" />
+                  </HomeCard>
                 ))}
-              </ul>
-            </HomeCard>
-          ))}
-        </div>
-
-        <div className="home-modern-chip-row" aria-label={copy.availableServicesAria}>
-          {siteContent.serviceOptions.map((serviceOption) => (
-            <span key={serviceOption} className="home-modern-chip">
-              {serviceOption}
-            </span>
-          ))}
-        </div>
-      </HomeSection>
-
-      <HomeWaveDivider flip />
-
-      <div className="home-modern-block home-reveal home-reveal-delay-1" data-reveal>
-        <Testimonials />
-      </div>
-
-      <HomeSection
-        className="home-modern-section--articles"
-        eyebrow={copy.latestArticlesEyebrow}
-        title={copy.latestArticlesTitle}
-        description={copy.latestArticlesDescription}
-        revealClass="home-reveal-delay-1"
-      >
-        <div className="home-modern-grid home-modern-grid--blog">
-          {blogLinks.map((post, index) => (
-            <HomeCard key={post.title} className="home-modern-blog-card" revealClass={revealDelayClass(index + 1)}>
-              <span className="home-modern-blog-icon" aria-hidden="true">
-                {articleIcon}
-              </span>
-
-              <div className="home-modern-blog-card__content">
-                <h3>{post.title}</h3>
-
-                <Link className="home-modern-blog-link" to={post.slug ? `/blog/${post.slug}` : "/blog"}>
-                  {copy.readArticle}
-                </Link>
               </div>
-            </HomeCard>
-          ))}
+            </div>
+
+            <div className="home-trusted-by__media">
+              <img src="/images/AC%20services.jpg" alt="Technician servicing an AC system" loading="lazy" />
+            </div>
+          </div>
+        </HomeSection>
+
+        <HomeSection
+          id="services"
+          eyebrow={copy.serviceFocusEyebrow}
+          title={copy.serviceFocusTitle}
+          description={siteContent.companyDescription[0]}
+          revealClass="home-reveal-delay-1"
+        >
+          <div className="home-modern-grid home-modern-grid--services">
+            {serviceCards.map((serviceCard, index) => (
+              <HomeCard
+                key={serviceCard.title}
+                className="home-modern-service-card"
+                icon={serviceCard.icon}
+                title={serviceCard.title}
+                revealClass={revealDelayClass(index + 1)}
+              >
+                <ul className="home-modern-list">
+                  {serviceCard.points.map((point) => (
+                    <li key={point}>{point}</li>
+                  ))}
+                </ul>
+              </HomeCard>
+            ))}
+          </div>
+
+          <div className="home-modern-chip-row" aria-label={copy.availableServicesAria}>
+            {siteContent.serviceOptions.map((serviceOption) => (
+              <span key={serviceOption} className="home-modern-chip">
+                {serviceOption}
+              </span>
+            ))}
+          </div>
+        </HomeSection>
+
+        <HomeWaveDivider flip />
+
+        <div className="home-modern-block home-reveal home-reveal-delay-1" data-reveal>
+          <Testimonials />
         </div>
 
-        <Link className="home-modern-inline-link" to="/contact">
-          {copy.askGuidance} →
-        </Link>
-      </HomeSection>
+        <HomeSection
+          className="home-modern-section--articles"
+          eyebrow={copy.latestArticlesEyebrow}
+          title={copy.latestArticlesTitle}
+          description={copy.latestArticlesDescription}
+          revealClass="home-reveal-delay-1"
+        >
+          <div className="home-modern-grid home-modern-grid--blog">
+            {blogLinks.map((post, index) => (
+              <HomeCard key={post.title} className="home-modern-blog-card" revealClass={revealDelayClass(index + 1)}>
+                <span className="home-modern-blog-icon" aria-hidden="true">
+                  {articleIcon}
+                </span>
 
-      <HomeFaqAccordion
-        items={siteContent.faqItems}
-        eyebrow={copy.faqEyebrow}
-        title={copy.faqTitle}
-        subtitle={copy.faqSubtitle}
-      />
+                <div className="home-modern-blog-card__content">
+                  <h3>{post.title}</h3>
 
-      <ContactSectionPremium />
+                  <Link className="home-modern-blog-link" to={post.slug ? `/blog/${post.slug}` : "/blog"}>
+                    {copy.readArticle}
+                  </Link>
+                </div>
+              </HomeCard>
+            ))}
+          </div>
 
-            </div>
+          <Link className="home-modern-inline-link" to="/contact">
+            {copy.askGuidance} →
+          </Link>
+        </HomeSection>
+
+        <HomeFaqAccordion
+          items={siteContent.faqItems}
+          eyebrow={copy.faqEyebrow}
+          title={copy.faqTitle}
+          subtitle={copy.faqSubtitle}
+        />
+
+        <ContactSectionPremium />
+
+      </div>
       <Footer />
     </>
   );
