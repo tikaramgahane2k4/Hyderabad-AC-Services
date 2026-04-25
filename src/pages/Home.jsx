@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import Testimonials from "../components/Testimonials";
 import AnimatedStats from "../components/AnimatedStats";
-import ContactSectionPremium from "../components/ContactSectionPremium";
 import HomeCard from "../components/home/HomeCard";
 import HomeFaqAccordion from "../components/home/HomeFaqAccordion";
 import HomeSection from "../components/home/HomeSection";
@@ -36,27 +35,37 @@ const partnerBrands = [
 
 const revealDelayClass = (index) => `home-reveal-delay-${(index % 6) + 1}`;
 
-const serviceCardIcons = [
+const servicesCardIcons = [
   (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
-      <path d="M4 8h16v6H4z" />
-      <path d="M8 8V5m8 3V5M7 18h10" strokeLinecap="round" />
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" aria-hidden="true">
+      <path d="m7 8 2.1 2.1M9.1 8 7 10.1M13.6 6.4l4 4M12.4 17.6l-4-4" strokeLinecap="round" />
+      <path d="M12 3.8a8.2 8.2 0 1 0 8.2 8.2" strokeLinecap="round" />
     </svg>
   ),
   (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
-      <path d="M3 7h18v5H3z" />
-      <path d="M12 12v7" strokeLinecap="round" />
-      <path d="m9 16 3 3 3-3" strokeLinecap="round" strokeLinejoin="round" />
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" aria-hidden="true">
+      <path d="M12 4v16M7.8 8a4.2 4.2 0 0 0 0 8M16.2 8a4.2 4.2 0 0 1 0 8" strokeLinecap="round" />
     </svg>
   ),
   (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
-      <path d="M3 12h18M6 8h12M6 16h12" strokeLinecap="round" />
-      <circle cx="12" cy="12" r="9" />
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" aria-hidden="true">
+      <path d="m12 3.8 1.9 3.9 4.3.6-3.1 3 .7 4.2L12 13.7 8.2 15.5l.7-4.2-3.1-3 4.3-.6L12 3.8Z" />
+    </svg>
+  ),
+  (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" aria-hidden="true">
+      <path d="M12 3.4 5.2 6.6v5.8c0 3.3 2.6 6.1 6.8 8.2 4.2-2.1 6.8-4.9 6.8-8.2V6.6L12 3.4Z" />
+      <path d="m9.3 11.8 1.8 1.8 3.6-3.6" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   ),
 ];
+
+const servicePointCheckIcon = (
+  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.9" aria-hidden="true">
+    <circle cx="10" cy="10" r="7" />
+    <path d="m7 10 2 2 4-4" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
 
 const articleIcon = (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
@@ -110,19 +119,20 @@ const customerStatIcons = [
     </svg>
   ),
 ];
+
+
 const homeCopyByLanguage = {
   en: {
     heroBadge: "Google Rating 4.9",
-    heroTitleStart: "Expert AC Solutions for",
-    heroTitleHighlight: "Every Space",
+    heroTitleStart: "Smart AC Solutions for",
+    heroTitleHighlight: "Modern Commercial Spaces",
     heroSummary:
-      "End-to-end air conditioning services - from residential to commercial. Installation, repair, maintenance and AMC plans in Hyderabad.",
-    directSupport: "Direct Support",
+      "We deliver energy-efficient HVAC solutions designed for performance, cost savings, and long-term reliability.",
+    directSupport: "Trusted Support",
     callNow: "Call Now",
-    bookConsultation: "Book Free Consultation",
+    bookConsultation: "Book Service",
     callPrefix: "Call:",
-    trustEyebrow: "WHY CUSTOMERS CHOOSE US",
-    trustTitle: "Simple, reliable AC service",
+    trustTitle: "Why Businesses Choose Us",
     trustHighlights: [
       {
         title: "Experienced Technicians",
@@ -130,11 +140,11 @@ const homeCopyByLanguage = {
       },
       {
         title: "Quick & Reliable Service",
-        description: "Fast response times with same-day service available",
+        description: "Fast response with same-day service available",
       },
       {
-        title: "Enterprise Grade Support",
-        description: "24/7 availability for your critical cooling needs",
+        title: "24/7 Support",
+        description: "Always available whenever you need help",
       },
     ],
 
@@ -148,6 +158,7 @@ const homeCopyByLanguage = {
       { value: 10, suffix: "+", label: "Years in Service", icon: customerStatIcons[2] },
       { value: 24, suffix: "/7", label: "Support", icon: customerStatIcons[3] },
     ],
+
 
     collaboratorsEyebrow: "TRUSTED BRANDS",
     collaboratorsTitle: "Premier Partners in Cooling Solutions",
@@ -212,7 +223,6 @@ const homeCopyByLanguage = {
     callNow: "कॉल करें",
     bookConsultation: "फ्री कंसल्टेशन बुक करें",
     callPrefix: "कॉल:",
-    trustEyebrow: "विश्वसनीयता",
     trustTitle: "भरोसेमंद कूलिंग सपोर्ट",
     trustHighlights: [
       {
@@ -290,7 +300,6 @@ const homeCopyByLanguage = {
     callNow: "Call Cheyyandi",
     bookConsultation: "Free Consultation Book Cheyyandi",
     callPrefix: "Call:",
-    trustEyebrow: "Business Trust",
     trustTitle: "Nammakamaina Cooling Support",
     trustHighlights: [
       {
@@ -400,19 +409,36 @@ function Home() {
 
   const serviceCards = [
     {
-      title: siteContent.highlightedServices[0],
-      points: siteContent.airConditioningServices.slice(0, 3),
-      icon: serviceCardIcons[0],
+      title: "AC Repair",
+      points: ["Quick diagnosis", "Leak repair", "Multi-brand support"],
+      image: "/images/AC%20repair.jpg",
+      badge: "Repair",
+      icon: servicesCardIcons[0],
+      href: "/services/ac-repair",
     },
     {
-      title: siteContent.highlightedServices[1],
-      points: siteContent.airConditioningServices.slice(3, 6),
-      icon: serviceCardIcons[1],
+      title: "AC Maintenance",
+      points: ["System check", "Output check", "Energy saving"],
+      image: "/images/AC Service & Maintenance.jpg",
+      badge: "Maintenance",
+      icon: servicesCardIcons[1],
+      href: "/services/ac-service",
     },
     {
-      title: siteContent.highlightedServices[2],
-      points: siteContent.exhaustServices.slice(0, 3),
-      icon: serviceCardIcons[2],
+      title: "AC Installation",
+      points: ["Expert setup", "Piping setup", "On-time handover"],
+      image: "/images/AC%20Installation.jpg",
+      badge: "Installation",
+      icon: servicesCardIcons[2],
+      href: "/services/ac-installation",
+    },
+    {
+      title: "AMC Plans",
+      points: ["Routine checks", "Preventive care", "Priority help"],
+      image: "/images/Annual%20Maintenance%20Contracts.jpg",
+      badge: "AMC",
+      icon: servicesCardIcons[3],
+      href: "/services/ac-service",
     },
   ];
 
@@ -447,15 +473,17 @@ function Home() {
             backgroundRepeat: "no-repeat",
           }}
         >
-          <div className="home-modern-hero__left">
+          <div className="home-modern-hero__content">
+            <p className="home-modern-hero__badge">B2B HVAC Solutions</p>
+            <h1 className="home-modern-hero__title">
+              <span>Smart AC Solutions for</span>
+              <span>Modern Commercial Spaces</span>
+            </h1>
 
-            <div className="home-modern-hero__content">
-              <p className="home-modern-hero__badge">Trusted HVAC Partner</p>
-              <h1 className="home-modern-hero__title">Reliable AC Solutions for Businesses & Commercial Spaces</h1>
-
-              <p className="home-modern-hero__summary">
-                End-to-end air conditioning services designed to ensure uninterrupted operations, energy efficiency, and long-term system performance.
-              </p>
+            <p className="home-modern-hero__summary">
+              We deliver energy-efficient HVAC solutions designed for performance, cost savings, and long-term reliability.
+            </p>
+          </div>
 
               <div className="home-modern-hero__actions">
                 <Link className="home-modern-button home-modern-button--primary" to="/contact">
@@ -473,8 +501,12 @@ function Home() {
                   </li>
                 ))}
               </ul>
-
-            </div>
+          
+            <ul className="home-modern-hero__trust-pills" aria-label="Business trust indicators">
+              {enterpriseTrustIndicators.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
           </div>
 
           <div className="home-modern-hero__right">
@@ -483,6 +515,13 @@ function Home() {
                 <h2>Get Expert Consultation</h2>
                 <p>Share your details and our commercial HVAC team will respond promptly.</p>
               </div>
+        <div className="home-modern-hero__right">
+          <form className="home-lead-card home-lead-card--hero" onSubmit={(event) => event.preventDefault()}>
+            <div className="home-lead-card__header">
+              <p className="home-lead-card__eyebrow">B2B Lead Generation</p>
+              <h2>Tell us about your requirement</h2>
+              <p>Call or WhatsApp our team for a faster response.</p>
+            </div>
 
               <div className="home-lead-card__grid">
                 <label>
@@ -500,6 +539,26 @@ function Home() {
                   <select name="serviceType" defaultValue="" required>
                     <option value="" disabled>
                       Select service type
+
+              <label>
+                Company Name
+                <input type="text" name="company" placeholder="Your company or site name" required />
+              </label>
+
+              <label>
+                Number of AC Units
+                <input type="number" name="units" placeholder="e.g. 12" min="1" />
+              </label>
+
+              <label>
+                Service Type
+                <select name="serviceType" defaultValue="" required>
+                  <option value="" disabled>
+                    Service Type
+                  </option>
+                  {heroServiceTypes.map((serviceType) => (
+                    <option key={serviceType} value={serviceType}>
+                      {serviceType}
                     </option>
                     {heroServiceTypes.map((serviceType) => (
                       <option key={serviceType} value={serviceType}>
@@ -514,6 +573,11 @@ function Home() {
                   <textarea name="message" rows="4" placeholder="Tell us about your requirement" />
                 </label>
               </div>
+              <label className="home-lead-card__full">
+                Message
+                <textarea name="message" rows="4" placeholder="Share timeline, location, service scope, or any special requirements." />
+              </label>
+            </div>
 
               <button type="submit">Submit Request</button>
               <small>Your information is safe with us.</small>
@@ -526,6 +590,11 @@ function Home() {
             <p className="home-modern-eyebrow">{copy.trustEyebrow}</p>
             <h2 className="home-modern-section__title">{copy.trustTitle}</h2>
           </header>
+
+      <section className="home-trust-section home-reveal home-reveal-delay-1" data-reveal>
+        <header className="home-trust-section__header">
+          <h2 className="home-modern-section__title">{copy.trustTitle}</h2>
+        </header>
 
           <div className="home-trust-grid">
             {trustHighlights.map((item, index) => (
@@ -548,6 +617,53 @@ function Home() {
                 <p>{item.description}</p>
               </article>
             ))}
+
+        <div className="home-trust-section__cta">
+          <Link className="home-trust-section__cta-button" to="/book-service">
+            Book AC Service
+          </Link>
+          <Link className="home-trust-section__cta-button home-trust-section__cta-button--secondary" to="/contact">
+            Get Free Quote
+          </Link>
+        </div>
+              <p>{item.description}</p>
+            </article>
+          ))}
+        </div>
+
+      </section>
+
+      <AnimatedStats
+        eyebrow={copy.statsEyebrow}
+        title={copy.statsTitle}
+        description={copy.statsDescription}
+        stats={copy.stats}
+        locale={statsLocaleByLanguage[language] ?? "en-IN"}
+      />
+
+      <HomeSection
+        className="home-modern-section--collaborators"
+        revealClass="home-reveal-delay-1"
+      >
+        <header className="home-collaborators__header">
+          <h2 className="home-collaborators__heading">{copy.collaboratorsEyebrow}</h2>
+          <p className="home-collaborators__subheading">{copy.collaboratorsTitle}</p>
+          <p className="home-collaborators__description">{copy.collaboratorsDescription}</p>
+        </header>
+
+        <div className="home-trusted-by__layout">
+          <div className="home-trusted-by__left">
+            <div className="home-trusted-by__logos" aria-label={copy.collaboratorsTitle}>
+              {partnerBrands.map((brand, index) => (
+                <HomeCard
+                  key={brand.name}
+                  className="home-modern-logo-card home-trusted-by__logo-card"
+                  revealClass={revealDelayClass(index + 1)}
+                >
+                  <img className="home-modern-logo-card__image" src={brand.logo} alt={`${brand.name} logo`} loading="lazy" />
+                </HomeCard>
+              ))}
+            </div>
           </div>
 
           <ul className="home-trust-badges" aria-label={copy.quickTrustLabel}>
@@ -594,6 +710,82 @@ function Home() {
                     <img className="home-modern-logo-card__image" src={brand.logo} alt={`${brand.name} logo`} loading="lazy" />
                   </HomeCard>
                 ))}
+
+      <HomeSection
+        id="services"
+        className="home-modern-section--services"
+        eyebrow="OUR SERVICES"
+        title="Book Your HVAC Expert Today!"
+        description="Count on our certified professionals for reliable AC services, repairs, and maintenance. We ensure comfort, efficiency, and peace of mind - all year round."
+        revealClass="home-reveal-delay-1"
+      >
+        <div className="home-services-grid">
+          {serviceCards.map((serviceCard, index) => (
+            <article key={serviceCard.title} className={`home-services-card home-reveal ${revealDelayClass(index + 1)}`} data-reveal>
+              <div className="home-services-card__media">
+                <img src={serviceCard.image} alt={serviceCard.title} loading="lazy" />
+              </div>
+
+              <div className="home-services-card__content">
+                <span className="home-services-card__icon" aria-hidden="true">
+                  {serviceCard.icon}
+                </span>
+                <span className="home-services-card__badge">{serviceCard.badge}</span>
+                <h3>{serviceCard.title}</h3>
+
+                <ul className="home-services-card__list">
+                  {serviceCard.points.map((point) => (
+                    <li key={point}>
+                      <span className="home-services-card__check" aria-hidden="true">
+                        {servicePointCheckIcon}
+                      </span>
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <Link className="home-services-card__button" to={serviceCard.href}>
+                  Learn More →
+                </Link>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div className="home-services-actions">
+          <Link className="home-services-view-all" to="/services">
+            View All Services →
+          </Link>
+        </div>
+
+      </HomeSection>
+
+      <HomeWaveDivider flip />
+
+      <div className="home-modern-block home-reveal home-reveal-delay-1" data-reveal>
+        <Testimonials />
+      </div>
+
+      <HomeSection
+        className="home-modern-section--articles"
+        eyebrow={copy.latestArticlesEyebrow}
+        title={copy.latestArticlesTitle}
+        description={copy.latestArticlesDescription}
+        revealClass="home-reveal-delay-1"
+      >
+        <div className="home-modern-grid home-modern-grid--blog">
+          {blogLinks.map((post, index) => (
+            <HomeCard key={post.title} className="home-modern-blog-card" revealClass={revealDelayClass(index + 1)}>
+              <span className="home-modern-blog-icon" aria-hidden="true">
+                {articleIcon}
+              </span>
+
+              <div className="home-modern-blog-card__content">
+                <h3>{post.title}</h3>
+
+                <Link className="home-modern-blog-link" to={post.slug ? `/blog/${post.slug}` : "/blog"}>
+                  {copy.readArticle}
+                </Link>
               </div>
             </div>
 
@@ -683,6 +875,7 @@ function Home() {
         <ContactSectionPremium />
 
       </div>
+            </div>
       <Footer />
     </>
   );

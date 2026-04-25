@@ -19,6 +19,7 @@
   margin-bottom: 10px;
 }
 
+<<<<<<< HEAD
 .service-page-subtitle {
   font-size: 1.4rem;
   font-weight: 700;
@@ -26,6 +27,8 @@
   margin: 30px 0 15px;
 }
 
+=======
+>>>>>>> f42fbb1 (Updated hero section UI and form styling)
 .service-page-quote {
   font-size: 1.4rem;
   font-weight: 600;
@@ -48,11 +51,13 @@
   gap: 30px;
 }
 
-.service-page-content p {
+.service-page-content p,
+.service-page-text p {
   font-size: 1.05rem;
   line-height: 1.6;
   margin-bottom: 15px;
   color: #444;
+<<<<<<< HEAD
 
 }
 
@@ -62,20 +67,34 @@
   line-height: 1.6;
   margin-bottom: 15px;
   color: #444;
+=======
+}
+
+.service-page-subtitle {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #111;
+  margin: 25px 0 15px;
+>>>>>>> f42fbb1 (Updated hero section UI and form styling)
 }
 
 .service-page-list {
   list-style: none;
+<<<<<<< HEAD
   padding-left: 0;
   margin-bottom: 25px;
   padding: 0;
   margin: 0 0 25px;
+=======
+  padding: 0;
+  margin: 0 0 20px;
+>>>>>>> f42fbb1 (Updated hero section UI and form styling)
 }
 
 .service-page-list li {
   position: relative;
   font-size: 1.05rem;
-  line-height: 1.6;
+  line-height: 1.5;
   margin-bottom: 10px;
   color: #333;
 }
@@ -86,6 +105,7 @@
 }
 
 .service-page-list--dots li {
+<<<<<<< HEAD
   list-style-type: disc;
   margin-left: 20px;
   display: list-item;
@@ -94,11 +114,17 @@
 
 .service-page-list--dots li span.text,
 .service-page-list--dots li .text {
+=======
+>>>>>>> f42fbb1 (Updated hero section UI and form styling)
   padding-left: 18px;
 }
 
 .service-page-list--dots li::before {
+<<<<<<< HEAD
   content: "\2022";
+=======
+  content: "•";
+>>>>>>> f42fbb1 (Updated hero section UI and form styling)
   position: absolute;
   left: 0;
   top: 0;
@@ -106,12 +132,17 @@
   font-weight: 700;
 }
 
+<<<<<<< HEAD
 .service-page-list--dots li .text,
 .service-page-list--dots li span.text {
+=======
+.service-page-list--dots li .text {
+>>>>>>> f42fbb1 (Updated hero section UI and form styling)
   color: #333;
 }
 
 .service-page-list--check li {
+<<<<<<< HEAD
   display: flex;
   align-items: flex-start;
 }
@@ -122,11 +153,17 @@
   font-weight: bold;
   margin-right: 10px;
 
+=======
+>>>>>>> f42fbb1 (Updated hero section UI and form styling)
   padding-left: 22px;
 }
 
 .service-page-list--check li::before {
+<<<<<<< HEAD
   content: "\2713";
+=======
+  content: "✓";
+>>>>>>> f42fbb1 (Updated hero section UI and form styling)
   position: absolute;
   left: 0;
   top: 0;
@@ -141,7 +178,11 @@
 }
 
 .service-page-list--arrow li::before {
+<<<<<<< HEAD
   content: "\27A4";
+=======
+  content: "➤";
+>>>>>>> f42fbb1 (Updated hero section UI and form styling)
   position: absolute;
   left: 0;
   top: 0;
@@ -178,18 +219,24 @@
   background-color: #2b2b2b;
   color: #fff;
   padding: 12px 30px;
+<<<<<<< HEAD
   font-weight: bold;
   text-decoration: none;
   border-radius: 4px;
   transition: background-color 0.3s ease;
   text-transform: uppercase;
 
+=======
+>>>>>>> f42fbb1 (Updated hero section UI and form styling)
   text-transform: uppercase;
   font-weight: bold;
   text-decoration: none;
   border-radius: 4px;
   transition: background-color 0.2s;
+<<<<<<< HEAD
 
+=======
+>>>>>>> f42fbb1 (Updated hero section UI and form styling)
 }
 
 .service-page-button:hover {
@@ -212,12 +259,15 @@
   max-width: 500px;
 }
 
+<<<<<<< HEAD
 
 .service-page-brands {
   margin-top: 20px;
   font-weight: bold;
 }
 
+=======
+>>>>>>> f42fbb1 (Updated hero section UI and form styling)
 .service-page-image img {
   width: 100%;
   height: auto;

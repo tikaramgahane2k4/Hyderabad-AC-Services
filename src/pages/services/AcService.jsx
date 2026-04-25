@@ -47,7 +47,7 @@ function AcService() {
               <li><span className="text" style={{fontWeight: "bold"}}>Ductable and Centralized AC Systems</span></li>
               <li><span className="text" style={{fontWeight: "bold"}}>VRV/VRF Systems</span></li>
             </ul>
-            
+
             <h2 className="service-page-subtitle">Book Your AC Service Today!</h2>
             <p>Do not wait for your AC to fail on a hot summer day. Keep it running efficiently with professional AC servicing from Hyderabad AC Services.</p>
             <ul className="service-page-list" style={{ listStyleType: "none", paddingLeft: 0 }}>
