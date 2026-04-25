@@ -17,11 +17,6 @@ function AcRepair() {
               Is your air conditioner not cooling properly, making unusual noises, or leaking water? Don't worry — Hyderabad AC Services is here to help! We specialize in professional AC repair services in Hyderabad for all major brands and models. Our skilled technicians diagnose and fix AC problems quickly and efficiently, ensuring your cooling system works like new again. Whether it's a residential or commercial unit, we've got you covered with reliable and affordable AC repair solutions.
             </p>
             
-            <h2 className="service-page-subtitle">Common AC Problems We Fix</h2>
-            <p>
-              No matter the issue, our experts can handle it! We repair:
-            </p>
-            
             <ul className="service-page-list service-page-list--dots">
               <li><span className="text" style={{fontWeight: 'bold'}}>Poor Cooling or No Cooling</span></li>
               <li><span className="text" style={{fontWeight: 'bold'}}>AC Not Turning On / Power Supply Issues</span></li>
@@ -32,6 +27,10 @@ function AcRepair() {
               <li><span className="text" style={{fontWeight: 'bold'}}>Compressor or PCB Malfunction</span></li>
               <li><span className="text" style={{fontWeight: 'bold'}}>Electrical & Thermostat Issues</span></li>
             </ul>
+            
+            <p>
+              No matter the issue, our experts can handle it! We repair:
+            </p>
             
             <h2 className="service-page-subtitle">Our AC Repair Services Include</h2>
             <ul className="service-page-list service-page-list--check">

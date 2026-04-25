@@ -124,19 +124,19 @@ export const siteContent = {
   blogPosts: [
     {
       title: "Benefits of Copper Pipe Pre-Installation",
-      href: "https://hyderabadacservices.com/blog1.php",
+      slug: "benefits-of-copper-pipe-pre-installation",
     },
     {
       title: "Preventing AC Gas Leakage",
-      href: "https://hyderabadacservices.com/blog2.php",
+      slug: "preventing-ac-gas-leakage",
     },
     {
       title: "Importance of Proper AC Installation",
-      href: "https://hyderabadacservices.com/blog3.php",
+      slug: "importance-of-proper-ac-installation",
     },
     {
       title: "Importance of Regular AC Service",
-      href: "https://hyderabadacservices.com/blog4.php",
+      slug: "importance-of-regular-ac-service",
     },
   ],
   featuredInstallation: {

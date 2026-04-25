@@ -1,12 +1,20 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { FaBriefcase, FaHeadset, FaStar, FaUsers } from "react-icons/fa";
 import "./AnimatedStats.css";
 
 const DEFAULT_STATS = [
-  { value: 4.9, decimals: 1, label: "Google Rating" },
-  { value: 500, suffix: "+", label: "Happy Customers" },
-  { value: 10, suffix: "+", label: "Years Experience" },
-  { value: 24, suffix: "/7", label: "Direct Support" },
+  { value: 4.9, decimals: 1, label: "Google Rating", icon: "rating" },
+  { value: 500, suffix: "+", label: "Happy Customers", icon: "customers" },
+  { value: 10, suffix: "+", label: "Years Experience", icon: "experience" },
+  { value: 24, suffix: "/7", label: "24/7 Support", icon: "support" },
 ];
+
+const STAT_ICONS = {
+  rating: FaStar,
+  customers: FaUsers,
+  experience: FaBriefcase,
+  support: FaHeadset,
+};
 
 const easeOutQuint = (progress) => 1 - (1 - progress) ** 5;
 
@@ -80,6 +88,7 @@ function useInViewOnce({ threshold = 0.3, rootMargin = "0px 0px -12% 0px" } = {}
 function AnimatedCounterCard({ stat, index, isActive, stagger = 140, locale }) {
   const [displayValue, setDisplayValue] = useState(0);
   const hasAnimatedRef = useRef(false);
+  const StatIcon = STAT_ICONS[stat.icon] ?? null;
 
   useEffect(() => {
     if (!isActive || hasAnimatedRef.current) {
@@ -135,6 +144,17 @@ function AnimatedCounterCard({ stat, index, isActive, stagger = 140, locale }) {
       className={`animated-stat-card ${isActive ? "is-visible" : ""}`}
       style={{ "--stat-delay": `${index * 90}ms` }}
     >
+      <div className="animated-stat-card__inner">
+        {StatIcon ? (
+          <span className="animated-stat-card__icon-wrap" aria-hidden="true">
+            <StatIcon className="animated-stat-card__icon" />
+          </span>
+        ) : null}
+        <p className="animated-stat-card__value">{formattedValue}</p>
+        <p className="animated-stat-card__label">{stat.label}</p>
+        {stat.caption ? <p className="animated-stat-card__caption">{stat.caption}</p> : null}
+      </div>
+      {stat.icon ? <span className="animated-stat-card__icon" aria-hidden="true">{stat.icon}</span> : null}
       <p className="animated-stat-card__value">{formattedValue}</p>
       <p className="animated-stat-card__label">{stat.label}</p>
       {stat.caption ? <p className="animated-stat-card__caption">{stat.caption}</p> : null}
@@ -144,8 +164,9 @@ function AnimatedCounterCard({ stat, index, isActive, stagger = 140, locale }) {
 
 export default function AnimatedStats({
   eyebrow = "Service Numbers",
-  title = "Trusted by Thousands in Hyderabad",
-  description = "Performance-backed AC service with reliable response, expert support, and consistently strong customer trust.",
+  title = "Trusted by Hundreds Across Hyderabad",
+  description =
+    "A quick overview of our trusted services, satisfied customers, and commitment to delivering reliable AC solutions across Hyderabad.",
   stats = DEFAULT_STATS,
   className = "",
   threshold = 0.3,

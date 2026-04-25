@@ -1,180 +1,349 @@
-import { useState } from "react";
-import {
-  FiMapPin,
-  FiPhone,
-  FiMail,
-  FiClock,
-  FiUserCheck,
-  FiStar,
-} from "react-icons/fi";
+import { useMemo, useState } from "react";
+import { FiBriefcase, FiClock, FiMapPin, FiMessageSquare, FiPhoneCall, FiSend, FiShield, FiUsers } from "react-icons/fi";
+import { useAppPreferences } from "../context/AppPreferencesContext";
+import { getLocalizedSiteContent } from "../data/localizedSiteContent";
 import "./ContactSectionPremium.css";
 
-function Highlight({ icon, title }) {
+const copyByLanguage = {
+  en: {
+    badge: "B2B Lead Generation",
+    title: "Request AC Services for Your Business",
+    description:
+      "Share your project details and our team will respond with a tailored proposal for offices, builders, hotels, retail spaces, and facility teams.",
+    benefits: [
+      { icon: <FiUsers />, title: "Commercial-ready support", text: "Built for business-critical cooling needs." },
+      { icon: <FiShield />, title: "Trusted technicians", text: "Professional service with clear communication." },
+      { icon: <FiClock />, title: "Fast response", text: "Quick follow-up during working hours." },
+    ],
+    formTitle: "Tell us about your requirement",
+    fields: {
+      name: "Name",
+      company: "Company Name",
+      units: "Number of AC Units",
+      service: "Service Type",
+      message: "Message",
+      submit: "Submit Request",
+      success: "Thanks. Our team will contact you shortly with the next steps.",
+      namePlaceholder: "Your name",
+      companyPlaceholder: "Your company or site name",
+      unitsPlaceholder: "e.g. 12",
+      messagePlaceholder: "Share timeline, location, service scope, or any special requirements.",
+      serviceOptions: [
+        "AC Service",
+        "AC Repair",
+        "AC Installation",
+        "AMC",
+        "Ducting",
+        "Copper Pipe Planning",
+        "Centralized AC",
+        "Gas Leak Rectification",
+      ],
+      errors: {
+        required: "This field is required.",
+        units: "Enter a valid number of units.",
+      },
+    },
+    contactTitle: "Need immediate support?",
+    contactDescription: "Call or WhatsApp our team for a faster response.",
+    callNow: "Call Now",
+    whatsappChat: "WhatsApp Chat",
+    locationTitle: "Service Area",
+    hoursTitle: "Working Hours",
+  },
+  hi: {
+    badge: "B2B Lead Generation",
+    title: "अपने व्यवसाय के लिए AC सेवाओं का अनुरोध करें",
+    description:
+      "अपनी परियोजना की जानकारी साझा करें। हमारी टीम ऑफिस, बिल्डर, होटल, रिटेल और सुविधा टीमों के लिए उपयुक्त प्रस्ताव भेजेगी।",
+    benefits: [
+      { icon: <FiUsers />, title: "कमर्शियल सपोर्ट", text: "व्यवसायिक कूलिंग जरूरतों के लिए तैयार।" },
+      { icon: <FiShield />, title: "विश्वसनीय तकनीशियन", text: "पेशेवर सेवा और स्पष्ट संवाद।" },
+      { icon: <FiClock />, title: "तेज़ प्रतिक्रिया", text: "कार्य समय में जल्दी फॉलो-अप।" },
+    ],
+    formTitle: "अपनी आवश्यकता बताएं",
+    fields: {
+      name: "नाम",
+      company: "कंपनी का नाम",
+      units: "AC यूनिट्स की संख्या",
+      service: "सेवा प्रकार",
+      message: "संदेश",
+      submit: "अनुरोध भेजें",
+      success: "धन्यवाद। हमारी टीम जल्द ही अगली जानकारी के साथ संपर्क करेगी।",
+      namePlaceholder: "आपका नाम",
+      companyPlaceholder: "कंपनी या साइट का नाम",
+      unitsPlaceholder: "उदा. 12",
+      messagePlaceholder: "समय, स्थान, सेवा और विशेष आवश्यकताएं साझा करें।",
+      serviceOptions: [
+        "AC Service",
+        "AC Repair",
+        "AC Installation",
+        "AMC",
+        "Ducting",
+        "Copper Pipe Planning",
+        "Centralized AC",
+        "Gas Leak Rectification",
+      ],
+      errors: {
+        required: "यह फ़ील्ड आवश्यक है।",
+        units: "सही संख्या दर्ज करें।",
+      },
+    },
+    contactTitle: "तुरंत सहायता चाहिए?",
+    contactDescription: "तेज़ प्रतिक्रिया के लिए कॉल या WhatsApp करें।",
+    callNow: "कॉल करें",
+    whatsappChat: "WhatsApp चैट",
+    locationTitle: "सेवा क्षेत्र",
+    hoursTitle: "कार्य समय",
+  },
+  te: {
+    badge: "B2B Lead Generation",
+    title: "Mee business kosam AC services request cheyyandi",
+    description:
+      "Mee project details share cheyyandi. Office, builders, hotels, retail spaces mariyu facility teams kosam maa team tailored proposal istundi.",
+    benefits: [
+      { icon: <FiUsers />, title: "Commercial-ready support", text: "Business cooling needs kosam ready ga untundi." },
+      { icon: <FiShield />, title: "Trusted technicians", text: "Professional service mariyu clear communication." },
+      { icon: <FiClock />, title: "Fast response", text: "Working hours lo quick follow-up." },
+    ],
+    formTitle: "Mee requirement cheppandi",
+    fields: {
+      name: "Name",
+      company: "Company Name",
+      units: "Number of AC Units",
+      service: "Service Type",
+      message: "Message",
+      submit: "Submit Request",
+      success: "Thanks. Maa team tondaralo next steps tho contact chestundi.",
+      namePlaceholder: "Mee peru",
+      companyPlaceholder: "Mee company leda site peru",
+      unitsPlaceholder: "e.g. 12",
+      messagePlaceholder: "Timeline, location, service scope mariyu special requirements share cheyyandi.",
+      serviceOptions: [
+        "AC Service",
+        "AC Repair",
+        "AC Installation",
+        "AMC",
+        "Ducting",
+        "Copper Pipe Planning",
+        "Centralized AC",
+        "Gas Leak Rectification",
+      ],
+      errors: {
+        required: "Ee field avasaram.",
+        units: "Sariyana number ivvandi.",
+      },
+    },
+    contactTitle: "Immediate support kavala?",
+    contactDescription: "Quick response kosam call leda WhatsApp cheyyandi.",
+    callNow: "Call Now",
+    whatsappChat: "WhatsApp Chat",
+    locationTitle: "Service Area",
+    hoursTitle: "Working Hours",
+  },
+};
+
+const initialForm = { name: "", companyName: "", units: "", serviceType: "", message: "" };
+
+function IconCard({ icon, title, text }) {
   return (
-    <div className="highlight">
-      <div className="highlight-icon">{icon}</div>
+    <div className="b2b-contact-benefit">
+      <span className="b2b-contact-benefit__icon" aria-hidden="true">
+        {icon}
+      </span>
       <div>
-        <div className="highlight-title">{title}</div>
+        <strong>{title}</strong>
+        <p>{text}</p>
       </div>
     </div>
   );
 }
 
 function ContactSectionPremium() {
-  const [form, setForm] = useState({ name: "", phone: "", message: "" });
+  const { language } = useAppPreferences();
+  const siteContent = getLocalizedSiteContent(language);
+  const copy = copyByLanguage[language] ?? copyByLanguage.en;
+  const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState({});
-  const [submitting, setSubmitting] = useState(false);
-  const [sent, setSent] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
-  const validateField = (name, value) => {
-    if (name === "name") return value.trim() ? "" : "Please enter your name";
-    if (name === "phone") {
-      const digits = value.replace(/\D/g, "");
-      if (!digits) return "Please enter phone number";
-      if (digits.length !== 10) return "Enter a valid 10-digit phone";
-      return "";
-    }
-    if (name === "message") return value.trim() ? "" : "Please enter a brief message";
-    return "";
+  const whatsappUrl = useMemo(() => {
+    const message = `Hello Hyderabad AC Services, I need a B2B quote. Name: ${form.name || "-"}, Company: ${form.companyName || "-"}, AC Units: ${form.units || "-"}, Service: ${form.serviceType || "-"}. Message: ${form.message || "-"}`;
+    return `${siteContent.whatsappLink}?text=${encodeURIComponent(message)}`;
+  }, [form.companyName, form.message, form.name, form.serviceType, form.units, siteContent.whatsappLink]);
+
+  const validate = () => {
+    const nextErrors = {};
+
+    if (!form.name.trim()) nextErrors.name = copy.fields.errors.required;
+    if (!form.companyName.trim()) nextErrors.companyName = copy.fields.errors.required;
+
+    const unitsValue = Number(form.units);
+    if (!form.units.trim()) nextErrors.units = copy.fields.errors.required;
+    else if (!Number.isInteger(unitsValue) || unitsValue <= 0) nextErrors.units = copy.fields.errors.units;
+
+    if (!form.serviceType.trim()) nextErrors.serviceType = copy.fields.errors.required;
+    if (!form.message.trim()) nextErrors.message = copy.fields.errors.required;
+
+    return nextErrors;
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm((s) => ({ ...s, [name]: value }));
-    setErrors((prev) => ({ ...prev, [name]: validateField(name, value) }));
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setForm((current) => ({ ...current, [name]: value }));
+    setSubmitted(false);
+    setErrors((current) => ({ ...current, [name]: undefined }));
   };
 
-  const handleBlur = (e) => {
-    const { name, value } = e.target;
-    setErrors((prev) => ({ ...prev, [name]: validateField(name, value) }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const nextErrors = {
-      name: validateField("name", form.name),
-      phone: validateField("phone", form.phone),
-      message: validateField("message", form.message),
-    };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const nextErrors = validate();
     setErrors(nextErrors);
-    if (nextErrors.name || nextErrors.phone || nextErrors.message) return;
 
-    setSubmitting(true);
-    // Simulate API delay
-    setTimeout(() => {
-      setSubmitting(false);
-      setSent(true);
-    }, 700);
+    if (Object.keys(nextErrors).length > 0) return;
+
+    setSubmitted(true);
+    setForm(initialForm);
   };
 
   return (
-    <section className="contact-premium" aria-labelledby="contact-premium-title">
-      <div className="contact-premium-inner">
-        <div className="left">
-          <div className="trust-card">
-            <h2 id="contact-premium-title">Hyderabad’s Trusted AC Experts</h2>
-            <p className="lead">
-              Fast, reliable plus verified technicians for commercial and residential cooling — ready when
-              your business depends on uptime.
-            </p>
+    <section className="b2b-contact" aria-labelledby="b2b-contact-title">
+      <div className="b2b-contact__shell">
+        <div className="b2b-contact__copy">
+          <span className="b2b-contact__badge">{copy.badge}</span>
+          <h2 id="b2b-contact-title">{copy.title}</h2>
+          <p className="b2b-contact__description">{copy.description}</p>
 
-            <div className="highlights">
-              <Highlight icon={<FiClock />} title="24/7 Service" />
-              <Highlight icon={<FiUserCheck />} title="Verified Technicians" />
-              <Highlight icon={<FiStar />} title="Affordable Pricing" />
-            </div>
+          <div className="b2b-contact__benefits">
+            {copy.benefits.map((benefit) => (
+              <IconCard key={benefit.title} icon={benefit.icon} title={benefit.title} text={benefit.text} />
+            ))}
+          </div>
 
-            <div className="business-cards">
-              <div className="biz-card">
-                <div className="biz-icon"><FiMapPin /></div>
-                <div>
-                  <small>Location</small>
-                  <div>Hyderabad, India</div>
-                </div>
-              </div>
-
-              <div className="biz-card clickable">
-                <div className="biz-icon"><FiPhone /></div>
-                <div>
-                  <small>Call Us</small>
-                  <div><a href="tel:+91XXXXXXXXXX">+91 XXXXX XXXXX</a></div>
-                </div>
-              </div>
-
-              <div className="biz-card">
-                <div className="biz-icon"><FiMail /></div>
-                <div>
-                  <small>Email</small>
-                  <div>info@hyderabadacservices.com</div>
-                </div>
+          <div className="b2b-contact__info-grid">
+            <div className="b2b-contact__info-item">
+              <FiMapPin aria-hidden="true" />
+              <div>
+                <span>{copy.locationTitle}</span>
+                <strong>{siteContent.location}</strong>
               </div>
             </div>
+
+            <div className="b2b-contact__info-item">
+              <FiBriefcase aria-hidden="true" />
+              <div>
+                <span>{copy.hoursTitle}</span>
+                <strong>{siteContent.workingHours}</strong>
+              </div>
+            </div>
+          </div>
+
+          <div className="b2b-contact__actions">
+            <a className="b2b-contact__action b2b-contact__action--call" href={siteContent.phoneLink}>
+              <FiPhoneCall aria-hidden="true" />
+              {copy.callNow}
+            </a>
+            <a className="b2b-contact__action b2b-contact__action--whatsapp" href={whatsappUrl} target="_blank" rel="noreferrer">
+              <FiMessageSquare aria-hidden="true" />
+              {copy.whatsappChat}
+            </a>
           </div>
         </div>
 
-        <div className="right">
-          <div className="form-card">
-            <div className="tag">⚡ Quick Inquiry</div>
-            <h3>Get a Callback in 10 Minutes</h3>
-
-            {sent ? (
-              <div className="success">
-                <div className="success-emoji">✅</div>
-                <h4>Our team will contact you shortly!</h4>
-                <p>Expect a callback within 10 minutes during working hours.</p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} noValidate>
-                <div className={`field ${form.name ? "filled" : ""}`}>
-                  <label>Full Name</label>
-                  <div className="control">
-                    <input
-                      name="name"
-                      value={form.name}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      placeholder=" "
-                      type="text"
-                    />
-                  </div>
-                  {errors.name && <div className="error">{errors.name}</div>}
-                </div>
-
-                <div className={`field ${form.phone ? "filled" : ""}`}>
-                  <label>Phone</label>
-                  <div className="control">
-                    <input
-                      name="phone"
-                      value={form.phone}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      placeholder=" "
-                      type="tel"
-                    />
-                  </div>
-                  {errors.phone && <div className="error">{errors.phone}</div>}
-                </div>
-
-                <div className={`field ${form.message ? "filled" : ""}`}>
-                  <label>Message</label>
-                  <div className="control">
-                    <textarea
-                      name="message"
-                      value={form.message}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      placeholder=" "
-                    />
-                  </div>
-                  {errors.message && <div className="error">{errors.message}</div>}
-                </div>
-
-                <button className="cta" type="submit" disabled={submitting}>
-                  {submitting ? "Sending..." : "Get Callback"}
-                </button>
-              </form>
-            )}
+        <div className="b2b-contact__form-card">
+          <div className="b2b-contact__form-header">
+            <span className="b2b-contact__form-tag">
+              <FiSend aria-hidden="true" />
+              {copy.badge}
+            </span>
+            <h3>{copy.formTitle}</h3>
+            <p>{copy.contactDescription}</p>
           </div>
+
+          {submitted ? (
+            <div className="b2b-contact__success" role="status" aria-live="polite">
+              <strong>{copy.fields.success}</strong>
+              <p>{copy.contactDescription}</p>
+            </div>
+          ) : (
+            <form className="b2b-contact__form" onSubmit={handleSubmit} noValidate>
+              <label className="b2b-contact__field">
+                <span>{copy.fields.name}</span>
+                <input
+                  type="text"
+                  name="name"
+                  value={form.name}
+                  onChange={handleChange}
+                  placeholder={copy.fields.namePlaceholder}
+                  aria-invalid={Boolean(errors.name)}
+                />
+                {errors.name && <small>{errors.name}</small>}
+              </label>
+
+              <label className="b2b-contact__field">
+                <span>{copy.fields.company}</span>
+                <input
+                  type="text"
+                  name="companyName"
+                  value={form.companyName}
+                  onChange={handleChange}
+                  placeholder={copy.fields.companyPlaceholder}
+                  aria-invalid={Boolean(errors.companyName)}
+                />
+                {errors.companyName && <small>{errors.companyName}</small>}
+              </label>
+
+              <div className="b2b-contact__field-group">
+                <label className="b2b-contact__field">
+                  <span>{copy.fields.units}</span>
+                  <input
+                    type="number"
+                    min="1"
+                    name="units"
+                    value={form.units}
+                    onChange={handleChange}
+                    placeholder={copy.fields.unitsPlaceholder}
+                    aria-invalid={Boolean(errors.units)}
+                  />
+                  {errors.units && <small>{errors.units}</small>}
+                </label>
+
+                <label className="b2b-contact__field">
+                  <span>{copy.fields.service}</span>
+                  <select
+                    name="serviceType"
+                    value={form.serviceType}
+                    onChange={handleChange}
+                    aria-invalid={Boolean(errors.serviceType)}
+                  >
+                    <option value="">{copy.fields.service}</option>
+                    {copy.fields.serviceOptions.map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+                  {errors.serviceType && <small>{errors.serviceType}</small>}
+                </label>
+              </div>
+
+              <label className="b2b-contact__field b2b-contact__field--message">
+                <span>{copy.fields.message}</span>
+                <textarea
+                  name="message"
+                  value={form.message}
+                  onChange={handleChange}
+                  placeholder={copy.fields.messagePlaceholder}
+                  rows="5"
+                  aria-invalid={Boolean(errors.message)}
+                />
+                {errors.message && <small>{errors.message}</small>}
+              </label>
+
+              <button type="submit" className="b2b-contact__submit">
+                {copy.fields.submit}
+              </button>
+            </form>
+          )}
         </div>
       </div>
     </section>

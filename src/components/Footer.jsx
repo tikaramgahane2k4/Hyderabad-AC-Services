@@ -4,12 +4,12 @@ import { getLocalizedSiteContent } from "../data/localizedSiteContent";
 
 const footerTranslations = {
   en: {
-    services: "Services",
-    quickLinks: "Quick Links",
     contactInfo: "Contact Info",
+    blog: "Blog",
+    quickLinks: "Quick Links",
+    reachUsAt: "Reach us at",
     home: "Home",
     about: "About",
-    blog: "Blog",
     contact: "Contact",
     phone: "Phone:",
     location: "Location:",
@@ -20,12 +20,12 @@ const footerTranslations = {
     backToTop: "Back to top",
   },
   hi: {
-    services: "सेवाएं",
-    quickLinks: "त्वरित लिंक",
     contactInfo: "संपर्क जानकारी",
+    blog: "ब्लॉग",
+    quickLinks: "त्वरित लिंक",
+    reachUsAt: "हमसे जुड़ें",
     home: "होम",
     about: "हमारे बारे में",
-    blog: "ब्लॉग",
     contact: "संपर्क",
     phone: "फ़ोन:",
     location: "स्थान:",
@@ -36,12 +36,12 @@ const footerTranslations = {
     backToTop: "ऊपर जाएं",
   },
   te: {
-    services: "Sevalu",
+    contactInfo: "Contact Info",
+    blog: "Blog",
     quickLinks: "Quick Links",
-    contactInfo: "Sampradimpu Vivaralu",
+    reachUsAt: "Reach us at",
     home: "Home",
     about: "Maa Gurinchi",
-    blog: "Blog",
     contact: "Sampradinchandi",
     phone: "Phone:",
     location: "Sthanam:",
@@ -87,45 +87,57 @@ function Footer() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const footerBlogs = (siteContent.blogPosts ?? []).slice(0, 4);
+
   return (
     <footer className="site-footer">
       <div className="footer-container">
         <div className="footer-grid">
           <div className="footer-column footer-brand">
+            <p className="footer-label">{labels.contactInfo}</p>
             <div className="footer-brand-header">
               <svg className="footer-support-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
               </svg>
               <div>
-                <p className="footer-label">HVAC Contractors in Hyderabad</p>
+                <p className="footer-label">{siteContent.businessName}</p>
                 <div className="footer-phone-highlight">
-                  <a href="tel:+918712322475">+91 87123 22475</a>
+                  <a href={siteContent.phoneLink}>{siteContent.phoneDisplay}</a>
                 </div>
               </div>
             </div>
 
-            <div className="footer-description">
-              <p>As one of the Best AC Companies in Hyderabad, we provide high-quality air conditioning services for homes, offices, commercial spaces and industries. Our professionally trained and certified HVAC experts ensure every service and installation is completed with precision and reliability.</p>
-              <p>Whether you need reliable AC contractors for your home or experienced HVAC contractors for your business, Hyderabad AC Services is your trusted partner for professional and efficient air conditioning solutions across the city.</p>
+            <p className="footer-short-text">
+              Trusted AC installation, repair and HVAC support across Hyderabad.
+            </p>
+
+            <div className="footer-contact-lines" aria-label={labels.contact}>
+              <p>{siteContent.location}</p>
+              <p><a href={siteContent.emailLink}>{siteContent.email}</a></p>
+              <p><a href={siteContent.phoneLink}>{siteContent.phoneDisplay}</a></p>
             </div>
+
             <p className="footer-note-text">
-              Note : All services are Chargeable
+              {labels.note} All services are Chargeable
             </p>
           </div>
 
           <div className="footer-column">
-            <p className="footer-label">Blog</p>
-            <ul className="footer-blog-list">
-              <li><Link to="/blog/copper-pipe">Benefits of Copper Pipe Pre-Installation</Link></li>
-              <li><Link to="/blog/ac-gas-leakage">Preventing AC Gas Leakage</Link></li>
-              <li><Link to="/blog/ac-installation">Importance of Proper AC Installation</Link></li>
-              <li><Link to="/blog/ac-service">Importance of Regular AC Service</Link></li>
+            <p className="footer-label">{labels.blog}</p>
+            <ul className="footer-link-list footer-blog-list">
+              {footerBlogs.map((post) => (
+                <li key={post.title}>
+                  <Link to={`/blog/${post.slug}`}>
+                    » {post.title}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           <div className="footer-column">
-            <p className="footer-label">Quick Links</p>
-            <ul className="footer-quick-links">
+            <p className="footer-label">{labels.quickLinks}</p>
+            <ul className="footer-link-list footer-quick-links">
               <li><Link to="/" onClick={handleHomeClick}>Home</Link></li>
               <li><Link to="/about">About Us</Link></li>
               <li><Link to="/services">Services</Link></li>
@@ -134,16 +146,18 @@ function Footer() {
             </ul>
           </div>
 
-          <div className="footer-column">
-            <p className="footer-label">Reach Us At</p>
-            <div className="footer-socials" aria-label="Social links">
+          <div className="footer-column footer-contact-panel">
+            <p className="footer-label">{labels.reachUsAt}</p>
+            <p className="footer-mini-label">Find us online</p>
+            <div className="footer-socials" aria-label={labels.socialLinks}>
               {siteContent.socialLinks.map((link) => (
                 <a key={link.label} href={link.href} target="_blank" rel="noreferrer" aria-label={link.label} className={`social-icon-${link.label.toLowerCase()}`}>
                   {socialIcons[link.label]}
                 </a>
               ))}
             </div>
-            <div className="footer-map-container">
+
+            <div className="footer-map-card" aria-label={siteContent.location}>
               <iframe
                 title="Hyderabad AC Services Location"
                 src="https://maps.google.com/maps?q=709/58,%20Navodaya%20Colony,%20Gudimalkapur,%20Hyderabad,%20Telangana%20500006&t=&z=15&ie=UTF8&iwloc=&output=embed"
@@ -154,14 +168,7 @@ function Footer() {
           </div>
         </div>
 
-              <div className="footer-bottom">
-        <p>© {labels.copyright}</p>
-        <button type="button" className="footer-top-link" onClick={handleBackToTop}>
-          {labels.backToTop}
-        </button>
       </div>
-    </div>
-
     </footer>
   );
 }
