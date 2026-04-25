@@ -35,11 +35,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 50%, #F0F5FA 100%);
-  =======background:
+  background:
     radial-gradient(circle at 12% 8%, rgba(0, 174, 221, 0.08), transparent 30%),
     radial-gradient(circle at 88% 6%, rgba(21, 71, 105, 0.08), transparent 34%),
     linear-gradient(180deg, #ffffff 0%, rgba(0, 174, 221, 0.04) 100%);
-  >>>>>>>parent of 2cb5dd7 (feat: modernize UI/UX and pivot to B2B enterprise focus) transition: background 0.35s ease, color 0.3s ease;
 }
 
 body[data-theme="dark"] {
@@ -87,7 +86,7 @@ img {
     opacity: 1;
     transform: translateY(0);
   }
-
+}
   .footer-socials {
     display: flex;
     align-items: flex-start;
@@ -191,7 +190,7 @@ img {
     align-items: center;
     gap: 6px;
   }
-}
+
 
 .home-button--primary:hover {
   box-shadow: 0 18px 34px rgba(8, 91, 182, 0.45);
