@@ -12,10 +12,9 @@
 .animated-stats-header {
   position: relative;
   z-index: 1;
-  max-width: 720px;
+  max-width: 800px;
   margin: 0 auto;
   text-align: center;
-  max-width: 800px;
   opacity: 0;
   transform: translate3d(0, 20px, 0);
   transition: opacity 0.55s ease-out, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
@@ -46,20 +45,6 @@
 }
 
 .animated-stats-header__description {
-  margin: 0.9rem 0 0;
-  color: rgba(17, 54, 81, 0.82);
-  font-size: 1.16rem;
-  line-height: 1.72;
-  margin: 0.6rem 0 0;
-  color: #0B1F33;
-  font-family: "Poppins", sans-serif;
-  font-size: clamp(2rem, 3.5vw, 2.8rem);
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  font-weight: 700;
-}
-
-.animated-stats-header__description {
   margin: 0.8rem 0 0;
   color: #5B6B7C;
   font-size: 1rem;
@@ -74,12 +59,6 @@
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1.25rem;
-}
-
-.animated-stat-card {
-  min-height: 224px;
-
-  gap: clamp(1.2rem, 2vw, 1.8rem);
 }
 
 .animated-stat-card {
@@ -151,6 +130,7 @@
 .animated-stat-card:hover .animated-stat-card__icon {
   color: #1992ff;
   transform: scale(1.04);
+}
 
 .animated-stat-card:hover {
   border-color: #1F7AE0;
@@ -174,12 +154,6 @@
 
 .animated-stat-card__value {
   margin: 0;
-  color: #113651;
-  font-family: "Nasalization", "Poppins", sans-serif;
-  font-size: clamp(2rem, 3.2vw, 2.5rem);
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: -0.04em;
   color: #0F4C81;
   font-family: "Poppins", sans-serif;
   font-size: clamp(2.5rem, 5vw, 3.5rem);
@@ -190,13 +164,10 @@
 
 .animated-stat-card__label {
   margin: 0;
-  color: rgba(17, 54, 81, 0.72);
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.5;
   color: #5B6B7C;
   font-size: 0.9rem;
   font-weight: 700;
+  line-height: 1.5;
 }
 
 .animated-stat-card__caption {

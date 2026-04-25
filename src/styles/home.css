@@ -709,10 +709,6 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(1.2rem, 2vw, 1.8rem);
   margin-top: clamp(2rem, 3.5vw, 3rem);
-  =======grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(0.9rem, 1.6vw, 1.2rem);
-  margin-top: clamp(1.15rem, 2vw, 1.65rem);
-  >>>>>>>parent of 2cb5dd7 (feat: modernize UI/UX and pivot to B2B enterprise focus)
 }
 
 .home-modern-card {
@@ -1524,24 +1520,226 @@ body[data-theme="dark"] .home-footer-utility__socials a {
   background: rgba(10, 35, 56, 0.88);
 }
 
-/* Remove outer boxes from home content blocks for a cleaner text-first layout */
-.home-page--modern .home-trust-section,
-.home-page--modern .home-trust-card,
-.home-page--modern .home-modern-section,
-.home-page--modern .home-modern-section--collaborators,
-.home-page--modern .home-modern-section--articles,
-.home-page--modern .home-modern-card,
-.home-page--modern .home-modern-service-card,
-.home-page--modern .home-modern-blog-card,
-.home-page--modern .home-modern-map-card,
-.home-page--modern .home-modern-contact-list li,
-.home-page--modern .home-faq-item,
-.home-page--modern .home-faq-trigger,
-.home-modern-footer-wrap .site-footer,
-.home-footer-utility {
-  background: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
+.home-trust-card__stars {
+  margin: 0.7rem 0 0;
+  display: inline-flex;
+  gap: 0.2rem;
+  color: #f59e0b;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+}
+
+.home-trust-badges {
+  width: min(100%, 980px);
+  margin: 1.5rem auto 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem;
+}
+
+.home-trust-badges li {
+  padding: 0.68rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(31, 122, 224, 0.16);
+  background: rgba(31, 122, 224, 0.06);
+  color: #154769;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.home-trust-section__cta {
+  margin-top: 1.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.9rem;
+}
+
+.home-trust-section__cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.8rem 1.35rem;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  background: linear-gradient(120deg, #1F7AE0 0%, #1B68C9 100%);
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 700;
+  box-shadow: 0 10px 22px rgba(31, 122, 224, 0.22);
+  transition: transform 0.24s ease, box-shadow 0.24s ease, background-color 0.24s ease, border-color 0.24s ease;
+}
+
+.home-trust-section__cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(31, 122, 224, 0.3);
+}
+
+.home-trust-section__cta-button--secondary {
+  background: #ffffff;
+  border-color: rgba(21, 71, 105, 0.16);
+  color: #154769;
+  box-shadow: 0 10px 22px rgba(11, 31, 51, 0.08);
+}
+
+.home-services-grid {
+  margin-top: clamp(2rem, 3.5vw, 3rem);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.home-services-card {
+  min-width: 0;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background: #ffffff;
+  box-shadow: 0 16px 34px rgba(15, 23, 42, 0.08);
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+}
+
+.home-services-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(31, 122, 224, 0.28);
+  box-shadow: 0 22px 40px rgba(15, 23, 42, 0.14);
+}
+
+.home-services-card__media {
+  position: relative;
+  aspect-ratio: 4 / 2.7;
+  overflow: hidden;
+  background: #eaf3fb;
+}
+
+.home-services-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.home-services-card__content {
+  display: grid;
+  gap: 0.95rem;
+  padding: 1.2rem 1.15rem 1.25rem;
+}
+
+.home-services-card__icon {
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  color: #1F7AE0;
+  background: rgba(31, 122, 224, 0.08);
+}
+
+.home-services-card__icon svg {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+
+.home-services-card__badge {
+  width: fit-content;
+  padding: 0.35rem 0.62rem;
+  border-radius: 999px;
+  background: rgba(21, 71, 105, 0.08);
+  color: #154769;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.home-services-card__content h3 {
+  margin: 0;
+  color: #0B1F33;
+  font-size: 1.12rem;
+  font-weight: 700;
+}
+
+.home-services-card__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.home-services-card__list li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: 0.65rem;
+  color: #5B6B7C;
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.home-services-card__check {
+  width: 1.1rem;
+  height: 1.1rem;
+  color: #1F7AE0;
+  margin-top: 0.12rem;
+}
+
+.home-services-card__check svg {
+  width: 100%;
+  height: 100%;
+}
+
+.home-services-card__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  min-height: 2.6rem;
+  padding: 0.65rem 1rem;
+  border-radius: 10px;
+  background: linear-gradient(120deg, #1F7AE0 0%, #1B68C9 100%);
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 700;
+  transition: transform 0.24s ease, box-shadow 0.24s ease;
+  box-shadow: 0 10px 18px rgba(31, 122, 224, 0.22);
+}
+
+.home-services-card__button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 24px rgba(31, 122, 224, 0.28);
+}
+
+.home-modern-chip-row {
+  margin-top: 1.35rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.home-modern-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(21, 71, 105, 0.12);
+  background: rgba(21, 71, 105, 0.04);
+  color: #154769;
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.home-modern-section--contact .home-modern-grid--blog {
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  align-items: stretch;
 }
 
 @keyframes heroRise {
