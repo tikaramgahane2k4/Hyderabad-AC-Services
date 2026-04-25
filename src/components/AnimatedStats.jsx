@@ -135,6 +135,7 @@ function AnimatedCounterCard({ stat, index, isActive, stagger = 140, locale }) {
       className={`animated-stat-card ${isActive ? "is-visible" : ""}`}
       style={{ "--stat-delay": `${index * 90}ms` }}
     >
+      {stat.icon ? <span className="animated-stat-card__icon" aria-hidden="true">{stat.icon}</span> : null}
       <p className="animated-stat-card__value">{formattedValue}</p>
       <p className="animated-stat-card__label">{stat.label}</p>
       {stat.caption ? <p className="animated-stat-card__caption">{stat.caption}</p> : null}
