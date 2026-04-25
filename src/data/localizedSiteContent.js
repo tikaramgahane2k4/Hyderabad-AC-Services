@@ -114,19 +114,19 @@ const localizedOverrides = {
     blogPosts: [
       {
         title: "कॉपर पाइप प्री-इंस्टॉलेशन के फायदे",
-        href: "https://hyderabadacservices.com/blog1.php",
+        slug: "benefits-of-copper-pipe-pre-installation",
       },
       {
         title: "एसी गैस लीकेज से बचाव",
-        href: "https://hyderabadacservices.com/blog2.php",
+        slug: "preventing-ac-gas-leakage",
       },
       {
         title: "सही एसी इंस्टॉलेशन का महत्व",
-        href: "https://hyderabadacservices.com/blog3.php",
+        slug: "importance-of-proper-ac-installation",
       },
       {
         title: "नियमित एसी सर्विस का महत्व",
-        href: "https://hyderabadacservices.com/blog4.php",
+        slug: "importance-of-regular-ac-service",
       },
     ],
   },
@@ -238,19 +238,19 @@ const localizedOverrides = {
     blogPosts: [
       {
         title: "Copper Pipe Pre-Installation Prayojanalu",
-        href: "https://hyderabadacservices.com/blog1.php",
+        slug: "benefits-of-copper-pipe-pre-installation",
       },
       {
         title: "AC Gas Leakage Nivarana",
-        href: "https://hyderabadacservices.com/blog2.php",
+        slug: "preventing-ac-gas-leakage",
       },
       {
         title: "Sariyana AC Installation Pramukhyata",
-        href: "https://hyderabadacservices.com/blog3.php",
+        slug: "importance-of-proper-ac-installation",
       },
       {
         title: "Regular AC Service Pramukhyata",
-        href: "https://hyderabadacservices.com/blog4.php",
+        slug: "importance-of-regular-ac-service",
       },
     ],
   },
