@@ -85,7 +85,6 @@ const trustHighlightIcons = [
   ),
 ];
 
-<<<<<<< HEAD
 const customerStatIcons = [
   (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
@@ -112,8 +111,6 @@ const customerStatIcons = [
   ),
 ];
 
-=======
->>>>>>> parent of 2cb5dd7 (feat: modernize UI/UX and pivot to B2B enterprise focus)
 const homeCopyByLanguage = {
   en: {
     heroBadge: "Google Rating 4.9",
@@ -141,6 +138,16 @@ const homeCopyByLanguage = {
         description: "24/7 availability for your critical cooling needs",
       },
     ],
+    trustBadges: ["Multi-Brand Specialists", "Transparent Pricing", "Emergency Support", "Verified Service Team"],
+    statsEyebrow: "",
+    statsTitle: "Trusted by Hundreds Across Hyderabad",
+    statsDescription:
+      "A quick overview of our trusted services, satisfied customers, and commitment to delivering reliable AC solutions across Hyderabad.",
+    stats: [
+      { value: 4.9, decimals: 1, label: "Google Rating", icon: "rating" },
+      { value: 500, suffix: "+", label: "Happy Customers", icon: "customers" },
+      { value: 10, suffix: "+", label: "Years Experience", icon: "experience" },
+      { value: 24, suffix: "/7", label: "24/7 Support", icon: "support" },
     trustBadges: ["Transparent Pricing", "Same-Day Service", "Verified Technicians"],
     statsEyebrow: "PROVEN TRACK RECORD",
     statsTitle: "By the Numbers",
@@ -151,7 +158,6 @@ const homeCopyByLanguage = {
       { value: 10, suffix: "+", label: "Years in Service", icon: customerStatIcons[2] },
       { value: 24, suffix: "/7", label: "Support", icon: customerStatIcons[3] },
     ],
-<<<<<<< HEAD
     collaboratorsEyebrow: "TRUSTED BRANDS",
     collaboratorsTitle: "Premier Partners in Cooling Solutions",
     collaboratorsDescription: "We're certified partners with industry-leading manufacturers, ensuring the highest standards in installation and maintenance.",
@@ -163,7 +169,6 @@ const homeCopyByLanguage = {
     readArticle: "Read More",
     askGuidance: "Contact Our Team",
     serviceSupportEyebrow: "GET IN TOUCH",
-=======
     collaboratorsEyebrow: "Our Collaborators",
     collaboratorsTitle: "Brands We Work With",
     collaboratorsDescription: "Trusted support for leading air conditioning brands across residential and commercial spaces.",
@@ -175,7 +180,6 @@ const homeCopyByLanguage = {
     readArticle: "Read article",
     askGuidance: "Ask our team for guidance",
     serviceSupportEyebrow: "Service Support",
->>>>>>> parent of 2cb5dd7 (feat: modernize UI/UX and pivot to B2B enterprise focus)
     serviceSupportTitle: "Contact & Location",
     phoneLabel: "Phone",
     emailLabel: "Email",
@@ -234,15 +238,15 @@ const homeCopyByLanguage = {
       },
     ],
     trustBadges: ["मल्टी-ब्रांड विशेषज्ञ", "पारदर्शी मूल्य", "इमरजेंसी सहायता", "सत्यापित टीम"],
-    statsEyebrow: "सेवा आंकड़े",
-    statsTitle: "वे नंबर जो हमारी भरोसेमंद सेवा दिखाते हैं",
+    statsEyebrow: "",
+    statsTitle: "सेवा आंकड़े",
     statsDescription:
       "रेटिंग से लेकर उपलब्ध सहायता तक, ये आंकड़े हैदराबाद में हमारी लगातार और भरोसेमंद एसी सेवा को दर्शाते हैं।",
     stats: [
-      { value: 4.9, decimals: 1, label: "गूगल रेटिंग" },
-      { value: 500, suffix: "+", label: "संतुष्ट ग्राहक" },
-      { value: 10, suffix: "+", label: "सालों का अनुभव" },
-      { value: 24, suffix: "/7", label: "सीधा सहायता" },
+      { value: 4.9, decimals: 1, label: "गूगल रेटिंग", icon: "rating" },
+      { value: 500, suffix: "+", label: "संतुष्ट ग्राहक", icon: "customers" },
+      { value: 10, suffix: "+", label: "सालों का अनुभव", icon: "experience" },
+      { value: 24, suffix: "/7", label: "24/7 सहायता", icon: "support" },
     ],
     collaboratorsEyebrow: "हमारे सहयोगी",
     collaboratorsTitle: "वे ब्रांड जिनके साथ हम काम करते हैं",
@@ -312,15 +316,15 @@ const homeCopyByLanguage = {
       },
     ],
     trustBadges: ["Multi-Brand Experts", "Transparent Pricing", "Emergency Support", "Verified Team"],
-    statsEyebrow: "Service Numbers",
-    statsTitle: "Maa Reliable Cooling Support ni chupinche numbers",
+    statsEyebrow: "",
+    statsTitle: "Trusted by Hundreds Across Hyderabad",
     statsDescription:
-      "Rating nundi support availability varaku, ee numbers Hyderabad lo customers nammina maa consistent AC service ni chupistayi.",
+      "A quick overview of our trusted services, satisfied customers, and commitment to delivering reliable AC solutions across Hyderabad.",
     stats: [
-      { value: 4.9, decimals: 1, label: "Google Rating" },
-      { value: 500, suffix: "+", label: "Happy Customers" },
-      { value: 10, suffix: "+", label: "Years Experience" },
-      { value: 24, suffix: "/7", label: "Direct Support" },
+      { value: 4.9, decimals: 1, label: "Google Rating", icon: "rating" },
+      { value: 500, suffix: "+", label: "Happy Customers", icon: "customers" },
+      { value: 10, suffix: "+", label: "Years Experience", icon: "experience" },
+      { value: 24, suffix: "/7", label: "24/7 Support", icon: "support" },
     ],
     collaboratorsEyebrow: "Mana Collaborators",
     collaboratorsTitle: "Memu Panichesey Brands",
@@ -581,15 +585,17 @@ function Home() {
 
       <HomeSection
         className="home-modern-section--collaborators"
-        eyebrow={copy.collaboratorsEyebrow}
-        title={copy.collaboratorsTitle}
-        description={copy.collaboratorsDescription}
         revealClass="home-reveal-delay-1"
       >
-      
+        <header className="home-collaborators__header">
+          <h2 className="home-collaborators__heading">{copy.collaboratorsEyebrow}</h2>
+          <p className="home-collaborators__subheading">{copy.collaboratorsTitle}</p>
+          <p className="home-collaborators__description">{copy.collaboratorsDescription}</p>
+        </header>
+
         <div className="home-trusted-by__layout">
           <div className="home-trusted-by__left">
-            <div className="home-trusted-by__logos home-modern-grid home-modern-grid--logos" aria-label={copy.collaboratorsTitle}>
+            <div className="home-trusted-by__logos" aria-label={copy.collaboratorsTitle}>
               {partnerBrands.map((brand, index) => (
                 <HomeCard
                   key={brand.name}
