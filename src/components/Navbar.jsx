@@ -244,7 +244,7 @@ function Navbar() {
             onClick={handleBrandClick}
             aria-label="Hyderabad AC Services"
           >
-            <span className="navbar__logo-text">Hyderabad AC Services</span>
+            <img className="navbar__logo-image" src="/logo.png" alt="Hyderabad AC Services" />
           </Link>
 
           <button
