@@ -52,16 +52,23 @@
   color: #41566f;
   font-size: 1.05rem;
   line-height: 1.7;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  color: #444;
 }
 
 .service-page-list {
   list-style: none;
   margin: 0 0 25px;
   padding: 0;
+  padding: 0;
+  margin: 0 0 25px;
 }
 
 .service-page-list li {
   position: relative;
+  font-size: 1.05rem;
+  line-height: 1.6;
   margin-bottom: 10px;
   color: #2b3f55;
   font-size: 1.05rem;
@@ -91,6 +98,18 @@
 
 .service-page-list--dots li::before {
   content: "•";
+.service-page-list--dots li {
+  padding-left: 18px;
+}
+}
+
+.service-page-list--dots li::before {
+  content: "\2022";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #0c84cc;
+  font-weight: 700;
 }
 
 .service-page-list--dots li .text,
@@ -104,6 +123,32 @@
 
 .service-page-list--arrow li::before {
   content: "➤";
+  color: #333;
+}
+
+.service-page-list--check li {
+  padding-left: 22px;
+}
+
+.service-page-list--check li::before {
+  content: "\2713";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #0c84cc;
+  font-weight: 700;
+}
+
+.service-page-list--arrow li {
+  padding-left: 20px;
+}
+
+.service-page-list--arrow li::before {
+  content: "\27A4";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #0c84cc;
 }
 
 .service-page-list--icon {
@@ -145,6 +190,11 @@
   letter-spacing: 0.03em;
   transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
   box-shadow: 0 12px 28px rgba(10, 102, 194, 0.2);
+  text-transform: uppercase;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.2s;
 }
 
 .service-page-button:hover {
@@ -180,6 +230,10 @@
   margin-top: 20px;
   color: #41566f;
   font-weight: 700;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .service-page-brands {

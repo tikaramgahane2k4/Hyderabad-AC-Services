@@ -850,9 +850,12 @@
 }
 
 .home-modern-grid--blog {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(1.2rem, 2vw, 1.8rem);
-  margin-top: clamp(2rem, 3.5vw, 3rem);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.5rem, 2.3vw, 2rem);
+  margin-top: clamp(1.15rem, 2vw, 1.65rem);
+  width: min(100%, 1500px);
+  margin-inline: auto;
+  align-items: stretch;
 }
 
 .home-modern-card {
@@ -2191,128 +2194,4 @@ body[data-theme="light"] #services .home-modern-chip {
 body[data-theme="light"] #services .home-modern-card__icon {
   color: #1f2937 !important;
   background: rgba(0, 174, 221, 0.15) !important;
-}
-
-/* Keep the home experience light even if the app theme flag is dark. */
-body[data-theme="dark"] .home-page--modern {
-  --home-surface: rgba(255, 255, 255, 0.94);
-  --home-surface-strong: #ffffff;
-  --home-border: #d9e5f0;
-  --home-shadow: 0 4px 12px rgba(11, 31, 51, 0.06);
-  --home-shadow-hover: 0 12px 24px rgba(31, 122, 224, 0.12);
-  --home-text: #0b1f33;
-  --home-text-soft: #59758d;
-  --home-accent: #1f7ae0;
-  --home-accent-deep: #0f4c81;
-}
-
-body[data-theme="dark"] .home-modern-hero__overlay {
-  background:
-    radial-gradient(circle at 85% 20%, rgba(31, 122, 224, 0.08) 0%, rgba(31, 122, 224, 0) 44%),
-    linear-gradient(110deg, rgba(255, 255, 255, 0.34) 0%, rgba(247, 250, 255, 0.24) 42%, rgba(238, 244, 251, 0.14) 100%);
-}
-
-body[data-theme="dark"] .home-modern-section--articles {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.94) 0%, rgba(248, 250, 252, 0.96) 100%);
-}
-
-body[data-theme="dark"] .home-modern-section--articles::before {
-  background: linear-gradient(90deg, rgba(31, 122, 224, 0.12), rgba(31, 122, 224, 0.02));
-}
-
-body[data-theme="dark"] .home-modern-section--articles .home-modern-section__title,
-body[data-theme="dark"] .home-modern-section--articles .home-modern-section__description,
-body[data-theme="dark"] .home-trust-card h3,
-body[data-theme="dark"] .home-modern-card__title,
-body[data-theme="dark"] .home-modern-blog-card h3,
-body[data-theme="dark"] .home-modern-contact-list li,
-body[data-theme="dark"] .home-faq-trigger {
-  color: #0b1f33;
-}
-
-body[data-theme="dark"] .home-trust-section,
-body[data-theme="dark"] .home-trust-card,
-body[data-theme="dark"] .home-modern-card,
-body[data-theme="dark"] .home-modern-map-card,
-body[data-theme="dark"] .home-faq-item,
-body[data-theme="dark"] .home-modern-contact-list li {
-  border-color: #d9e5f0;
-  background: #ffffff;
-  box-shadow: 0 4px 12px rgba(11, 31, 51, 0.06);
-}
-
-body[data-theme="dark"] .home-modern-service-card,
-body[data-theme="dark"] .home-modern-blog-card {
-  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-}
-
-body[data-theme="dark"] .home-modern-card__description,
-body[data-theme="dark"] .home-modern-list li,
-body[data-theme="dark"] .home-modern-contact-copy p,
-body[data-theme="dark"] .home-faq-panel__content p,
-body[data-theme="dark"] .home-modern-section__description,
-body[data-theme="dark"] .home-modern-contact-list span,
-body[data-theme="dark"] .home-footer-utility__copyright {
-  color: #59758d;
-}
-
-body[data-theme="dark"] .home-trust-badges li {
-  border-color: rgba(31, 122, 224, 0.18);
-  background: rgba(31, 122, 224, 0.06);
-  color: #0f4c81;
-}
-
-body[data-theme="dark"] .home-modern-hero__phone-highlight,
-body[data-theme="dark"] .home-modern-button--secondary {
-  border-color: rgba(31, 122, 224, 0.18);
-  background: #ffffff;
-  color: #0f4c81;
-}
-
-body[data-theme="dark"] .home-modern-button--primary,
-body[data-theme="dark"] .home-modern-button--call,
-body[data-theme="dark"] .home-modern-contact-action--primary {
-  background: linear-gradient(120deg, #0a66c2 0%, #0f74d7 100%);
-  color: #ffffff;
-}
-
-body[data-theme="dark"] .home-modern-contact-action {
-  border-color: rgba(31, 122, 224, 0.16);
-  background: #ffffff;
-  color: #0f4c81;
-}
-
-body[data-theme="dark"] .home-faq-panel__content,
-body[data-theme="dark"] .home-footer-utility {
-  border-top-color: rgba(31, 122, 224, 0.12);
-  background: #ffffff;
-}
-
-body[data-theme="dark"] .home-modern-footer-wrap .site-footer {
-  border-color: rgba(31, 122, 224, 0.12);
-}
-
-body[data-theme="dark"] .home-footer-utility a,
-body[data-theme="dark"] .home-modern-blog-link {
-  color: #0a66c2;
-}
-
-body[data-theme="dark"] .home-footer-utility__socials a {
-  border-color: rgba(31, 122, 224, 0.14);
-  background: #ffffff;
-}
-
-body[data-theme="dark"] #services .home-modern-section__title,
-body[data-theme="dark"] #services .home-modern-card__title,
-body[data-theme="dark"] #services .home-modern-section__description,
-body[data-theme="dark"] #services .home-modern-card__description,
-body[data-theme="dark"] #services .home-modern-list li,
-body[data-theme="dark"] #services .home-modern-card__icon {
-  color: inherit !important;
-  background: inherit !important;
-}
-
-body[data-theme="dark"] #services .home-modern-card__icon {
-  color: #1f2937 !important;
-  background: rgba(31, 122, 224, 0.08) !important;
 }

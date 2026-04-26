@@ -1,8 +1,10 @@
 import { FaQuoteRight } from "react-icons/fa";
-import { Autoplay, A11y, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+
 import "swiper/css";
 import "swiper/css/navigation";
+import "swiper/css/pagination";
 import "./Testimonials.css";
 
 const reviews = [
@@ -49,6 +51,22 @@ const stats = [
   { label: "Repeat Customers", value: "86%" },
   { label: "On-Time Service", value: "98%" },
 ];
+
+
+const starsFor = (rating) =>
+  `${"★".repeat(rating)}${"☆".repeat(5 - rating)}`;
+
+
+const getScrollStep = (container) => {
+  const firstCard = container?.querySelector(".trust-review-card");
+  if (!firstCard) return 0;
+
+  const style = window.getComputedStyle(container);
+  const gap = Number.parseFloat(style.columnGap || style.gap || "0") || 0;
+
+  return firstCard.getBoundingClientRect().width + gap;
+};
+
 
 function Testimonials() {
   return (
