@@ -5,6 +5,7 @@ import AnimatedStats from "../components/AnimatedStats";
 import HomeCard from "../components/home/HomeCard";
 import HomeFaqAccordion from "../components/home/HomeFaqAccordion";
 import HomeSection from "../components/home/HomeSection";
+import ContactSectionPremium from "../components/ContactSectionPremium";
 import { blogs } from "../data/blogs";
 import { useAppPreferences } from "../context/AppPreferencesContext";
 import { getLocalizedSiteContent } from "../data/localizedSiteContent";
@@ -35,90 +36,44 @@ const partnerBrands = [
 
 const revealDelayClass = (index) => `home-reveal-delay-${(index % 6) + 1}`;
 
-const serviceCardIcons = [
+const servicesCardIcons = [
   (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
-      <path d="M4 8h16v6H4z" />
-      <path d="M8 8V5m8 3V5M7 18h10" strokeLinecap="round" />
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" aria-hidden="true">
+      <path d="m7 8 2.1 2.1M9.1 8 7 10.1M13.6 6.4l4 4M12.4 17.6l-4-4" strokeLinecap="round" />
+      <path d="M12 3.8a8.2 8.2 0 1 0 8.2 8.2" strokeLinecap="round" />
     </svg>
   ),
   (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
-      <path d="M3 7h18v5H3z" />
-      <path d="M12 12v7" strokeLinecap="round" />
-      <path d="m9 16 3 3 3-3" strokeLinecap="round" strokeLinejoin="round" />
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" aria-hidden="true">
+      <path d="M12 4v16M7.8 8a4.2 4.2 0 0 0 0 8M16.2 8a4.2 4.2 0 0 1 0 8" strokeLinecap="round" />
     </svg>
   ),
   (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
-      <path d="M3 12h18M6 8h12M6 16h12" strokeLinecap="round" />
-      <circle cx="12" cy="12" r="9" />
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" aria-hidden="true">
+      <path d="m12 3.8 1.9 3.9 4.3.6-3.1 3 .7 4.2L12 13.7 8.2 15.5l.7-4.2-3.1-3 4.3-.6L12 3.8Z" />
+    </svg>
+  ),
+  (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" aria-hidden="true">
+      <path d="M12 3.4 5.2 6.6v5.8c0 3.3 2.6 6.1 6.8 8.2 4.2-2.1 6.8-4.9 6.8-8.2V6.6L12 3.4Z" />
+      <path d="m9.3 11.8 1.8 1.8 3.6-3.6" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   ),
 ];
 
-const blogCardDefaults = {
-  category: "Tips",
-  image: "/images/AC%20services.jpg",
-  meta: "3 min read",
-  ctaLabel: "Read More →",
-};
+const servicePointCheckIcon = (
+  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.9" aria-hidden="true">
+    <circle cx="10" cy="10" r="7" />
+    <path d="m7 10 2 2 4-4" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
 
-const blogCardPresets = {
-  installation: {
-    category: "Installation",
-    image: "/images/AC%20Service%20%26%20Maintenance.jpg",
-    meta: "Expert Tip",
-    ctaLabel: "Read More →",
-  },
-  maintenance: {
-    category: "Maintenance",
-    image: "/images/AC%20services.jpg",
-    meta: "3 min read",
-    ctaLabel: "Read More →",
-  },
-  repair: {
-    category: "Repair",
-    image: "/images/AC%20Installation.jpg",
-    meta: "4 min read",
-    ctaLabel: "Read More →",
-  },
-  copper: {
-    category: "Tips",
-    image: "/images/Annual%20Maintenance%20Contracts.jpg",
-    meta: "Expert Guide",
-    ctaLabel: "Read More →",
-  },
-};
-
-const getBlogCardPreset = (post, index) => {
-  const searchText = `${post?.slug ?? ""} ${post?.title ?? ""}`.toLowerCase();
-
-  if (searchText.includes("copper")) {
-    return blogCardPresets.copper;
-  }
-
-  if (searchText.includes("install")) {
-    return blogCardPresets.installation;
-  }
-
-  if (searchText.includes("repair") || searchText.includes("leak")) {
-    return blogCardPresets.repair;
-  }
-
-  if (searchText.includes("service") || searchText.includes("maint")) {
-    return blogCardPresets.maintenance;
-  }
-
-  const fallbackByIndex = [
-    blogCardPresets.installation,
-    blogCardPresets.repair,
-    blogCardPresets.copper,
-    blogCardPresets.maintenance,
-  ];
-
-  return fallbackByIndex[index % fallbackByIndex.length] ?? blogCardDefaults;
-};
+const articleIcon = (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+    <path d="M6 4h12v16H6z" />
+    <path d="M9 9h6M9 13h6M9 17h4" strokeLinecap="round" />
+  </svg>
+);
 
 const trustHighlightIcons = [
   (
@@ -140,19 +95,44 @@ const trustHighlightIcons = [
   ),
 ];
 
+const customerStatIcons = [
+  (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+      <path d="M12 3.5 14.4 8l4.9.7-3.6 3.5.9 4.9-4.6-2.4-4.6 2.4.9-4.9L4.7 8.7 9.6 8 12 3.5Z" />
+    </svg>
+  ),
+  (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+      <path d="M8 12a4 4 0 1 0 8 0 4 4 0 0 0-8 0Z" />
+      <path d="M4.5 20c1.7-3 4.3-4.5 7.5-4.5S17.8 17 19.5 20" strokeLinecap="round" />
+    </svg>
+  ),
+  (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+      <path d="M14.5 4.5 19 9l-8.5 8.5H6v-4.5L14.5 4.5Z" />
+      <path d="M13.2 5.8 18.2 10.8" strokeLinecap="round" />
+    </svg>
+  ),
+  (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+      <circle cx="12" cy="12" r="8.2" />
+      <path d="M12 7.8v4.6l3 1.8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  ),
+];
+
 const homeCopyByLanguage = {
   en: {
     heroBadge: "Google Rating 4.9",
-    heroTitleStart: "Expert AC Solutions for",
-    heroTitleHighlight: "Every Space",
+    heroTitleStart: "Smart AC Solutions for",
+    heroTitleHighlight: "Modern Commercial Spaces",
     heroSummary:
-      "End-to-end air conditioning services - from residential to commercial. Installation, repair, maintenance and AMC plans in Hyderabad.",
-    directSupport: "Direct Support",
+      "We deliver energy-efficient HVAC solutions designed for performance, cost savings, and long-term reliability.",
+    directSupport: "Trusted Support",
     callNow: "Call Now",
-    bookConsultation: "Book Free Consultation",
+    bookConsultation: "Book Service",
     callPrefix: "Call:",
-    trustEyebrow: "WHY CUSTOMERS CHOOSE US",
-    trustTitle: "Simple, reliable AC service",
+    trustTitle: "Why Businesses Choose Us",
     trustHighlights: [
       {
         title: "Experienced Technicians",
@@ -160,36 +140,34 @@ const homeCopyByLanguage = {
       },
       {
         title: "Quick & Reliable Service",
-        description: "Fast response times with same-day service available",
+        description: "Fast response with same-day service available",
       },
       {
-        title: "Enterprise Grade Support",
-        description: "24/7 availability for your critical cooling needs",
+        title: "24/7 Support",
+        description: "Always available whenever you need help",
       },
     ],
-    trustBadges: ["Multi-Brand Specialists", "Transparent Pricing", "Emergency Support", "Verified Service Team"],
-    statsEyebrow: "",
-    statsTitle: "Trusted by Hundreds Across Hyderabad",
-    statsDescription:
-      "A quick overview of our trusted services, satisfied customers, and commitment to delivering reliable AC solutions across Hyderabad.",
+    trustBadges: ["Transparent Pricing", "Same-Day Service", "Verified Technicians"],
+    statsEyebrow: "PROVEN TRACK RECORD",
+    statsTitle: "By the Numbers",
+    statsDescription: "Serving enterprises and commercial facilities across Hyderabad with measurable results",
     stats: [
-      { value: 4.9, decimals: 1, label: "Google Rating", icon: "rating" },
-      { value: 500, suffix: "+", label: "Happy Customers", icon: "customers" },
-      { value: 10, suffix: "+", label: "Years Experience", icon: "experience" },
-      { value: 24, suffix: "/7", label: "24/7 Support", icon: "support" },
+      { value: 4.9, decimals: 1, label: "Google Rating", icon: customerStatIcons[0] },
+      { value: 500, suffix: "+", label: "Enterprise Clients", icon: customerStatIcons[1] },
+      { value: 10, suffix: "+", label: "Years in Service", icon: customerStatIcons[2] },
+      { value: 24, suffix: "/7", label: "Support", icon: customerStatIcons[3] },
     ],
-    collaboratorsEyebrow: "Our Collaborators",
-    collaboratorsTitle: "Brands We Work With",
-    collaboratorsDescription:
-      "Trusted support for leading air conditioning brands across residential and commercial spaces.",
+    collaboratorsEyebrow: "TRUSTED BRANDS",
+    collaboratorsTitle: "Premier Partners in Cooling Solutions",
+    collaboratorsDescription: "We're certified partners with industry-leading manufacturers, ensuring the highest standards in installation and maintenance.",
     serviceFocusEyebrow: "OUR SERVICES",
-    serviceFocusTitle: "Professional Cooling Services with Better Coverage",
-    latestArticlesEyebrow: "LATEST ARTICLES",
-    latestArticlesTitle: "Helpful Tips & Resources",
-    latestArticlesDescription: "Learn more about AC maintenance, installation, and long-term care.",
-    readArticle: "Read article",
-    askGuidance: "Ask our team for guidance",
-    serviceSupportEyebrow: "SERVICE SUPPORT",
+    serviceFocusTitle: "Comprehensive HVAC Solutions",
+    latestArticlesEyebrow: "RESOURCES & INSIGHTS",
+    latestArticlesTitle: "Expert Guidance",
+    latestArticlesDescription: "Industry insights and best practices for optimal climate control in commercial and enterprise environments",
+    readArticle: "Read More",
+    askGuidance: "Contact Our Team",
+    serviceSupportEyebrow: "GET IN TOUCH",
     serviceSupportTitle: "Contact & Location",
     phoneLabel: "Phone",
     emailLabel: "Email",
@@ -198,10 +176,28 @@ const homeCopyByLanguage = {
     whatsappUs: "WhatsApp Us",
     faqEyebrow: "Got Questions?",
     faqTitle: "Frequently Asked Questions",
-    faqSubtitle: "Find answers to common questions about our AC services and solutions.",
+    faqSubtitle: "Find answers to common questions about our AC services and solutions",
+    ctaTitle: "Need AC Service Today?",
+    ctaDescription:
+      "Book a free consultation now. Our expert technicians are ready to help with any AC problem - residential or commercial.",
+    privacyPolicy: "Privacy Policy",
+    sitemapLabel: "Sitemap",
+    socialLinksLabel: "Social links",
     quickTrustLabel: "Quick trust badges",
+    contactDetailsLabel: "Contact details",
     availableServicesAria: "Available service options",
+    footerLinksAria: "Footer completion links",
+    callAriaPrefix: "Call",
+    locationMapSuffix: "location map",
     starAria: "Five star visual rating",
+    copyright: "Copyright Hyderabad Ac Services 2021",
+    sitemapLinks: [
+      { label: "Home", to: "/" },
+      { label: "About", to: "/about" },
+      { label: "Services", to: "/services" },
+      { label: "Blog", to: "/blog" },
+      { label: "Contact", to: "/contact" },
+    ],
   },
   hi: {
     heroBadge: "गूगल रेटिंग 4.9",
@@ -211,30 +207,38 @@ const homeCopyByLanguage = {
       "रिहायशी से लेकर कमर्शियल तक पूरी एयर कंडीशनिंग सेवाएं। हैदराबाद में इंस्टॉलेशन, रिपेयर, मेंटेनेंस और एएमसी प्लान उपलब्ध हैं।",
     directSupport: "सीधा सहायता",
     callNow: "कॉल करें",
-    bookConsultation: "सर्विस बुक करें",
+    bookConsultation: "फ्री कंसल्टेशन बुक करें",
     callPrefix: "कॉल:",
-    trustEyebrow: "विश्वसनीयता",
     trustTitle: "भरोसेमंद कूलिंग सपोर्ट",
     trustHighlights: [
-      { title: "अनुभवी तकनीशियन", description: "हर तरह की एसी सर्विस के लिए प्रशिक्षित विशेषज्ञ।" },
-      { title: "तेज और भरोसेमंद सेवा", description: "तेज प्रतिक्रिया और जरूरत पड़ने पर उसी दिन सेवा।" },
-      { title: "24/7 सहायता", description: "जब भी मदद चाहिए, हमारी टीम उपलब्ध है।" },
+      {
+        title: "20+ साल का अनुभव",
+        description: "हैदराबाद भर में विश्वसनीय एसी इंस्टॉलेशन, रिपेयर और मेंटेनेंस सपोर्ट।",
+      },
+      {
+        title: "विश्वसनीय एचवीएसी विशेषज्ञ",
+        description: "रिहायशी और कमर्शियल कूलिंग के लिए प्रशिक्षित तकनीशियन।",
+      },
+      {
+        title: "गूगल रेटिंग 4.9",
+        description: "स्पष्ट संवाद के साथ लगातार उच्च गुणवत्ता वाली सेवा।",
+      },
     ],
-    trustBadges: ["मल्टी-ब्रांड विशेषज्ञ", "पारदर्शी मूल्य", "सत्यापित तकनीशियन"],
-    statsEyebrow: "भरोसे के आंकड़े",
+    trustBadges: ["मल्टी-ब्रांड विशेषज्ञ", "पारदर्शी मूल्य", "इमरजेंसी सहायता", "सत्यापित टीम"],
+    statsEyebrow: "",
     statsTitle: "सेवा आंकड़े",
     statsDescription:
-      "रेटिंग से लेकर सहायता उपलब्धता तक, ये आंकड़े हमारी भरोसेमंद एसी सेवाओं को दर्शाते हैं।",
+      "रेटिंग से लेकर उपलब्ध सहायता तक, ये आंकड़े हैदराबाद में हमारी लगातार और भरोसेमंद एसी सेवा को दर्शाते हैं।",
     stats: [
       { value: 4.9, decimals: 1, label: "गूगल रेटिंग", icon: "rating" },
       { value: 500, suffix: "+", label: "संतुष्ट ग्राहक", icon: "customers" },
       { value: 10, suffix: "+", label: "सालों का अनुभव", icon: "experience" },
-      { value: 24, suffix: "/7", label: "सहायता", icon: "support" },
+      { value: 24, suffix: "/7", label: "24/7 सहायता", icon: "support" },
     ],
     collaboratorsEyebrow: "हमारे सहयोगी",
     collaboratorsTitle: "वे ब्रांड जिनके साथ हम काम करते हैं",
     collaboratorsDescription: "शीर्ष एसी ब्रांड्स के लिए भरोसेमंद सपोर्ट।",
-    serviceFocusEyebrow: "हमारी सेवाएं",
+    serviceFocusEyebrow: "सेवा फोकस",
     serviceFocusTitle: "पेशेवर कूलिंग सेवाएं",
     latestArticlesEyebrow: "नए लेख",
     latestArticlesTitle: "उपयोगी टिप्स और जानकारी",
@@ -251,9 +255,26 @@ const homeCopyByLanguage = {
     faqEyebrow: "कोई सवाल है?",
     faqTitle: "अक्सर पूछे जाने वाले सवाल",
     faqSubtitle: "हमारी एसी सेवाओं से जुड़े सामान्य सवालों के जवाब पाएं।",
+    ctaTitle: "आज ही एसी सर्विस चाहिए?",
+    ctaDescription: "अभी फ्री कंसल्टेशन बुक करें। हमारी विशेषज्ञ टीम हर एसी समस्या में आपकी मदद के लिए तैयार है।",
+    privacyPolicy: "गोपनीयता नीति",
+    sitemapLabel: "साइटमैप",
+    socialLinksLabel: "सोशल लिंक",
     quickTrustLabel: "विश्वास संकेतक",
+    contactDetailsLabel: "संपर्क विवरण",
     availableServicesAria: "उपलब्ध सेवा विकल्प",
+    footerLinksAria: "फुटर लिंक अनुभाग",
+    callAriaPrefix: "कॉल",
+    locationMapSuffix: "स्थान मानचित्र",
     starAria: "पांच सितारा दृश्य रेटिंग",
+    copyright: "कॉपीराइट हैदराबाद एसी सर्विसेज 2021",
+    sitemapLinks: [
+      { label: "होम", to: "/" },
+      { label: "हमारे बारे में", to: "/about" },
+      { label: "सेवाएं", to: "/services" },
+      { label: "ब्लॉग", to: "/blog" },
+      { label: "संपर्क", to: "/contact" },
+    ],
   },
   te: {
     heroBadge: "Google Rating 4.9",
@@ -263,25 +284,33 @@ const homeCopyByLanguage = {
       "Residential nundi commercial varaku complete AC services. Hyderabad lo installation, repair, maintenance mariyu AMC plans.",
     directSupport: "Direct Support",
     callNow: "Call Cheyyandi",
-    bookConsultation: "Service Book Cheyyandi",
+    bookConsultation: "Free Consultation Book Cheyyandi",
     callPrefix: "Call:",
-    trustEyebrow: "Business Trust",
     trustTitle: "Nammakamaina Cooling Support",
     trustHighlights: [
-      { title: "Experienced Technicians", description: "All AC services kosam trained professionals." },
-      { title: "Quick & Reliable Service", description: "Fast response mariyu same-day service availability." },
-      { title: "24/7 Support", description: "Meeru eppudu contact chesina support untundi." },
+      {
+        title: "20+ Years Experience",
+        description: "Hyderabad lo reliable AC installation, repair mariyu maintenance support.",
+      },
+      {
+        title: "Trusted HVAC Experts",
+        description: "Residential mariyu commercial cooling needs kosam trained technicians.",
+      },
+      {
+        title: "Google Rating 4.9",
+        description: "Clear communication tho consistent service quality.",
+      },
     ],
-    trustBadges: ["Multi-Brand Experts", "Transparent Pricing", "Verified Team"],
-    statsEyebrow: "SERVICE NUMBERS",
+    trustBadges: ["Multi-Brand Experts", "Transparent Pricing", "Emergency Support", "Verified Team"],
+    statsEyebrow: "",
     statsTitle: "Trusted by Hundreds Across Hyderabad",
     statsDescription:
-      "Mana reliable AC services, satisfied customers mariyu support gurinchi quick overview.",
+      "A quick overview of our trusted services, satisfied customers, and commitment to delivering reliable AC solutions across Hyderabad.",
     stats: [
       { value: 4.9, decimals: 1, label: "Google Rating", icon: "rating" },
       { value: 500, suffix: "+", label: "Happy Customers", icon: "customers" },
       { value: 10, suffix: "+", label: "Years Experience", icon: "experience" },
-      { value: 24, suffix: "/7", label: "Support", icon: "support" },
+      { value: 24, suffix: "/7", label: "24/7 Support", icon: "support" },
     ],
     collaboratorsEyebrow: "Mana Collaborators",
     collaboratorsTitle: "Memu Panichesey Brands",
@@ -303,8 +332,17 @@ const homeCopyByLanguage = {
     faqEyebrow: "Questions Unnaya?",
     faqTitle: "Frequently Asked Questions",
     faqSubtitle: "Mana AC services gurinchi common questions ki samadhanalu.",
+    ctaTitle: "Ivalo AC Service Kavala?",
+    ctaDescription: "Free consultation book cheyyandi. Mana experts prathi AC problem ki ready ga untaru.",
+    privacyPolicy: "Privacy Policy",
+    sitemapLabel: "Sitemap",
+    socialLinksLabel: "Social links",
     quickTrustLabel: "Quick trust badges",
+    contactDetailsLabel: "Contact details",
     availableServicesAria: "Available service options",
+    footerLinksAria: "Footer completion links",
+    callAriaPrefix: "Call",
+    locationMapSuffix: "location map",
     starAria: "Five star visual rating",
     copyright: "Copyright Hyderabad Ac Services 2021",
     sitemapLinks: [
@@ -317,29 +355,20 @@ const homeCopyByLanguage = {
   },
 };
 
-const utilitySocialIcons = {
-  Facebook: (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M13.5 22v-8h2.7l.4-3.1h-3.1V8.9c0-.9.25-1.5 1.55-1.5H16.7V4.6c-.3-.04-1.33-.12-2.53-.12-2.5 0-4.22 1.53-4.22 4.35v2.01H7.1V14h2.84v8h3.56Z" fill="currentColor" />
-    </svg>
-  ),
-  Instagram: (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm8.75 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z" fill="currentColor" />
-    </svg>
-  ),
-  WhatsApp: (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.9-1.4A10 10 0 1 0 12 2Zm5.8 14.2c-.24.68-1.2 1.25-1.98 1.41-.53.11-1.23.2-3.58-.77-3.01-1.25-4.95-4.32-5.1-4.52-.15-.2-1.22-1.62-1.22-3.09s.77-2.19 1.04-2.49c.27-.3.6-.38.8-.38h.58c.19 0 .45-.08.7.52.26.62.89 2.14.97 2.3.08.16.13.35.03.56-.1.2-.15.32-.29.5-.14.18-.3.39-.43.52-.14.14-.29.29-.12.59.17.3.74 1.22 1.6 1.98 1.11.99 2.04 1.29 2.34 1.44.3.15.48.13.66-.08.18-.21.77-.89.98-1.19.21-.3.41-.25.69-.15.28.1 1.77.84 2.08 1 .31.16.51.24.59.38.08.14.08.82-.16 1.5Z" fill="currentColor" />
-    </svg>
-  ),
-};
+function HomeWaveDivider({ flip = false }) {
+  return (
+    <div className={`home-wave-divider ${flip ? "home-wave-divider--flip" : ""}`} aria-hidden="true">
+      <svg viewBox="0 0 1600 120" preserveAspectRatio="none">
+        <path d="M0 64C178 16 356 16 534 64C712 112 890 112 1068 64C1246 16 1424 16 1600 64V120H0V64Z" />
+      </svg>
+    </div>
+  );
+}
 
 function Home() {
   const { language } = useAppPreferences();
   const siteContent = getLocalizedSiteContent(language);
   const copy = homeCopyByLanguage[language] ?? homeCopyByLanguage.en;
-
   const statsLocaleByLanguage = {
     en: "en-IN",
     hi: "hi-IN",
@@ -348,200 +377,197 @@ function Home() {
 
   const serviceCards = [
     {
-      title: siteContent.highlightedServices[0],
-      points: siteContent.airConditioningServices.slice(0, 3),
-      icon: serviceCardIcons[0],
+      title: "AC Repair",
+      points: ["Quick diagnosis", "Leak repair", "Multi-brand support"],
+      image: "/images/AC%20repair.jpg",
+      badge: "Repair",
+      icon: servicesCardIcons[0],
+      href: "/services/ac-repair",
     },
     {
-      title: siteContent.highlightedServices[1],
-      points: siteContent.airConditioningServices.slice(3, 6),
-      icon: serviceCardIcons[1],
+      title: "AC Maintenance",
+      points: ["System check", "Output check", "Energy saving"],
+      image: "/images/AC%20Service%20&%20Maintenance.jpg",
+      badge: "Maintenance",
+      icon: servicesCardIcons[1],
+      href: "/services/ac-service",
     },
     {
-      title: siteContent.highlightedServices[2],
-      points: siteContent.exhaustServices.slice(0, 3),
-      icon: serviceCardIcons[2],
+      title: "AC Installation",
+      points: ["Expert setup", "Piping setup", "On-time handover"],
+      image: "/images/AC%20Installation.jpg",
+      badge: "Installation",
+      icon: servicesCardIcons[2],
+      href: "/services/ac-installation",
+    },
+    {
+      title: "AMC Plans",
+      points: ["Routine checks", "Preventive care", "Priority help"],
+      image: "/images/Annual%20Maintenance%20Contracts.jpg",
+      badge: "AMC",
+      icon: servicesCardIcons[3],
+      href: "/services/ac-service",
     },
   ];
 
   const trustHighlights = copy.trustHighlights.map((item, index) => ({
     ...item,
-    icon: trustHighlightIcons[index] ?? trustHighlightIcons[0],
+    icon: trustHighlightIcons[index],
   }));
 
+  const mapEmbedUrl = `https://www.google.com/maps?q=${encodeURIComponent(siteContent.location)}&output=embed`;
   const blogPosts =
     Array.isArray(siteContent.blogPosts) && siteContent.blogPosts.length
       ? siteContent.blogPosts
       : siteContent.blogTitles.map((title) => ({ title, href: null }));
-
-  const blogImageOverrides = [
-    null,
-    "/images/AC Service & Maintenance.jpg",
-    "/images/AC services.jpg",
-    "/images/AC repair.jpg",
-  ];
-
-  const blogLinks = blogPosts
-    .filter((post) => typeof post?.title === "string" && post.title.trim().length > 0)
-    .map((post, index) => {
-      const matchedBlog = blogs[index] ?? null;
-      const slug = matchedBlog?.slug ?? null;
-      const cardPreset = getBlogCardPreset({ ...post, slug }, index);
-
-      return {
-        ...post,
-        slug,
-        ...blogCardDefaults,
-        ...cardPreset,
-        image: blogImageOverrides[index] ?? cardPreset.image ?? blogCardDefaults.image,
-      };
-    });
-
-  const resourceCards = Array.from({ length: 4 }, (_, index) => {
-    const post = blogLinks[index] ?? blogs[index] ?? null;
-
-    if (!post) {
-        return null;
-    }
-
-    const media = post; 
+  const blogLinks = blogPosts.map((post, index) => {
+    const matchedBlog = blogs[index] ?? null;
 
     return {
-        ...post,
-        image: media.image,
-        imagePosition: media.imagePosition,
-        summary: media.summary,
+      ...post,
+      slug: matchedBlog?.slug ?? null,
     };
-    }).filter(Boolean);
+  });
 
   return (
     <>
       <div className="home-page home-page--modern">
-      <section
-        className="home-modern-hero home-modern-hero--split"
-        style={{
-          backgroundImage: `url("${heroBackground}")`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
-      >
-        <div className="home-modern-hero__left">
-
+        <section
+          className="home-modern-hero home-modern-hero--split"
+          style={{
+            backgroundImage: `url("${heroBackground}")`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+        >
           <div className="home-modern-hero__content">
-            <p className="home-modern-hero__badge">Trusted HVAC Partner</p>
-            <h1 className="home-modern-hero__title">Reliable AC Solutions for Businesses & Commercial Spaces</h1>
-
-            <p className="home-modern-hero__summary">
-              End-to-end air conditioning services designed to ensure uninterrupted operations, energy efficiency, and long-term system performance.
-            </p>
-
-            <div className="home-modern-hero__actions">
-              <Link className="home-modern-button home-modern-button--primary" to="/contact">
-                Get AMC Quote
-              </Link>
-              <Link className="home-modern-button home-modern-button--secondary" to="/book-service">
-                Book Service
-              </Link>
-            </div>
-
-            <ul className="home-modern-hero__trust-indicators" aria-label="Business trust indicators">
-              {enterpriseTrustIndicators.map((item) => (
-                <li key={item}>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-
+            <p className="home-modern-hero__badge">B2B HVAC Solutions</p>
+            <h1 className="home-modern-hero__title">
+              <span>{copy.heroTitleStart}</span>
+              <span>{copy.heroTitleHighlight}</span>
+            </h1>
+            <p className="home-modern-hero__summary">{copy.heroSummary}</p>
           </div>
-        </div>
 
-        <div className="home-modern-hero__right">
-          <form className="home-lead-card" onSubmit={(event) => event.preventDefault()}>
-            <div className="home-lead-card__header">
-              <h2>Get Expert Consultation</h2>
-              <p>Share your details and our commercial HVAC team will respond promptly.</p>
-            </div>
+          <div className="home-modern-hero__actions">
+            <Link className="home-modern-button home-modern-button--primary" to="/contact">
+              Get AMC Quote
+            </Link>
+            <Link className="home-modern-button home-modern-button--secondary" to="/book-service">
+              Book Service
+            </Link>
+          </div>
 
-            <div className="home-lead-card__grid">
-              <label>
-                Name
-                <input type="text" name="name" placeholder="Your name" required />
-              </label>
+          <ul className="home-modern-hero__trust-indicators" aria-label="Business trust indicators">
+            {enterpriseTrustIndicators.map((item) => (
+              <li key={item}>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
 
-              <label>
-                Email
-                <input type="email" name="email" placeholder="Your email" required />
-              </label>
+        <section className="home-modern-hero__right-section">
+          <div className="home-lead-card__wrapper">
+            <form className="home-lead-card home-lead-card--hero" onSubmit={(event) => event.preventDefault()}>
+              <div className="home-lead-card__header">
+                <p className="home-lead-card__eyebrow">B2B Lead Generation</p>
+                <h2>Tell us about your requirement</h2>
+                <p>Call or WhatsApp our team for a faster response.</p>
+              </div>
 
-              <label className="home-lead-card__full">
-                Service Type
-                <select name="serviceType" defaultValue="" required>
-                  <option value="" disabled>
-                    Select service type
-                  </option>
-                  {heroServiceTypes.map((serviceType) => (
-                    <option key={serviceType} value={serviceType}>
-                      {serviceType}
+              <div className="home-lead-card__grid">
+                <label>
+                  Name
+                  <input type="text" name="name" placeholder="Your name" required />
+                </label>
+
+                <label>
+                  Email
+                  <input type="email" name="email" placeholder="Your email" required />
+                </label>
+
+                <label className="home-lead-card__full">
+                  Company Name
+                  <input type="text" name="company" placeholder="Your company or site name" required />
+                </label>
+
+                <label>
+                  Number of AC Units
+                  <input type="number" name="units" placeholder="e.g. 12" min="1" />
+                </label>
+
+                <label className="home-lead-card__full">
+                  Service Type
+                  <select name="serviceType" defaultValue="" required>
+                    <option value="" disabled>
+                      Select service type
                     </option>
-                  ))}
-                </select>
-              </label>
+                    {heroServiceTypes.map((serviceType) => (
+                      <option key={serviceType} value={serviceType}>
+                        {serviceType}
+                      </option>
+                    ))}
+                  </select>
+                </label>
 
-              <label className="home-lead-card__full">
-                Message
-                <textarea name="message" rows="4" placeholder="Tell us about your requirement" />
-              </label>
-            </div>
+                <label className="home-lead-card__full">
+                  Message
+                  <textarea name="message" rows="4" placeholder="Share timeline, location, service scope, or any special requirements." />
+                </label>
+              </div>
 
-            <button type="submit">Submit Request</button>
-            <small>Your information is safe with us.</small>
-          </form>
-        </div>
-      </section>
+              <button type="submit">Submit Request</button>
+              <small>Your information is safe with us.</small>
+            </form>
+          </div>
+        </section>
+      </div>
 
-      <section className="home-trust-section home-reveal home-reveal-delay-1" data-reveal>
-        <header className="home-trust-section__header">
-          <p className="home-modern-eyebrow">{copy.trustEyebrow}</p>
-          <h2 className="home-modern-section__title">{copy.trustTitle}</h2>
-        </header>
+      <section
+        className="home-trust-section home-reveal home-reveal-delay-1"
+        data-reveal
+      >
+        <div className="home-trust-section__shell">
+          <header className="home-trust-section__header">
+            <h2 className="home-modern-section__title">{copy.trustTitle}</h2>
+          </header>
 
-        <div className="home-trust-grid">
-          {trustHighlights.map((item, index) => (
-            <article key={item.title} className="home-trust-card">
-              <span className="home-trust-card__icon" aria-hidden="true">
-                {item.icon}
-              </span>
-              <h3>{item.title}</h3>
+          <div className="home-trust-grid">
+            {trustHighlights.map((item, index) => (
+              <article key={item.title} className="home-trust-card">
+                <span className="home-trust-card__icon" aria-hidden="true">
+                  {item.icon}
+                </span>
+                <h3>{item.title}</h3>
+                {index === 2 && item.title.includes("Google") ? (
+                  <p className="home-trust-card__stars" aria-label={copy.starAria}>
+                    <span>★</span>
+                    <span>★</span>
+                    <span>★</span>
+                    <span>★</span>
+                    <span>★</span>
+                  </p>
+                ) : (
+                  <p>{item.description}</p>
+                )}
+                {index !== 2 && <p>{item.description}</p>}
+              </article>
+            ))}
+          </div>
 
-              {index === 2 ? (
-                <p className="home-trust-card__stars" aria-label={copy.starAria}>
-                  <span>★</span>
-                  <span>★</span>
-                  <span>★</span>
-                  <span>★</span>
-                  <span>★</span>
-                </p>
-              ) : null}
-
-              <p>{item.description}</p>
-            </article>
-          ))}
-        </div>
-
-        <ul className="home-trust-badges" aria-label={copy.quickTrustLabel}>
-          {copy.trustBadges.map((badge) => (
-            <li key={badge}>{badge}</li>
-          ))}
-        </ul>
-
-        <div className="home-trust-section__cta">
-          <Link className="home-trust-section__cta-button" to="/book-service">
-            Book AC Service
-          </Link>
-          <Link className="home-trust-section__cta-button home-trust-section__cta-button--secondary" to="/contact">
-            Get Free Quote
-          </Link>
+          <div className="home-trust-section__cta">
+            <Link className="home-trust-section__cta-button" to="/book-service">
+              Book AC Service
+            </Link>
+            <Link
+              className="home-trust-section__cta-button home-trust-section__cta-button--secondary"
+              to="/contact"
+            >
+              Get Free Quote
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -553,10 +579,7 @@ function Home() {
         locale={statsLocaleByLanguage[language] ?? "en-IN"}
       />
 
-      <HomeSection
-        className="home-modern-section--collaborators"
-        revealClass="home-reveal-delay-1"
-      >
+      <HomeSection className="home-modern-section--collaborators" revealClass="home-reveal-delay-1">
         <header className="home-collaborators__header">
           <h2 className="home-collaborators__heading">{copy.collaboratorsEyebrow}</h2>
           <p className="home-collaborators__subheading">{copy.collaboratorsTitle}</p>
@@ -578,94 +601,85 @@ function Home() {
             </div>
           </div>
 
-          <div className="home-trusted-by__media">
-            <img src="/images/AC%20services.jpg" alt="Technician servicing an AC system" loading="lazy" />
-          </div>
+          <ul className="home-trust-badges" aria-label={copy.quickTrustLabel}>
+            {copy.trustBadges.map((badge) => (
+              <li key={badge}>{badge}</li>
+            ))}
+          </ul>
         </div>
       </HomeSection>
 
-      <HomeSection
-        id="services"
-        eyebrow={copy.serviceFocusEyebrow}
-        title={copy.serviceFocusTitle}
-        description={siteContent.companyDescription[0]}
-        revealClass="home-reveal-delay-1"
-      >
-        <div className="home-modern-grid home-modern-grid--services">
+      <HomeSection id="services" className="home-modern-section--services" eyebrow={copy.serviceFocusEyebrow} title={copy.serviceFocusTitle} description="Count on our certified professionals for reliable AC services, repairs, and maintenance. We ensure comfort, efficiency, and peace of mind - all year round." revealClass="home-reveal-delay-1">
+        <div className="home-services-grid">
           {serviceCards.map((serviceCard, index) => (
-            <HomeCard
-              key={serviceCard.title}
-              className="home-modern-service-card"
-              icon={serviceCard.icon}
-              title={serviceCard.title}
-              revealClass={revealDelayClass(index + 1)}
-            >
-              <ul className="home-modern-list">
-                {serviceCard.points.map((point) => (
-                  <li key={point}>{point}</li>
-                ))}
-              </ul>
-            </HomeCard>
+            <article key={serviceCard.title} className={`home-services-card home-reveal ${revealDelayClass(index + 1)}`} data-reveal>
+              <div className="home-services-card__media">
+                <img src={serviceCard.image} alt={serviceCard.title} loading="lazy" />
+              </div>
+              <div className="home-services-card__content">
+                <span className="home-services-card__icon" aria-hidden="true">
+                  {serviceCard.icon}
+                </span>
+                <span className="home-services-card__badge">{serviceCard.badge}</span>
+                <h3>{serviceCard.title}</h3>
+                <ul className="home-services-card__list">
+                  {serviceCard.points.map((point) => (
+                    <li key={point}>
+                      <span className="home-services-card__check" aria-hidden="true">
+                        {servicePointCheckIcon}
+                      </span>
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+                <Link className="home-services-card__button" to={serviceCard.href}>
+                  Learn More →
+                </Link>
+              </div>
+            </article>
           ))}
         </div>
-
-        <div className="home-modern-chip-row" aria-label={copy.availableServicesAria}>
-          {siteContent.serviceOptions.map((serviceOption) => (
-            <span key={serviceOption} className="home-modern-chip">
-              {serviceOption}
-            </span>
-          ))}
+        <div className="home-services-actions">
+          <Link className="home-services-view-all" to="/services">
+            View All Services →
+          </Link>
         </div>
       </HomeSection>
+
+      <HomeWaveDivider flip />
 
       <div className="home-modern-block home-reveal home-reveal-delay-1" data-reveal>
         <Testimonials />
       </div>
 
-      <HomeSection
-        className="home-modern-section--articles"
-        eyebrow={copy.latestArticlesEyebrow}
-        title={copy.latestArticlesTitle}
-        description={copy.latestArticlesDescription}
-        revealClass="home-reveal-delay-1"
-      >
+      <HomeSection className="home-modern-section--articles" eyebrow={copy.latestArticlesEyebrow} title={copy.latestArticlesTitle} description={copy.latestArticlesDescription} revealClass="home-reveal-delay-1">
         <div className="home-modern-grid home-modern-grid--blog">
           {blogLinks.map((post, index) => (
             <HomeCard key={post.title} className="home-modern-blog-card" revealClass={revealDelayClass(index + 1)}>
-              <div className="home-modern-blog-card__media">
-                <img src={post.image} alt={post.title} loading="lazy" />
-              </div>
-
+              <span className="home-modern-blog-icon" aria-hidden="true">
+                {articleIcon}
+              </span>
               <div className="home-modern-blog-card__content">
-                <span className="home-modern-blog-tag">{post.category}</span>
                 <h3>{post.title}</h3>
-                <p className="home-modern-blog-meta">{post.meta}</p>
-
                 <Link className="home-modern-blog-link" to={post.slug ? `/blog/${post.slug}` : "/blog"}>
-                  {post.ctaLabel}
+                  {copy.readArticle}
                 </Link>
               </div>
             </HomeCard>
           ))}
         </div>
-
         <Link className="home-modern-inline-link" to="/contact">
           {copy.askGuidance} →
         </Link>
       </HomeSection>
 
-      <HomeFaqAccordion
-        items={siteContent.faqItems}
-        eyebrow={copy.faqEyebrow}
-        title={copy.faqTitle}
-        subtitle={copy.faqSubtitle}
-      />
+      <HomeFaqAccordion items={siteContent.faqItems} eyebrow={copy.faqEyebrow} title={copy.faqTitle} subtitle={copy.faqSubtitle} />
 
-            </div>
+      <ContactSectionPremium />
+
       <Footer />
     </>
   );
 }
 
 export default Home;
-  

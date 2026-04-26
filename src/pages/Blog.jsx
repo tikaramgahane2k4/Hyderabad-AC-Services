@@ -1,121 +1,140 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaCalendarAlt, FaArrowRight, FaSearch } from 'react-icons/fa';
+import { FaClock, FaSearch } from 'react-icons/fa';
 import { blogPosts, BLOG_FALLBACK_IMAGE } from '../data/blogPosts';
+import Footer from '../components/Footer';
 import '../styles/blog.css';
 
-// Hook: fires a callback when an element enters the viewport
-function useIntersectionObserver(ref, options = {}) {
-  const [isVisible, setIsVisible] = useState(false);
-  useEffect(() => {
-    if (!ref.current) return;
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        setIsVisible(true);
-        observer.disconnect();
-      }
-    }, { threshold: 0.1, ...options });
-    observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [ref]);
-  return isVisible;
-}
+const FILTER_TABS = ['All', 'Installation', 'Maintenance', 'Cost Saving', 'Commercial HVAC'];
 
-// Individual card with fade-in-on-scroll
-const BlogCard = ({ post }) => {
-  const ref = useRef(null);
-  const isVisible = useIntersectionObserver(ref);
+const normalizeCategory = (post) => {
+  if (post.category === 'Installation') return 'Installation';
+  if (post.category === 'Maintenance') return 'Maintenance';
+  if (post.category === 'Commercial') return 'Commercial HVAC';
 
-  return (
-    <Link
-      to={`/blog/${post.slug}`}
-      key={post.id}
-      className={`blog-card${isVisible ? ' blog-card--visible' : ''}`}
-      ref={ref}
-    >
-      <div className="blog-card-image">
-        <img
-          src={post.image}
-          alt={post.title}
-          loading="lazy"
-          onError={(e) => { e.currentTarget.src = BLOG_FALLBACK_IMAGE; }}
-        />
-        <div className="blog-card-image-overlay" aria-hidden="true" />
-      </div>
-      <div className="blog-card-content">
-        <span className="blog-card-category">{post.category}</span>
-        <h2>{post.title}</h2>
-        <p>{post.description}</p>
-        <div className="blog-card-footer">
-          <span><FaCalendarAlt style={{ marginRight: '5px' }} /> {new Date(post.createdAt).toLocaleDateString()}</span>
-          <span style={{ color: '#0c84cc', fontWeight: 600 }}>Read More <FaArrowRight style={{ marginLeft: '5px', fontSize: '12px' }} /></span>
-        </div>
-      </div>
-    </Link>
-  );
+  const searchable = `${post.title} ${post.description} ${post.tags.join(' ')}`.toLowerCase();
+  if (searchable.includes('save') || searchable.includes('electricity') || searchable.includes('efficiency')) {
+    return 'Cost Saving';
+  }
+
+  return 'Cost Saving';
 };
+
+const getReadTime = (content) => {
+  const plainText = content.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+  const words = plainText.split(' ').filter(Boolean).length;
+  const minutes = Math.max(3, Math.round(words / 180));
+  return `${minutes} min read`;
+};
+
+const BlogGridCard = ({ post }) => (
+  <Link to={`/blog/${post.slug}`} className="b2b-blog-card">
+    <div className="b2b-blog-card__image-wrap">
+      <img
+        src={post.image}
+        alt={post.title}
+        loading="lazy"
+        onError={(e) => {
+          e.currentTarget.src = BLOG_FALLBACK_IMAGE;
+        }}
+      />
+    </div>
+
+    <div className="b2b-blog-card__content">
+      <h3>{post.title}</h3>
+      <p>{post.description}</p>
+      <div className="b2b-blog-card__meta-row">
+        <span><FaClock /> {getReadTime(post.content)}</span>
+        <span>{normalizeCategory(post)}</span>
+      </div>
+    </div>
+  </Link>
+);
 
 const Blog = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [activeFilter, setActiveFilter] = useState('All');
 
   useEffect(() => {
-    document.title = "Blog | Hyderabad AC Services - Cooling Tips & Guides";
+    document.title = 'B2B Cooling Insights | Hyderabad AC Services';
   }, []);
 
-  const categories = ['All', ...new Set(blogPosts.map(post => post.category))];
-
-  const filteredPosts = blogPosts.filter(post => {
-    const matchesSearch =
-      post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      post.description.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === 'All' || post.category === selectedCategory;
-    return matchesSearch && matchesCategory;
-  });
+  const filteredPosts = useMemo(() => {
+    const query = searchTerm.trim().toLowerCase();
+    return blogPosts.filter((post) => {
+      const matchesFilter = activeFilter === 'All' || normalizeCategory(post) === activeFilter;
+      const searchBlob = `${post.title} ${post.description} ${post.tags.join(' ')}`.toLowerCase();
+      const matchesSearch = query.length === 0 || searchBlob.includes(query);
+      return matchesFilter && matchesSearch;
+    });
+  }, [activeFilter, searchTerm]);
 
   return (
-    <div className="blog-container">
-      <header className="blog-header">
-        <h1>Cooling Insights</h1>
-        <p>Expert tips, maintenance guides, and the latest in AC technology.</p>
+    <div className="b2b-blog-page">
+      <header className="b2b-blog-hero">
+        <div className="b2b-blog-hero__overlay" aria-hidden="true" />
+        <div className="b2b-blog-hero__content">
+          <p className="b2b-kicker">B2B Insights Hub</p>
+          <h1>Insights &amp; Resources for Smart Cooling Solutions</h1>
+          <p>
+            Actionable HVAC intelligence for enterprises to reduce downtime, improve efficiency,
+            and optimize cooling ROI across offices and commercial facilities.
+          </p>
+          <div className="b2b-blog-hero__ctas">
+            <Link to="/book-service" className="b2b-btn b2b-btn--primary">Get AMC Quote</Link>
+            <a href="tel:+919123456789" className="b2b-btn b2b-btn--secondary">Talk to Expert</a>
+          </div>
+        </div>
+      </header>
 
-        <div className="blog-filters">
-          <div className="search-bar">
-            <FaSearch className="search-icon" />
+      <section className="b2b-blog-container" id="all-insights">
+        <div className="b2b-section-head">
+          <h2>Latest HVAC Insights</h2>
+          <p>Concise guides for business owners, admin teams, and facility managers.</p>
+        </div>
+
+        <div className="b2b-filters-shell">
+          <div className="b2b-search">
+            <FaSearch className="b2b-search__icon" />
             <input
               type="text"
-              placeholder="Search articles..."
+              placeholder="Search insights"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
 
-          <div className="category-tabs">
-            {categories.map(category => (
+          <div className="b2b-filter-tabs" role="tablist" aria-label="Blog filters">
+            {FILTER_TABS.map((filter) => (
               <button
-                key={category}
-                className={`category-tab ${selectedCategory === category ? 'active' : ''}`}
-                onClick={() => setSelectedCategory(category)}
+                key={filter}
+                type="button"
+                role="tab"
+                aria-selected={activeFilter === filter}
+                className={`b2b-filter-tab${activeFilter === filter ? ' is-active' : ''}`}
+                onClick={() => setActiveFilter(filter)}
               >
-                {category}
+                {filter}
               </button>
             ))}
           </div>
         </div>
-      </header>
 
-      {filteredPosts.length > 0 ? (
-        <div className="blog-grid">
-          {filteredPosts.map((post) => (
-            <BlogCard key={post.id} post={post} />
-          ))}
-        </div>
-      ) : (
-        <div className="no-results">
-          <h3>No articles found</h3>
-          <p>Try adjusting your search or category filter.</p>
-        </div>
-      )}
+        {filteredPosts.length > 0 ? (
+          <div className="b2b-blog-grid">
+            {filteredPosts.map((post) => (
+              <BlogGridCard key={post.id} post={post} />
+            ))}
+          </div>
+        ) : (
+          <div className="b2b-no-results">
+            <h3>No insights found for your search</h3>
+            <p>Try a different keyword or switch the filter to All.</p>
+          </div>
+        )}
+      </section>
+
+      <Footer />
     </div>
   );
 };

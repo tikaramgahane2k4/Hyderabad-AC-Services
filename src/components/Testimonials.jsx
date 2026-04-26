@@ -128,7 +128,7 @@ function Testimonials() {
         <button className="trust-reviews-nav trust-reviews-nav--next" type="button" aria-label="Next review">
           <span aria-hidden="true">→</span>
         </button>
-      </div>
+       </div>
 
       <section className="trust-stats-section">
         <div className="trust-stats-grid">

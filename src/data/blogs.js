@@ -16,7 +16,7 @@ export const blogs = [
       {
         type: "heading",
         level: 2,
-        text: "💡 What Is Copper Pipe Pre-Installation?",
+        text: " What Is Copper Pipe Pre-Installation?",
       },
       {
         type: "paragraph",
@@ -39,7 +39,7 @@ export const blogs = [
       {
         type: "heading",
         level: 2,
-        text: "🌟 Benefits of Copper Pipe Pre-Installation",
+        text: " Benefits of Copper Pipe Pre-Installation",
       },
       {
         type: "heading",
@@ -98,7 +98,7 @@ export const blogs = [
       {
         type: "heading",
         level: 2,
-        text: "🏠 Ideal for New Homes & Commercial Projects",
+        text: " Ideal for New Homes & Commercial Projects",
       },
       {
         type: "paragraph",
@@ -110,7 +110,7 @@ export const blogs = [
       {
         type: "heading",
         level: 2,
-        text: "✅ Final Thoughts",
+        text: " Final Thoughts",
       },
       {
         type: "paragraph",
@@ -118,7 +118,7 @@ export const blogs = [
       },
       {
         type: "paragraph",
-        text: "📞 Call us today to plan your AC installation the right way!",
+        text: " Call us today to plan your AC installation the right way!",
       },
     ],
   },
@@ -139,7 +139,7 @@ export const blogs = [
       {
         type: "heading",
         level: 2,
-        text: "❄️ What Causes AC Gas Leakage?",
+        text: " What Causes AC Gas Leakage?",
       },
       {
         type: "list",
@@ -166,7 +166,7 @@ export const blogs = [
       {
         type: "heading",
         level: 2,
-        text: "🧊 Signs of AC Gas Leakage",
+        text: " Signs of AC Gas Leakage",
       },
       {
         type: "list",
@@ -243,7 +243,7 @@ export const blogs = [
       {
         type: "heading",
         level: 2,
-        text: "✅ Final Thoughts",
+        text: " Final Thoughts",
       },
       {
         type: "paragraph",
@@ -251,7 +251,7 @@ export const blogs = [
       },
       {
         type: "paragraph",
-        text: "📞 Call us today to schedule your AC service and keep your cooling system running at its best!",
+        text: " Call us today to schedule your AC service and keep your cooling system running at its best!",
       },
     ],
   },
@@ -272,7 +272,7 @@ export const blogs = [
       {
         type: "heading",
         level: 2,
-        text: "❄️ Why Proper AC Installation is Crucial",
+        text: " Why Proper AC Installation is Crucial",
       },
       {
         type: "heading",
@@ -302,7 +302,7 @@ export const blogs = [
       {
         type: "heading",
         level: 2,
-        text: "🔧 What Does Proper AC Installation Involve?",
+        text: " What Does Proper AC Installation Involve?",
       },
       {
         type: "paragraph",
@@ -326,7 +326,7 @@ export const blogs = [
       {
         type: "heading",
         level: 2,
-        text: "✅ Final Thoughts",
+        text: " Final Thoughts",
       },
       {
         type: "paragraph",
@@ -429,7 +429,7 @@ export const blogs = [
       {
         type: "heading",
         level: 2,
-        text: "✅ Final Thoughts",
+        text: " Final Thoughts",
       },
       {
         type: "paragraph",
@@ -437,7 +437,7 @@ export const blogs = [
       },
       {
         type: "paragraph",
-        text: "📞 Contact us today to book your AC service and keep your home cool and comfortable!",
+        text: " Contact us today to book your AC service and keep your home cool and comfortable!",
       },
     ],
   },
