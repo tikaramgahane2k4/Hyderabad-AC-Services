@@ -401,18 +401,18 @@ function Home() {
     const post = blogLinks[index] ?? blogs[index] ?? null;
 
     if (!post) {
-      return null;
+        return null;
     }
 
-    const media = resourceCardMedia[index % resourceCardMedia.length];
+    const media = post; 
 
     return {
-      ...post,
-      image: media.image,
-      imagePosition: media.imagePosition,
-      summary: media.summary,
+        ...post,
+        image: media.image,
+        imagePosition: media.imagePosition,
+        summary: media.summary,
     };
-  }).filter(Boolean);
+    }).filter(Boolean);
 
   return (
     <>
