@@ -159,8 +159,9 @@ const uiTranslations = {
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLanguageOpen, setIsLanguageOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const { language } = useAppPreferences();
+  const { language, setLanguage, languageOptions = [] } = useAppPreferences();
   const location = useLocation();
   const headerRef = useRef(null);
 
@@ -183,12 +184,14 @@ function Navbar() {
     const handlePointerDown = (event) => {
       if (headerRef.current && !headerRef.current.contains(event.target)) {
         setIsMenuOpen(false);
+        setIsLanguageOpen(false);
       }
     };
 
     const handleEscape = (event) => {
       if (event.key === "Escape") {
         setIsMenuOpen(false);
+        setIsLanguageOpen(false);
       }
     };
 
@@ -205,6 +208,7 @@ function Navbar() {
 
   useEffect(() => {
     setIsMenuOpen(false);
+    setIsLanguageOpen(false);
   }, [location.pathname, location.hash]);
 
   const handleBrandClick = (event) => {
@@ -234,6 +238,11 @@ function Navbar() {
   };
 
   const labels = uiTranslations[language] ?? uiTranslations.en;
+  const languageUiLabels = uiTranslations.en;
+  const activeLanguage = languageOptions.find((option) => option.value === language) ?? {
+    value: language,
+    label: String(language).toUpperCase(),
+  };
 
   return (
     <header className={`site-header ${isScrolled ? "site-header--scrolled" : ""}`} ref={headerRef}>
@@ -280,6 +289,52 @@ function Navbar() {
                 </li>
               ))}
             </ul>
+
+            <div className="navbar__menu-controls">
+              <div className="navbar__language-proxy notranslate" translate="no">
+                <button
+                  type="button"
+                  className={`navbar__language-toggle ${isLanguageOpen ? "navbar__language-toggle--open" : ""}`}
+                  aria-haspopup="listbox"
+                  aria-expanded={isLanguageOpen}
+                  aria-label={languageUiLabels.selectLanguage}
+                  translate="no"
+                  onClick={() => setIsLanguageOpen((currentState) => !currentState)}
+                >
+                  <span translate="no">{languageUiLabels.language}</span>
+                  <span className="navbar__language-current" translate="no">{activeLanguage.label}</span>
+                  <span className="navbar__language-chevron" aria-hidden="true">▾</span>
+                </button>
+
+                <ul
+                  className={`navbar__language-dropdown ${isLanguageOpen ? "navbar__language-dropdown--open" : ""}`}
+                  role="listbox"
+                  aria-label={languageUiLabels.selectLanguage}
+                  translate="no"
+                >
+                  {languageOptions.map((option) => (
+                    <li key={option.value}>
+                      <button
+                        type="button"
+                        className="navbar__language-option"
+                        role="option"
+                        aria-selected={option.value === language}
+                        translate="no"
+                        onClick={() => {
+                          setLanguage(option.value);
+                          setIsLanguageOpen(false);
+                        }}
+                      >
+                        <span translate="no">{option.label}</span>
+                        {option.value === language ? (
+                          <span className="navbar__language-check" aria-hidden="true">✓</span>
+                        ) : null}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
 
             <Link
               to="/book-service"

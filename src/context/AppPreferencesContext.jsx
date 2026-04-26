@@ -6,10 +6,7 @@ const SUPPORTED_THEMES = ["light", "dark"];
 const AppPreferencesContext = createContext(null);
 
 function getInitialLanguage() {
-  const storedLanguage = window.localStorage.getItem("siteLanguage");
-  if (storedLanguage && SUPPORTED_LANGUAGES.includes(storedLanguage)) {
-    return storedLanguage;
-  }
+  // Always start in English by default.
   return "en";
 }
 
